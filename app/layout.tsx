@@ -23,6 +23,14 @@ export const metadata: Metadata = {
     siteName: 'Ossama Chaib',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: `${baseUrl}/og.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Ossama Chaib',
+      },
+    ],
   },
   robots: {
     index: true,
@@ -34,6 +42,12 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ossama Chaib',
+    description: "Ossama's portfolio.",
+    images: [`${baseUrl}/og.png`],
   },
 }
 
