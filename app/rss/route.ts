@@ -1,7 +1,8 @@
-import { baseUrl } from 'app/sitemap'
 import { getBlogPosts } from 'app/blog/utils'
 
 export const dynamic = 'force-static'
+
+const baseUrl = 'https://ossa-ma.github.io'
 
 export async function GET() {
   let allBlogs = await getBlogPosts()
