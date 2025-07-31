@@ -1,0 +1,88 @@
+---
+title: 'From Dynamic to Static: Converting a Next.js Blog for GitHub Pages'
+publishedAt: '2025-07-31'
+summary: 'A deep dive into transforming a server-rendered Next.js template into a fully static site for free hosting on GitHub Pages.'
+---
+
+This document outlines the steps required to convert a dynamic Next.js application, originally designed for server-based hosting, into a fully static site compatible with static hosting platforms like GitHub Pages.
+
+## 1. The Core Challenge: Dynamic vs. Static Architecture
+
+The primary challenge stems from the architectural differences between dynamic and static web hosting.
+
+A **dynamic host**, such as Vercel, runs a live Node.js server. This allows a Next.js application to perform server-side rendering (SSR), where pages are generated on-demand for each request. It can also run API routes, which are server-side functions that can execute code, query databases, and generate dynamic content like RSS feeds or social media preview images.
+
+A **static host**, like GitHub Pages, does not run a server. It simply serves pre-built HTML, CSS, and JavaScript files. This makes it incredibly fast, secure, and cost-effective, but it means that any operation requiring a server will fail.
+
+To bridge this gap, we must instruct Next.js to pre-build the entire application into a collection of static files. This is achieved by adding the `output: 'export'` property to the `next.config.js` file.
+
+```javascript:next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+}
+
+module.exports = nextConfig
+```
+
+This single line is the catalyst for the entire process. It shifts Next.js's mode of operation from running a server to producing a static `/out` directory, which enforces a static-only architecture and reveals any server-dependent code through build errors.
+
+## 2. Resolving Static Generation Build Errors
+
+With static export enabled, several parts of the original template, which were designed for a dynamic environment, immediately caused build failures.
+
+### 2.1. Dynamic API Routes
+
+The most common source of errors was the presence of dynamic API routes. In a server environment, a route like `app/rss/route.ts` can read from the file system, compile a list of all blog posts, and generate an `rss.xml` file on the fly. In a static build, there is no active server to perform this task.
+
+- **The Solution:** The only viable approach is to eliminate this server-side logic. The dynamic routes (`app/rss/route.ts`, `app/og/route.tsx`, `app/sitemap.ts`, etc.) were removed entirely. They were replaced with their static equivalents (`rss.xml`, `og.png`, `sitemap.xml`) placed directly in the `public` directory. Anything in the `public` folder is served as-is, which is the correct pattern for static assets.
+
+### 2.2. MDX Rendering and Dependency Conflicts
+
+The second major hurdle was the library responsible for rendering MDX (Markdown with JSX) content. The template used `next-mdx-remote`, which repeatedly caused a `A React Element from an older version of React was rendered` error. This error signals a deep dependency conflict where a sub-dependency is using a different, incompatible version of React than the main application, a problem that could not be resolved by simple package manager overrides.
+
+- **The Solution:** A full migration to a more modern and stable content-handling library was necessary. We replaced the entire MDX processing pipeline with **Contentlayer**. Contentlayer acts as a "content SDK": it reads all your local content files (like blog posts), validates them against a predefined schema, and transforms them into type-safe JSON data that can be easily imported into your application during the build process. This pre-processing step resolves runtime dependency conflicts and makes data handling much cleaner.
+
+The migration involved:
+1.  Removing `next-mdx-remote`.
+2.  Installing `contentlayer` and `next-contentlayer`.
+3.  Creating a `contentlayer.config.ts` to define the schema for our posts (`title`, `publishedAt`, etc.).
+4.  Wrapping `next.config.js` with the `withContentlayer` higher-order component.
+5.  Updating all data fetching logic from the old system to the new, much simpler Contentlayer API.
+
+### 2.3. Client vs. Server Component Architecture
+
+The migration to Contentlayer introduced a new, more subtle architectural error: `cannot use both "use client" and export function "generateStaticParams()"`.
+
+This error highlights a core concept of the Next.js App Router.
+- **Server Components** run exclusively on the server (or at build time). They are ideal for data fetching and can use functions like `generateStaticParams` to tell Next.js which pages to pre-build.
+- **Client Components** are interactive and run in the user's browser. They require the `'use client'` directive at the top of the file and can use client-side hooks like `useState` or, in this case, `useMDXComponent`.
+
+The error occurred because the blog post page was trying to be both at the same time.
+
+- **The Solution:** The page was refactored to separate its client and server concerns. The main page file (`app/blog/[slug]/page.tsx`) was kept as a **Server Component** to handle data fetching and `generateStaticParams`. The part that actually renders the MDX content, which requires the client-side `useMDXComponent` hook, was extracted into its own dedicated **Client Component** (`app/components/mdx-client.tsx`).
+
+## 3. Automating Deployment with GitHub Actions
+
+To streamline the deployment process, a GitHub Actions workflow was created at `.github/workflows/deploy.yml`. This workflow automates all the steps required to get the site live on every push to the `main` branch.
+
+The workflow performs the following sequence:
+1.  **Checks out the code** from the repository.
+2.  **Sets up the environment** with the correct versions of Node.js and `pnpm`.
+3.  **Installs dependencies** using `pnpm install`.
+4.  **Builds the static site** using `pnpm run build`, which generates the `/out` directory.
+5.  **Deploys the static files** from `/out` to a dedicated `gh-pages` branch using the `peaceiris/actions-gh-pages` action.
+
+To allow the workflow to push to the `gh-pages` branch, it must be granted write permissions:
+```yaml:.github/workflows/deploy.yml
+permissions:
+  contents: write
+```
+
+## 4. Configuring the GitHub Pages Environment
+
+The final step is to tell GitHub Pages where to find the website.
+
+- **The Solution:** In the repository's **Settings > Pages**, under "Build and deployment", the source was configured to **"Deploy from a branch"**. The branch was set to `gh-pages` with the `/ (root)` folder.
+
+This tells GitHub Pages to bypass any build process on its own and simply serve the pre-built static files that our GitHub Actions workflow has already placed in the `gh-pages` branch. This separation of concerns—building in the workflow, serving from the branch—is a robust pattern for static deployments. 
