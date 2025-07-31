@@ -3,7 +3,6 @@
  */
 const nextConfig = {
   output: 'export',
-  basePath: '/ossa-ma.github.io',
 }
 
 module.exports = nextConfig 
