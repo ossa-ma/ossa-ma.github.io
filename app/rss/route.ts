@@ -1,15 +1,13 @@
-import { getBlogPosts } from 'app/blog/utils'
+import { allPosts } from 'contentlayer/generated'
 
 export const dynamic = 'force-static'
 
 const baseUrl = 'https://ossa-ma.github.io'
 
 export async function GET() {
-  let allBlogs = await getBlogPosts()
-
-  const itemsXml = allBlogs
+  const itemsXml = allPosts
     .sort((a, b) => {
-      if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
+      if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
         return -1
       }
       return 1
@@ -17,11 +15,11 @@ export async function GET() {
     .map(
       (post) =>
         `<item>
-          <title>${post.metadata.title}</title>
+          <title>${post.title}</title>
           <link>${baseUrl}/blog/${post.slug}</link>
-          <description>${post.metadata.summary || ''}</description>
+          <description>${post.summary || ''}</description>
           <pubDate>${new Date(
-            post.metadata.publishedAt
+            post.publishedAt
           ).toUTCString()}</pubDate>
         </item>`
     )

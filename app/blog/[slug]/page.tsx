@@ -3,7 +3,7 @@
 import { notFound } from 'next/navigation'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import { formatDate } from 'app/blog/utils'
+import { formatDate } from '../utils'
 
 const baseUrl = 'https://ossa-ma.github.io'
 
