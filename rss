@@ -5,22 +5,10 @@
         <link>https://ossa-ma.github.io</link>
         <description>This is my portfolio RSS feed</description>
         <item>
-          <title>Embracing Vim: The Unsung Hero of Code Editors</title>
-          <link>https://ossa-ma.github.io/blog/vim</link>
-          <description>Discover why Vim, with its steep learning curve, remains a beloved tool among developers for editing code efficiently and effectively.</description>
-          <pubDate>Tue, 09 Apr 2024 00:00:00 GMT</pubDate>
-        </item>
-<item>
-          <title>Spaces vs. Tabs: The Indentation Debate Continues</title>
-          <link>https://ossa-ma.github.io/blog/spaces-vs-tabs</link>
-          <description>Explore the enduring debate between using spaces and tabs for code indentation, and why this choice matters more than you might think.</description>
-          <pubDate>Mon, 08 Apr 2024 00:00:00 GMT</pubDate>
-        </item>
-<item>
-          <title>The Power of Static Typing in Programming</title>
-          <link>https://ossa-ma.github.io/blog/static-typing</link>
-          <description>In the ever-evolving landscape of software development, the debate between dynamic and static typing continues to be a hot topic.</description>
-          <pubDate>Sun, 07 Apr 2024 00:00:00 GMT</pubDate>
+          <title>From Dynamic to Static: Converting a Next.js Blog for GitHub Pages</title>
+          <link>https://ossa-ma.github.io/blog/from-dynamic-to-static</link>
+          <description>A deep dive into transforming a server-rendered Next.js template into a fully static site for free hosting on GitHub Pages.</description>
+          <pubDate>Thu, 31 Jul 2025 00:00:00 GMT</pubDate>
         </item>
     </channel>
   </rss>
