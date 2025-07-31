@@ -1,9 +1,7 @@
-'use client'
-
 import { notFound } from 'next/navigation'
 import { allPosts } from 'contentlayer/generated'
-import { useMDXComponent } from 'next-contentlayer/hooks'
 import { formatDate } from '../utils'
+import { Mdx } from '@/app/components/mdx-client'
 
 const baseUrl = 'https://ossa-ma.github.io'
 
@@ -49,11 +47,6 @@ export function generateMetadata({ params }) {
       images: [ogImage],
     },
   }
-}
-
-function Mdx({ code }: { code: string }) {
-  const Component = useMDXComponent(code)
-  return <Component />
 }
 
 export default function Blog({ params }) {
