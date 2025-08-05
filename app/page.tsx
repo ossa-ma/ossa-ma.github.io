@@ -33,7 +33,7 @@ export default function Page() {
       </p>
       <div className="my-8">
         <h2 className="mb-4 text-xl font-semibold tracking-tighter">
-          My Blog
+          Posts
         </h2>
         {allPosts
           .sort((a, b) => {
