@@ -5,7 +5,7 @@
         <link>https://ossa-ma.github.io</link>
         <description>This is my portfolio RSS feed</description>
         <item>
-          <title>From Dynamic to Static: Converting a Next.js Blog for GitHub Pages</title>
+          <title>Birth of a Blog. But first, a technical difficulty: Converting a Next.js Blog for GitHub Pages</title>
           <link>https://ossa-ma.github.io/blog/from-dynamic-to-static</link>
           <description>A deep dive into transforming a server-rendered Next.js template into a fully static site for free hosting on GitHub Pages.</description>
           <pubDate>Thu, 31 Jul 2025 00:00:00 GMT</pubDate>
