@@ -5,6 +5,12 @@
         <link>https://ossa-ma.github.io</link>
         <description>This is my portfolio RSS feed</description>
         <item>
+          <title>Crashing an AI Promo Event: Questions You Should Ask Before Buying Into an AI Agent (or any) Platform</title>
+          <link>https://ossa-ma.github.io/blog/crashing-ai-promo</link>
+          <description>I crashed an AI event to expose the hard questions nobody asks about enterprise AI platforms - vendor lock-in, evaluation frameworks, and whether you should just build your own.</description>
+          <pubDate>Sun, 09 Nov 2025 00:00:00 GMT</pubDate>
+        </item>
+<item>
           <title>Birth of a Blog. But first, a technical difficulty: Converting a Next.js Blog for GitHub Pages</title>
           <link>https://ossa-ma.github.io/blog/from-dynamic-to-static</link>
           <description>A deep dive into transforming a server-rendered Next.js template into a fully static site for free hosting on GitHub Pages.</description>
