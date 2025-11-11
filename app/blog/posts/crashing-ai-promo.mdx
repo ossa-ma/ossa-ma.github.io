@@ -1,0 +1,113 @@
+---
+title: 'Crashing an AI Promo Event: Questions You Should Ask Before Buying Into an AI Agent (or any) Platform'
+publishedAt: '2025-11-09'
+summary: 'I crashed an AI event to expose the hard questions nobody asks about enterprise AI platforms - vendor lock-in, evaluation frameworks, and whether you should just build your own.'
+---
+
+I trolled an AI promo event by creating an agent on their own platform that grills companies about whether they should use them at all.
+
+Chronology:
+1. Signed up for the Dust x Paatch "Agentic AI" event. Showed up in person.
+2. Sat down listening to long-winded pitch session while completely glossing over important questions about vendor lock-in, data sovereignty and others pertaining to enterprise agentic AI systems.
+3. Read Dust's docs. Realized they don't answer these questions there either. Started questioning if this was anything beyond a UI wrapper with integrations—stuff you can build in-house in a week (I know because I did).
+4. Realise some of those around me may not be as exposed to agents themselves and may not be asking the crucial questions of a closed-source agentic AI platform that they should.
+5. Had an idea: use their own platform against them. Use Dust's platform and the fact that all agents created will be shared within the attendee group so they can find mine if they want to :).
+6. Prompt claude to draft up a system prompt for the Dust Buster agent - "a comprehensive and critical technology researcher specializing in helping people make informed decisions about AI agent platforms".
+7. Gave it a system prompt loaded with every uncomfortable question companies should ask before committing to ANY vendor.
+8. Published it to the shared hackathon workspace so attendees could find it.
+9. Leave the premises... SIKE, sit down, enjoy pizza, drink coke.
+10. They notice and approach in an attempt to answer some of my questions. No success, low confidence responses. Not good.
+11. You know when you hear "Oh thats interesting" it means that the solutions architect or forward deployed engineer has never given it a thought.
+12. Go home early, disappointed.
+
+The agent asked the questions their sales deck ignored. Here's the condensed version of what actually matters.
+
+---
+
+## The Questions That Matter
+
+### 🚨 The Evaluation Problem (This is the big one)
+
+**"How do you know if your prompt changes actually improve anything, or are you just guessing?"**
+
+Without rigorous evaluation, you're:
+- Doing trial-and-error in production
+- Unable to prevent regressions when you update prompts  
+- Justifying agent performance with feelings instead of data
+- Flying blind on mission-critical systems
+
+In 2025, this is unacceptable. Open-source eval tools (PromptFoo, LangSmith, Braintrust) exist and are mostly free. They let you test prompts before deployment with actual metrics.
+
+- **"How does Dust help you determine if your new prompt is actually better than your old one, or are you just guessing?"**
+- **"What evaluation framework does Dust provide to measure agent performance objectively?"**
+- **"Can you run A/B tests on different prompt versions in Dust, or are you doing trial-and-error in production?"**
+- **"How do you prevent prompt regressions when making changes - does Dust have version control with automated testing?"**
+- **"In 2025, are you really willing to iterate on mission-critical AI agents using gut feel instead of rigorous evaluation?"**
+
+**If a vendor can't clearly explain how you'll measure success and prevent regressions, that's disqualifying.**
+
+### The Other Questions You Should Be Asking
+
+**Vendor Lock-In:**
+- Can you export everything if they 5x the price?
+- What's your exit strategy if they get acquired or shut down?
+
+**Data Sovereignty:**
+- Where exactly is your data stored and who has access?
+- Has your security team reviewed their SOC 2 reports and DPAs?
+- Do they use your data to train models?
+
+**Cost Reality:**
+- What's the 3-year total cost including per-user fees and overages?
+- Are you paying their margin on top of LLM API costs?
+
+**Technical Control:**
+- Can you modify agents beyond their UI constraints?
+- Are you locked into their LLM provider choices?
+- Can you run this on-premise or in your own cloud?
+
+**Strategic:**
+- Is this faster than 1-2 engineers building exactly what you need in 6-8 weeks?
+- Are you building a competitive advantage, or renting someone else's?
+
+---
+
+## What to Use Instead
+
+If you're evaluating AI agent platforms, at minimum compare against:
+
+**Self-Hosted (No-Code):**
+- **Flowise** - Drag-and-drop, free, 20k+ stars
+- **LangFlow** - Visual builder, on-premise 
+- **Dify.AI** - Full platform, multi-tenant, built-in RAG
+
+**Code-First Frameworks:**
+- **LangChain**: Massive ecosystem, battle-tested (+ LangFlow for no-code)
+- **CrewAI**: Multi-agent workflows
+- **PydanticAI**: Type-safe, modern Python, great DX (by the Pydantic team)
+
+**Or Just Build Your Own:**
+Like I did. Took less than a week. Complete control. Zero per-user fees. Exact features I need. No vendor drama.
+
+---
+
+## The Bottom Line
+
+I'm not saying don't use Dust if you're a non-technical person who wants to waste their money. Still, ask the right questions first.
+
+**Red flags for ANY AI SaaS platform:**
+1. Vague "AI-powered" marketing
+2. Opaque pricing that scales with users
+3. Limited customization options
+4. Unclear data residency and access controls
+5. Difficult or impossible data export
+6. **No evaluation framework for measuring agent performance**
+7. **No clear approach to testing and version control**
+
+The evaluation question alone should give you pause. If they can't clearly explain how you'll measure success and prevent regressions, that's a problem.
+
+---
+
+*The full Dust Buster system prompt is available if anyone wants it. It's designed to ask every uncomfortable question before you lock into a vendor. Because in 2025, "trust us" isn't good enough.*
+
+
