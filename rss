@@ -11,6 +11,12 @@
           <pubDate>Sun, 09 Nov 2025 00:00:00 GMT</pubDate>
         </item>
 <item>
+          <title>Development Best Practices: A Comprehensive Reference Checklist</title>
+          <link>https://ossa-ma.github.io/blog/development-best-practices</link>
+          <description>A comprehensive checklist of development best practices across Python, frontend, infrastructure, security, and database domains for quick reference in any project.</description>
+          <pubDate>Sat, 06 Sep 2025 00:00:00 GMT</pubDate>
+        </item>
+<item>
           <title>Birth of a Blog. But first, a technical difficulty: Converting a Next.js Blog for GitHub Pages</title>
           <link>https://ossa-ma.github.io/blog/from-dynamic-to-static</link>
           <description>A deep dive into transforming a server-rendered Next.js template into a fully static site for free hosting on GitHub Pages.</description>
