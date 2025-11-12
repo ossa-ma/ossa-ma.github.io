@@ -1,0 +1,138 @@
+---
+title: 'Development Best Practices: A Comprehensive Reference Checklist'
+publishedAt: '2025-09-06'
+summary: 'A comprehensive checklist of development best practices across Python, frontend, infrastructure, security, and database domains for quick reference in any project.'
+---
+
+## Introduction
+
+This checklist serves as a comprehensive reference for development best practices across multiple domains. These practices have been refined through building production systems and represent opinionated choices that prioritize maintainability, performance, and developer experience.
+
+## Python Development
+
+### Package Management & Dependencies
+- Use `uv` instead of `pip` for faster dependency resolution and more reliable package management.
+- Use `pyproject.toml` for dependency management.
+- Absolutely never use `poetry`.
+
+### Library Preferences & Rationale
+- Pydantic over dataclasses/dictionaries for automatic validation and typing.
+- aioboto3/aiobotocore over boto3 for async AWS operations that don't block the event loop.
+- aiohttp over httpx for HTTP client operations - more mature async ecosystem and better AWS SDK integration.
+- FastAPI over Django/Flask for automatic API documentation, type validation, and async-first design.
+- AsyncClient patterns over sync clients throughout the stack for non-blocking I/O.
+
+### Async Programming Patterns
+- Async/await consistently - never mix sync and async code paths.
+- Async context managers for all resource management (database, HTTP clients, file operations).
+- Concurrent execution where appropriate using `asyncio.gather()` and similar patterns.
+- Async generators for streaming large datasets without memory bloat!
+- Event loop management - let the framework handle loop lifecycle.
+- Non-blocking I/O as the default for all external service calls.
+
+### Type Safety & Code Quality
+- Comprehensive type hints using modern union syntax (`str | None` over `Optional[str]`)!!!
+- Generic types for reusable code patterns (`list[T]`, `dict[str, Any]`).
+- Protocol classes for defining interfaces without inheritance overhead.
+- Return type annotations on all functions for IDE autocomplete and error catching.
+- Strict mypy configuration to catch type errors early.
+
+### Architecture & Design Patterns
+- Direct dependency injection without over-engineering
+- Simple factory pattern for dynamic agent creation
+- Clean service layer without unnecessary abstraction
+- Singleton database instances at module level (pragmatic choice)
+
+### Error Handling & Resilience
+- Structured exception hierarchy - custom exceptions for different error categories
+- Result types over exceptions for expected failure cases (`Result[T, Error]` pattern)
+- Retry logic with exponential backoff for transient failures
+- Graceful degradation when optional services are unavailable
+- Comprehensive logging with structured data for debugging and monitoring
+
+### Testing & Development
+- Unit tests are a waste of time.
+- Mock external dependencies rather than hitting real services in tests, obviously.
+
+## Database & Data Management
+
+### Schema Design & Management
+- SQL migrations over ORM migrations for transparent, reviewable schema changes
+- Database views over complex joins in application code for performance
+- Normalized schemas with strategic denormalization (arrays) where PostgreSQL excels
+- Row Level Security over application-level access control for data security
+- Connection pooling managed by the database service, not the application
+- Separate read/write models for different use cases (CQRS-lite pattern)
+
+## API & Web Development
+
+### API Design
+- RESTful resource design with consistent URL patterns and HTTP methods
+- JSON API responses with standardized error formats across all endpoints
+- Middleware for cross-cutting concerns (authentication, logging, error handling)
+- Route organization by domain rather than by HTTP method or function
+- Input validation at API boundary using request/response models
+- Consistent error handling with proper HTTP status codes and error details
+
+## Frontend Development
+
+### Technology Choices & Patterns
+- TypeScript over JavaScript for compile-time error detection
+- Component composition over inheritance for UI building
+- Custom hooks for stateful logic reuse across components
+- Server state management separate from client state
+- Progressive enhancement - core functionality works without JavaScript
+- Bundle optimization - code splitting and lazy loading by default
+- Native `fetch` over axios in frontend to reduce bundle size and leverage browser optimizations
+
+## Security & Configuration
+
+### Security Practices
+- Environment-based configuration with validation at startup
+- Secrets management through environment variables, never hardcoded
+- Principle of least privilege in service account permissions
+- Input sanitization at all system boundaries
+- Authentication middleware rather than per-endpoint auth checks
+- HTTPS/TLS everywhere for data in transit
+
+## Performance & Scalability
+
+### Performance Optimization
+- Lazy loading of expensive resources until actually needed
+- Connection reuse through singleton patterns and context managers
+- Async I/O to maximize throughput on single-threaded event loops
+- Caching strategies at appropriate layers (database, application, CDN)
+- Resource pooling for expensive-to-create objects
+
+## Infrastructure & Deployment
+
+### Infrastructure Management
+- Infrastructure as Code for reproducible environments
+- Containerization for consistent runtime environments
+- Serverless-first for auto-scaling and cost optimization
+- Multi-environment parity - development mirrors production
+- Blue-green deployments for zero-downtime releases
+- Configuration management separated from application code
+
+## Observability & Monitoring
+
+### Monitoring & Debugging
+- Structured logging with consistent field names and log levels
+- Distributed tracing for request flows across multiple services
+- Error aggregation with context and stack traces
+
+## AI/ML Integration
+
+### AI/ML Best Practices
+- Model-agnostic interfaces for easy provider switching
+- Prompt versioning and testing as first-class development concerns
+- Token usage monitoring for cost control and optimization
+- Response validation with schema enforcement and fallback handling
+- A/B testing frameworks for comparing model performance
+- Offline evaluation before deploying new models or prompts
+
+## Conclusion
+
+These practices prioritize developer productivity, system reliability, and maintainability while leveraging the strengths of modern development ecosystems. They're designed to scale from prototype to production and facilitate team collaboration.
+
+The key is consistency - pick patterns that work for your team and apply them systematically across your codebase. These guidelines serve as a foundation that can be adapted based on specific project requirements and constraints.
