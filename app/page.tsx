@@ -9,27 +9,18 @@ export default function Page() {
       </h1>
       <p className="mb-4">
         I am a software engineer with a First Class MEng in Computing from
-        Imperial College London.
-        {/* , and I am passionate about transitioning into a */}
-        {/* career in secondary Computer Science education. My professional */}
-        {/* experience at companies like Fitch Group and Shell has given me a deep, */}
-        {/* practical understanding of software engineering, data science, and */}
-        {/* machine learning, which I am eager to share with the next generation of */}
-        {/* innovators. */}
+        Imperial College London and a few years of experience in industry.
       </p>
       <p className="mb-4">
-        Beyond my professional life, I am deeply committed to martial arts. I
-        train and spar regularly in MMA, wrestling, BJJ, and Muay Thai. I am also
-        an avid tennis player.
-        {/* , and I find that the strategic thinking required on */}
-        {/* the court complements my problem-solving skills as an engineer. */}
+        My main motivation is to automate everything so I can spend time doing things that
+        computers and AI can't do: MMA, wrestling, BJJ, Muay Thai, TENNIS, cycling, watching Seinfeld,
+        and playing Fortnite.
       </p>
       <p className="mb-4">
         This website is a place for me to share my thoughts on technology,
         education, and personal development. You'll find my blog posts below,
-        where I explore topics that I'm passionate about, from the intricacies
-        of software development to the lessons I've learned from my time on the
-        mats and the court.
+        where I explore topics that I'm passionate about or random things that won't leave my mind
+        until they are written down.
       </p>
       <div className="my-8">
         <h2 className="mb-4 text-xl font-semibold tracking-tighter">

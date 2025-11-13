@@ -3,10 +3,7 @@ import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Navbar } from './components/nav'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
-import Script from 'next/script'
 
 const baseUrl = 'https://ossa-ma.github.io'
 
@@ -68,20 +65,18 @@ export default function RootLayout({
         GeistMono.variable
       )}
     >
-      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
-        <Script
+      <head>
+        <script
+          defer
           src="https://cloud.umami.is/script.js"
           data-website-id="34bb1a7b-b0fb-4194-8632-2fa4b14f33e9"
-          strategy="afterInteractive"
-          defer
         />
-
+      </head>
+      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}
           <Footer />
-          <Analytics />
-          <SpeedInsights />
         </main>
       </body>
     </html>
