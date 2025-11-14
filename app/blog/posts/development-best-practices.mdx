@@ -44,7 +44,11 @@ This checklist serves as a comprehensive reference for development best practice
 - Comprehensive logging with structured data for debugging and monitoring
 
 ### Testing & Development
-- Unit tests are a waste of time.
+- Unit tests are a waste of time. However if you must...
+- **Pytest over unittest:** Use pytest for all testing - cleaner syntax, better assertion introspection, superior plugin ecosystem.
+- **Pytest fixtures:** Leverage fixtures for test setup/teardown and dependency injection - they're more powerful and composable than unittest's setUp/tearDown.
+- **Pytest mocking over unittest.mock:** Use `pytest-mock` (wraps unittest.mock with better pytest integration) or `pytest.MonkeyPatch` for cleaner, more maintainable mocks.
+- **Fixture scope management:** Use appropriate fixture scopes (`function`, `class`, `module`, `session`) to optimize test performance without sacrificing isolation.
 - Mock external dependencies rather than hitting real services in tests, obviously.
 
 ## Database & Data Management
