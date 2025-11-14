@@ -37,12 +37,6 @@ This checklist serves as a comprehensive reference for development best practice
 - Return type annotations on all functions for IDE autocomplete and error catching.
 - Strict mypy configuration to catch type errors early.
 
-### Architecture & Design Patterns
-- Direct dependency injection without over-engineering
-- Simple factory pattern for dynamic agent creation
-- Clean service layer without unnecessary abstraction
-- Singleton database instances at module level (pragmatic choice)
-
 ### Error Handling & Resilience
 - Structured exception hierarchy - custom exceptions for different error categories
 - Result types over exceptions for expected failure cases (`Result[T, Error]` pattern)
@@ -59,10 +53,8 @@ This checklist serves as a comprehensive reference for development best practice
 ### Schema Design & Management
 - SQL migrations over ORM migrations for transparent, reviewable schema changes
 - Database views over complex joins in application code for performance
-- Normalized schemas with strategic denormalization (arrays) where PostgreSQL excels
+- Normalized schemas with strategic denormalization (arrays)
 - Row Level Security over application-level access control for data security
-- Connection pooling managed by the database service, not the application
-- Separate read/write models for different use cases (CQRS-lite pattern)
 
 ## API & Web Development
 
@@ -133,6 +125,6 @@ This checklist serves as a comprehensive reference for development best practice
 
 ## Conclusion
 
-These practices prioritize developer productivity, system reliability, and maintainability while leveraging the strengths of modern development ecosystems. They're designed to scale from prototype to production and facilitate team collaboration.
+The key is consistency - pick patterns that work for your team and apply them across your codebase. These guidelines serve as a foundation that can be adapted based on specific project requirements and constraints.
 
-The key is consistency - pick patterns that work for your team and apply them systematically across your codebase. These guidelines serve as a foundation that can be adapted based on specific project requirements and constraints.
+I'll continue to add to this as I improve as a software engineer.
