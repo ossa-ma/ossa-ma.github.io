@@ -11,11 +11,20 @@ export const Post = defineDocumentType(() => ({
     publishedAt: { type: 'date', required: true },
     summary: { type: 'string' },
     image: { type: 'string' },
+    tags: { type: 'list', of: { type: 'string' }, required: false },
   },
   computedFields: {
     slug: {
       type: 'string',
       resolve: (doc) => doc._raw.flattenedPath,
+    },
+    readingTime: {
+      type: 'number',
+      resolve: (doc) => {
+        const wordsPerMinute = 200
+        const wordCount = doc.body.raw.split(/\s+/g).length
+        return Math.ceil(wordCount / wordsPerMinute)
+      },
     },
     structuredData: {
       type: 'json',
