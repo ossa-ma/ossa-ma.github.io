@@ -38,6 +38,62 @@ This checklist serves as a comprehensive reference for development best practice
 - Return type annotations on all functions for IDE autocomplete and error catching.
 - Strict mypy configuration to catch type errors early.
 
+### Code Organization Philosophy
+- **Functional over class-based** - Python classes are rarely necessary and add complexity without benefit.
+- Use functions as the default. Classes should only exist when you need:
+  - Shared mutable state across many operations (rare)
+  - Complex inheritance hierarchies (almost never)  
+  - Framework requirements (Django models, FastAPI dependencies, etc.)
+- Most "classes" are just namespaces pretending to be useful - a dict and some functions work better.
+- Stateless functions compose better, test easier, and are simpler to reason about.
+- If you think you need a class, you probably just need a function that returns a dict or Pydantic model.
+- Data transformation pipelines should be chains of pure functions, not methods on objects.
+- **Stateful objects create coupling** - avoid unless absolutely necessary for the problem domain.
+
+### When to Use Pydantic BaseModel Instead of Classes
+- **API request/response validation** - Pydantic models provide automatic validation, serialization, and documentation
+- **Configuration objects** - Type-safe config with validation beats hand-rolled classes
+- **Data transfer objects** - When passing structured data between layers (API → service → DB)
+- **JSON schema generation** - Automatic OpenAPI/JSON schema for free
+- **Type coercion needs** - Pydantic handles string → int, datetime parsing, etc. automatically
+
+Example of Pydantic > Classes for API endpoints:
+```python
+from pydantic import BaseModel, Field
+
+# Good: Pydantic for request validation
+class SubscriptionRequest(BaseModel):
+    tier: SubscriptionTier
+
+class CreditPurchaseRequest(BaseModel):
+    amount: int = Field(..., gt=0, description="Number of credits to purchase")
+
+@router.post("/credits/purchase", response_model=CreditBalance)
+async def purchase_credits(
+    credit_data: CreditPurchaseRequest,  # Automatic validation!
+    user_data: UserData = Depends(get_user_with_profile)
+):
+    # FastAPI automatically validates, coerces types, and generates OpenAPI docs
+    # No need for manual validation or custom classes
+    credits = await subscription_service.purchase_credits(
+        user_id, credit_data.amount, transaction_id
+    )
+    return credits
+```
+
+**Why this is better than a class:**
+- Automatic validation (amount > 0 checked before your code runs)
+- Type coercion (string "5" → int 5)
+- JSON serialization built-in
+- OpenAPI schema generation
+- IDE autocomplete everywhere
+- No need to write `__init__`, validation methods, or serialization logic
+
+**When NOT to use Pydantic:**
+- Internal utility functions (just use dicts or tuples)
+- Simple data grouping (use TypedDict or dataclass)
+- Performance-critical paths (Pydantic has overhead)
+
 ### Error Handling & Resilience
 - Structured exception hierarchy - custom exceptions for different error categories
 - Retry logic with exponential backoff for transient failures
