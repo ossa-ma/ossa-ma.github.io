@@ -26,10 +26,34 @@ This checklist serves as a comprehensive reference for development best practice
 ### Async Programming Patterns
 - Async/await consistently - never mix sync and async code paths.
 - Async context managers for all resource management (database, HTTP clients, file operations).
-- Concurrent execution where appropriate using `asyncio.gather()` and similar patterns.
+- `asyncio.wait_for` handles a single awaitable object like await, but also lets you set a timeout to handle long-running tasks.
+- Use `asyncio.gather()` for concurrent execution of tasks when wanting to await a collection of coroutines in the form of positional arguments, `gather` will return a list of results in the same order they were passed in and can also return tasks that encountered exceptions.
+- `asyncio.as_completed` is an iterable that takes in any awaitable object and lets you handle tasks as they finish instead of all at once. It also has a timeout argument.
+- ONLY use `asyncio.TaskGroup` when you want to cancel all other tasks if any task fails.
+  Used like this:
+```python
+import asyncio
+
+async def do_something():
+    return 1
+
+async def do_something_else():
+    return 2
+
+async def main():
+    async with asyncio.TaskGroup() as tg:
+        task1 = tg.create_task(do_something())
+        task2 = tg.create_task(do_something_else())
+
+    print(f’Everything done: {task1.result()}, {task2.result()}’)
+
+asyncio.run(main())
+```
+- Use `asyncio.Semaphore(N)` + `asyncio.sleep()` together to control concurrent connections AND pace request velocity—prevents 429 errors and behavioral bot detection by making traffic patterns look human (start with Semaphore(10) + sleep(0.5) for ~20 req/sec).
 - Async generators for streaming large datasets without memory bloat!
 - Event loop management - let the framework handle loop lifecycle.
 - Non-blocking I/O as the default for all external service calls.
+- If stuck with blocking libraries (sync boto3, old database drivers) then use ThreadPoolExecutor. Likewise if we are looking for quick parallelism without completely rewriting to async.
 
 ### Type Safety & Code Quality
 - Comprehensive type hints using modern union syntax (`str | None` over `Optional[str]`)!!!
