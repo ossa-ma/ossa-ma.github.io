@@ -28,5 +28,11 @@
           <description>A deep dive into transforming a server-rendered Next.js template into a fully static site for free hosting on GitHub Pages.</description>
           <pubDate>Thu, 31 Jul 2025 00:00:00 GMT</pubDate>
         </item>
+<item>
+          <title>Async Programming & Concurrency Patterns - Complete Guide</title>
+          <link>https://ossa-ma.github.io/blog/async-patterns</link>
+          <description>A comprehensive guide to async programming in Python, covering asyncio patterns, rate limiting, production strategies, and anti-ban scraping techniques for real-world applications.</description>
+          <pubDate>Wed, 15 Jan 2025 00:00:00 GMT</pubDate>
+        </item>
     </channel>
   </rss>

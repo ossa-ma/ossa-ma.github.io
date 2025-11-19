@@ -1,0 +1,609 @@
+1:"$Sreact.fragment"
+2:I[7345,["726","static/chunks/726-d016ea69c699dec1.js","831","static/chunks/app/blog/page-33ade23fe0280553.js"],""]
+3:I[9952,[],""]
+4:I[8230,[],""]
+5:I[6587,["953","static/chunks/app/blog/%5Bslug%5D/page-53236f704cda4b7c.js"],"Mdx"]
+7:I[9984,[],"OutletBoundary"]
+9:I[6392,[],"AsyncMetadataOutlet"]
+b:I[9984,[],"ViewportBoundary"]
+d:I[9984,[],"MetadataBoundary"]
+e:"$Sreact.suspense"
+10:I[384,[],""]
+:HL["/_next/static/media/ec1a1eae803b668e-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/f980ec13b5b5e554.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/36365087aa901055.css","style"]
+6:T8c62,var Component=(()=>{var d=Object.create;var t=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,g=Object.prototype.hasOwnProperty;var y=(r,e)=>()=>(e||r((e={exports:{}}).exports,e),e.exports),f=(r,e)=>{for(var s in e)t(r,s,{get:e[s],enumerable:!0})},a=(r,e,s,l)=>{if(e&&typeof e=="object"||typeof e=="function")for(let i of p(e))!g.call(r,i)&&i!==s&&t(r,i,{get:()=>e[i],enumerable:!(l=u(e,i))||l.enumerable});return r};var b=(r,e,s)=>(s=r!=null?d(m(r)):{},a(e||!r||!r.__esModule?t(s,"default",{value:r,enumerable:!0}):s,r)),w=r=>a(t({},"__esModule",{value:!0}),r);var c=y((x,o)=>{o.exports=_jsx_runtime});var P={};f(P,{default:()=>_,frontmatter:()=>k});var n=b(c()),k={title:"Async Programming & Concurrency Patterns - Complete Guide",publishedAt:"2025-01-15",summary:"A comprehensive guide to async programming in Python, covering asyncio patterns, rate limiting, production strategies, and anti-ban scraping techniques for real-world applications.",tags:["Python","Engineering","Async","Concurrency"]};function h(r){let e=Object.assign({h2:"h2",ol:"ol",li:"li",a:"a",hr:"hr",h3:"h3",p:"p",strong:"strong",pre:"pre",code:"code",ul:"ul",br:"br",h4:"h4"},r.components);return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.h2,{children:"Table of Contents"}),`
+`,(0,n.jsxs)(e.ol,{children:[`
+`,(0,n.jsx)(e.li,{children:(0,n.jsx)(e.a,{href:"#why-asyncio",children:"Why Asyncio?"})}),`
+`,(0,n.jsx)(e.li,{children:(0,n.jsx)(e.a,{href:"#real-world-use-cases",children:"Real-World Use Cases"})}),`
+`,(0,n.jsx)(e.li,{children:(0,n.jsx)(e.a,{href:"#async-vs-parallel",children:"Async vs Parallel"})}),`
+`,(0,n.jsx)(e.li,{children:(0,n.jsx)(e.a,{href:"#semaphores-for-rate-limiting",children:"Semaphores for Rate Limiting"})}),`
+`,(0,n.jsx)(e.li,{children:(0,n.jsx)(e.a,{href:"#threadpoolexecutor-vs-asyncio",children:"ThreadPoolExecutor vs Asyncio"})}),`
+`,(0,n.jsx)(e.li,{children:(0,n.jsx)(e.a,{href:"#production-patterns",children:"Production Patterns"})}),`
+`,(0,n.jsx)(e.li,{children:(0,n.jsx)(e.a,{href:"#anti-ban-scraping-strategies",children:"Anti-Ban Scraping Strategies"})}),`
+`]}),`
+`,(0,n.jsx)(e.hr,{}),`
+`,(0,n.jsx)(e.h2,{children:"Why Asyncio?"}),`
+`,(0,n.jsx)(e.h3,{children:"Primary Use Case: I/O-Bound Operations"}),`
+`,(0,n.jsx)(e.p,{children:"Perfect for network requests, database queries, file I/O where the CPU waits for external resources."}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Example:"})}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`@app.post("/process")
+async def process_items(items: list[str]):
+    # Fetch data for all items (N API calls concurrently)
+    async with requests.AsyncSession(impersonate="chrome110") as session:
+        tasks = [fetch_item(session, item_id) for item_id in items]
+        return await asyncio.gather(*tasks)
+`})}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Performance:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Without asyncio: 200ms \xD7 3 items = 600ms"}),`
+`,(0,n.jsx)(e.li,{children:"With asyncio: 200ms total (all concurrent)"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Benefits:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Single-threaded, no race conditions"}),`
+`,(0,n.jsx)(e.li,{children:"Minimal memory overhead (~1-2KB per task)"}),`
+`,(0,n.jsx)(e.li,{children:"Can handle 10,000+ concurrent connections"}),`
+`,(0,n.jsxs)(e.li,{children:["Explicit ",(0,n.jsx)(e.code,{children:"await"})," points show where context switches occur"]}),`
+`]}),`
+`,(0,n.jsx)(e.hr,{}),`
+`,(0,n.jsx)(e.h2,{children:"Real-World Use Cases"}),`
+`,(0,n.jsx)(e.h3,{children:"1. Web Scraping (High Concurrency)"}),`
+`,(0,n.jsx)(e.p,{children:"Scraping thousands of pages with rate limiting and anti-detection measures."}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Use case:"})," Price monitoring, data aggregation, market research",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Scale:"})," 1,000-100,000 URLs",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Pattern:"})," Semaphore + random delays + session rotation"]}),`
+`,(0,n.jsx)(e.h3,{children:"2. API Gateway Pattern"}),`
+`,(0,n.jsx)(e.p,{children:"Fan-out requests to multiple microservices and aggregate results."}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Use case:"})," User dashboard aggregating auth, profile, orders, analytics",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Scale:"})," 5-20 concurrent service calls per request",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Pattern:"})," asyncio.gather() with timeout handling"]}),`
+`,(0,n.jsx)(e.h3,{children:"3. Database Query Optimization"}),`
+`,(0,n.jsx)(e.p,{children:"Parallel database queries when data isn't interdependent."}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Use case:"})," Dashboard loading multiple metrics simultaneously",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Scale:"})," 10-50 concurrent queries",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Pattern:"})," asyncio.gather() with connection pooling"]}),`
+`,(0,n.jsx)(e.h3,{children:"4. File Operations at Scale"}),`
+`,(0,n.jsx)(e.p,{children:"Concurrent file uploads/downloads/processing."}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Use case:"})," Batch image processing, S3 operations, log aggregation",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Scale:"})," 100-10,000 files",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Pattern:"})," Semaphore-limited async file I/O"]}),`
+`,(0,n.jsx)(e.h3,{children:"5. Real-Time Data Streaming"}),`
+`,(0,n.jsx)(e.p,{children:"WebSocket connections for live updates."}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Use case:"})," Chat systems, live dashboards, notification services",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Scale:"})," 1,000-100,000 concurrent connections",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Pattern:"})," Async WebSocket handlers with message queues"]}),`
+`,(0,n.jsx)(e.h3,{children:"6. External API Aggregation"}),`
+`,(0,n.jsx)(e.p,{children:"Calling multiple external APIs and combining results."}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Use case:"})," Flight booking (compare prices across airlines), weather aggregation",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Scale:"})," 3-50 concurrent API calls",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Pattern:"})," asyncio.gather() with exponential backoff"]}),`
+`,(0,n.jsx)(e.hr,{}),`
+`,(0,n.jsx)(e.h2,{children:"Async vs Parallel: The Critical Difference"}),`
+`,(0,n.jsx)(e.h3,{children:"Async = Concurrency (Interleaved)"}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Definition:"})," Multiple tasks make progress by switching between them during idle time.",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Execution:"})," Single-threaded, one task runs at a time.",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Use for:"})," I/O-bound tasks (network, disk, database)"]}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`async def main():
+    # These don't run in parallel\u2014they're interleaved
+    # When task1 waits for I/O, task2 runs
+    results = await asyncio.gather(
+        fetch_url("https://api1.com"),  # Waits for network
+        fetch_url("https://api2.com"),  # Runs while api1 waits
+        fetch_url("https://api3.com"),  # Runs while api1/2 wait
+    )
+`})}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Timeline:"})}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`Thread 1: [task1-send]---[wait]------[task1-receive]
+                 [task2-send]---[wait]------[task2-receive]
+                         [task3-send]---[wait]------[task3-receive]
+`})}),`
+`,(0,n.jsx)(e.h3,{children:"Parallel = True Parallelism (Simultaneous)"}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Definition:"})," Multiple tasks run simultaneously on different CPU cores.",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Execution:"})," Multi-threaded/multi-process.",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Use for:"})," CPU-bound tasks (calculations, data processing)"]}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`from concurrent.futures import ProcessPoolExecutor
+
+def cpu_task(n):
+    return sum(i**2 for i in range(n))
+
+with ProcessPoolExecutor(max_workers=4) as executor:
+    results = executor.map(cpu_task, [1000000] * 4)
+`})}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Timeline:"})}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`CPU Core 1: [task1-compute-compute-compute-done]
+CPU Core 2: [task2-compute-compute-compute-done]
+CPU Core 3: [task3-compute-compute-compute-done]
+CPU Core 4: [task4-compute-compute-compute-done]
+`})}),`
+`,(0,n.jsx)(e.hr,{}),`
+`,(0,n.jsx)(e.h2,{children:"Semaphores for Rate Limiting"}),`
+`,(0,n.jsx)(e.h3,{children:"The Problem: Uncontrolled Concurrency"}),`
+`,(0,n.jsxs)(e.p,{children:["Without semaphores, ",(0,n.jsx)(e.code,{children:"asyncio.gather()"})," fires ALL requests instantly \u2192 rate limits & bot detection."]}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`# BAD: All 1000 requests fire instantly
+urls = [f"https://api.com/product/{i}" for i in range(1000)]
+async with AsyncSession() as session:
+    tasks = [session.get(url) for url in urls]
+    results = await asyncio.gather(*tasks)  # 1000 requests in 0.01s \u2192 BAN
+`})}),`
+`,(0,n.jsx)(e.h3,{children:"The Solution: Semaphore + Sleep"}),`
+`,(0,n.jsx)(e.p,{children:"A semaphore is a concurrency primitive that limits how many tasks can run simultaneously."}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`semaphore = asyncio.Semaphore(10)  # Max 10 tasks at once
+
+async def fetch_with_limit(session, url, semaphore):
+    async with semaphore:  # Waits if 10 tasks already running
+        try:
+            response = await session.get(url)
+            return {"url": url, "data": response.json()}
+        except Exception as e:
+            return {"url": url, "error": str(e)}
+        finally:
+            await asyncio.sleep(0.5)  # Pace each worker
+
+async def scrape_all(urls):
+    semaphore = asyncio.Semaphore(10)
+    async with AsyncSession(impersonate="chrome110") as session:
+        tasks = [fetch_with_limit(session, url, semaphore) for url in urls]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+    return results
+`})}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Think of it like a bouncer at a club:"})," Only 10 people (tasks) can be inside (running) at once. When someone leaves, the next person enters."]}),`
+`,(0,n.jsx)(e.h3,{children:"Why BOTH Semaphore AND Sleep?"}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Semaphore alone:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Limits concurrent connections"}),`
+`,(0,n.jsx)(e.li,{children:"Each worker fires next request instantly after completion"}),`
+`,(0,n.jsx)(e.li,{children:"Pattern: 10 requests \u2192 10 complete \u2192 10 more instantly (burst)"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Semaphore + sleep:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Limits concurrent AND paces each worker"}),`
+`,(0,n.jsx)(e.li,{children:"Pattern: 10 requests \u2192 staggered completion \u2192 gradual ramp up (natural)"}),`
+`]}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Result:"})," Traffic looks human\u2014server sees 20 req/sec spread over time, not bursts."]}),`
+`,(0,n.jsx)(e.h3,{children:"When You Need Semaphores"}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Use semaphores when:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Scraping >50 URLs from same domain"}),`
+`,(0,n.jsx)(e.li,{children:"API has rate limits (explicit or behavioral)"}),`
+`,(0,n.jsx)(e.li,{children:"Want to avoid 429 errors and IP bans"}),`
+`,(0,n.jsx)(e.li,{children:"Need to control resource usage"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Skip semaphores when:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Calling your own API (no rate limits)"}),`
+`,(0,n.jsx)(e.li,{children:"Small number of requests (less than 10)"}),`
+`,(0,n.jsx)(e.li,{children:"API explicitly welcomes bulk access"}),`
+`]}),`
+`,(0,n.jsx)(e.h3,{children:"Tuning Semaphore Values"}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`# Conservative: 10 req/sec (very safe)
+semaphore = asyncio.Semaphore(5)
+await asyncio.sleep(0.5)
+
+# Balanced: 20 req/sec (recommended starting point)
+semaphore = asyncio.Semaphore(10)
+await asyncio.sleep(0.5)
+
+# Aggressive: 40 req/sec (may trigger detection)
+semaphore = asyncio.Semaphore(20)
+await asyncio.sleep(0.5)
+`})}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Throughput examples:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Conservative: 1000 URLs in ~100 seconds"}),`
+`,(0,n.jsx)(e.li,{children:"Balanced: 1000 URLs in ~50 seconds"}),`
+`,(0,n.jsx)(e.li,{children:"Aggressive: 1000 URLs in ~25 seconds"}),`
+`]}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Strategy:"})," Start with ",(0,n.jsx)(e.code,{children:"Semaphore(10)"}),", monitor for 429s, then adjust."]}),`
+`,(0,n.jsx)(e.hr,{}),`
+`,(0,n.jsx)(e.h2,{children:"ThreadPoolExecutor vs Asyncio"}),`
+`,(0,n.jsx)(e.h3,{children:"ThreadPoolExecutor: Real OS Threads"}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`from concurrent.futures import ThreadPoolExecutor
+import requests
+
+with ThreadPoolExecutor(max_workers=10) as executor:
+    urls = ["https://api1.com", "https://api2.com", ...]
+    results = executor.map(requests.get, urls)
+`})}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Pros:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Works with blocking libraries (requests, boto3, psycopg2)"}),`
+`,(0,n.jsx)(e.li,{children:"No code rewrite needed"}),`
+`,(0,n.jsx)(e.li,{children:"True parallelism for CPU-bound tasks (limited by GIL)"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Cons:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Each thread = ~8MB memory (48GB \u2248 6000 threads max)"}),`
+`,(0,n.jsx)(e.li,{children:"Context switching overhead"}),`
+`,(0,n.jsx)(e.li,{children:"Limited by GIL for Python CPU code"}),`
+`,(0,n.jsx)(e.li,{children:"Race conditions, deadlocks possible"}),`
+`]}),`
+`,(0,n.jsx)(e.h3,{children:"Asyncio: Event Loop"}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`import asyncio
+from curl_cffi.requests import AsyncSession
+
+async with AsyncSession() as session:
+    tasks = [session.get(url) for url in urls]
+    results = await asyncio.gather(*tasks)
+`})}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Pros:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Each task = ~few KB memory (10,000+ tasks easily)"}),`
+`,(0,n.jsx)(e.li,{children:"No GIL issues (single-threaded)"}),`
+`,(0,n.jsx)(e.li,{children:"No race conditions"}),`
+`,(0,n.jsx)(e.li,{children:"Much faster context switching"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Cons:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Must use async libraries (curl_cffi, aiohttp, asyncpg)"}),`
+`,(0,n.jsx)(e.li,{children:"Can't mix blocking code (blocks entire loop)"}),`
+`,(0,n.jsx)(e.li,{children:"Requires async/await throughout codebase"}),`
+`]}),`
+`,(0,n.jsx)(e.h3,{children:"Performance Comparison"}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Real benchmarks:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"ThreadPoolExecutor: 100 threads = ~800MB RAM, ~100-1000 req/sec"}),`
+`,(0,n.jsx)(e.li,{children:"Asyncio: 10,000 tasks = ~100MB RAM, ~10,000+ req/sec"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Asyncio wins decisively for I/O-bound tasks."})}),`
+`,(0,n.jsx)(e.h3,{children:"When to Use ThreadPoolExecutor"}),`
+`,(0,n.jsxs)(e.ol,{children:[`
+`,(0,n.jsx)(e.li,{children:(0,n.jsx)(e.strong,{children:"Working with blocking libraries:"})}),`
+`]}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`# boto3 (sync) doesn't have async
+with ThreadPoolExecutor(max_workers=20) as executor:
+    results = executor.map(lambda key: s3.get_object(Bucket=b, Key=key), keys)
+`})}),`
+`,(0,n.jsxs)(e.ol,{start:"2",children:[`
+`,(0,n.jsxs)(e.li,{children:[`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"CPU-bound tasks"})," (but ProcessPoolExecutor is better)"]}),`
+`]}),`
+`,(0,n.jsxs)(e.li,{children:[`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Quick parallelism"})," without rewriting to async"]}),`
+`]}),`
+`]}),`
+`,(0,n.jsx)(e.h3,{children:"When to Use Asyncio"}),`
+`,(0,n.jsxs)(e.ol,{children:[`
+`,(0,n.jsx)(e.li,{children:"I/O-bound tasks (network, disk, database)"}),`
+`,(0,n.jsx)(e.li,{children:"High concurrency (thousands of connections)"}),`
+`,(0,n.jsx)(e.li,{children:"Modern libraries support it (curl_cffi, aiohttp, asyncpg)"}),`
+`,(0,n.jsx)(e.li,{children:"WebSockets, streaming, real-time apps"}),`
+`]}),`
+`,(0,n.jsx)(e.h3,{children:"macOS Thread Limits (M4 MacBook)"}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Theoretical:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"48GB RAM \xF7 8MB/thread = 6,000 threads"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Reality:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"macOS per-process limit: ~2,048 threads"}),`
+`,(0,n.jsx)(e.li,{children:"System-wide limit: ~5,120 threads"}),`
+`,(0,n.jsx)(e.li,{children:"Practical: 50-200 threads for I/O tasks"}),`
+`]}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Asyncio:"})," Can handle 10,000-50,000 concurrent tasks on same hardware."]}),`
+`,(0,n.jsx)(e.hr,{}),`
+`,(0,n.jsx)(e.h2,{children:"Production Patterns"}),`
+`,(0,n.jsx)(e.h3,{children:"1. Basic Pattern with Error Handling"}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`async def fetch_with_error_handling(session, url, semaphore):
+    async with semaphore:
+        try:
+            response = await session.get(url)
+            return {"url": url, "status": "success", "data": response.json()}
+        except Exception as e:
+            return {"url": url, "status": "error", "error": str(e)}
+        finally:
+            await asyncio.sleep(0.5)
+
+async def scrape_all(urls):
+    semaphore = asyncio.Semaphore(10)
+    async with AsyncSession(impersonate="chrome110") as session:
+        tasks = [fetch_with_error_handling(session, url, semaphore) for url in urls]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+    
+    successful = [r for r in results if r.get("status") == "success"]
+    failed = [r for r in results if r.get("status") == "error"]
+    print(f"\u2713 Success: {len(successful)}, \u2717 Failed: {len(failed)}")
+    return successful
+`})}),`
+`,(0,n.jsx)(e.h3,{children:"2. Production Pattern with All Features"}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`from tqdm.asyncio import tqdm
+import asyncio
+from curl_cffi.requests import AsyncSession
+
+async def fetch_with_retry(session, url, semaphore, max_retries=3):
+    """
+    Production-ready fetch with:
+    - Rate limiting (semaphore)
+    - Exponential backoff for 429 errors
+    - Per-request error handling
+    - Random delays
+    """
+    import random
+    
+    async with semaphore:
+        for attempt in range(max_retries):
+            try:
+                response = await session.get(url, timeout=15)
+                
+                # Handle rate limiting
+                if response.status_code == 429:
+                    wait_time = (2 ** attempt) * 2  # 2s, 4s, 8s
+                    print(f"Rate limited! Waiting {wait_time}s...")
+                    await asyncio.sleep(wait_time)
+                    continue
+                
+                if response.status_code != 200:
+                    if attempt < max_retries - 1:
+                        await asyncio.sleep(1)
+                        continue
+                    return {"url": url, "status": "error", "code": response.status_code}
+                
+                return {"url": url, "status": "success", "data": response.json()}
+                
+            except Exception as e:
+                if attempt == max_retries - 1:
+                    return {"url": url, "status": "error", "error": str(e)}
+                await asyncio.sleep(2 ** attempt)  # Exponential backoff
+            finally:
+                # Random delay mimics human behavior
+                delay = random.uniform(0.3, 0.7)
+                await asyncio.sleep(delay)
+
+async def scrape_all_production(urls):
+    semaphore = asyncio.Semaphore(10)
+    async with AsyncSession(impersonate="chrome110") as session:
+        tasks = [fetch_with_retry(session, url, semaphore) for url in urls]
+        # tqdm.gather adds progress bar
+        results = await tqdm.gather(*tasks, desc="Scraping")
+    
+    successful = [r for r in results if r.get("status") == "success"]
+    failed = [r for r in results if r.get("status") == "error"]
+    print(f"\\n\u2713 Success: {len(successful)}, \u2717 Failed: {len(failed)}")
+    return successful
+`})}),`
+`,(0,n.jsx)(e.h3,{children:"3. Asyncio Patterns Comparison"}),`
+`,(0,n.jsx)(e.h4,{children:"asyncio.gather() - Most Common"}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`tasks = [fetch(url) for url in urls]
+results = await asyncio.gather(*tasks, return_exceptions=True)
+`})}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Pros:"})," Returns results in order, ",(0,n.jsx)(e.code,{children:"return_exceptions=True"})," prevents one failure killing all",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Cons:"})," Waits for ALL tasks (slowest determines total time), no progress visibility",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Use when:"})," Need all results, order matters"]}),`
+`,(0,n.jsx)(e.h4,{children:"asyncio.as_completed() - Process as They Finish"}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`tasks = [fetch(url) for url in urls]
+for coro in asyncio.as_completed(tasks):
+    result = await coro
+    process_immediately(result)  # Don't wait for all
+`})}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Pros:"})," Process results immediately, easy progress bar, better for streaming",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Cons:"})," Results unordered, more verbose",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Use when:"})," Want to process/save results as they complete"]}),`
+`,(0,n.jsx)(e.h4,{children:"asyncio.TaskGroup - Python 3.11+"}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`async with asyncio.TaskGroup() as tg:
+    tasks = [tg.create_task(fetch(url)) for url in urls]
+# Auto cleanup on exception
+`})}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Pros:"})," Structured concurrency, automatic cleanup, Pythonic",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Cons:"})," Python 3.11+ only, all-or-nothing (one exception cancels all)",(0,n.jsx)(e.br,{}),`
+`,(0,n.jsx)(e.strong,{children:"Use when:"})," On Python 3.11+ and want clean error handling"]}),`
+`,(0,n.jsx)(e.hr,{}),`
+`,(0,n.jsx)(e.h2,{children:"Anti-Ban Scraping Strategies"}),`
+`,(0,n.jsx)(e.h3,{children:"The Multi-Layer Defense"}),`
+`,(0,n.jsx)(e.p,{children:"eBay and similar sites use multiple detection methods:"}),`
+`,(0,n.jsxs)(e.ol,{children:[`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"TLS Fingerprinting"})," - Analyzes TLS handshake"]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Behavioral Analysis"})," - Request patterns, timing, velocity"]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Rate Limiting"})," - IP-based and session-based limits"]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Browser Fingerprinting"})," - JavaScript challenges, canvas, WebGL"]}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Defense Strategy:"})}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`# Layer 1: TLS Fingerprinting Bypass
+from curl_cffi.requests import AsyncSession
+session = AsyncSession(impersonate="chrome110")  # Identical to real Chrome
+
+# Layer 2: Behavioral Detection Bypass
+semaphore = asyncio.Semaphore(10)  # Controlled velocity
+await asyncio.sleep(random.uniform(0.3, 0.7))  # Random human-like delays
+
+# Layer 3: Session Rotation
+# Refresh session every 50 products (new fingerprint)
+for batch in batches(products, 50):
+    async with AsyncSession(impersonate="chrome110") as session:
+        # Fresh browser session
+`})}),`
+`,(0,n.jsx)(e.h3,{children:"Complete Anti-Ban Pattern"}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`async def scrape_with_anti_ban(urls: list[str]) -> list[dict]:
+    """
+    Complete anti-ban scraping implementation
+    
+    Safety Features:
+    1. Browser impersonation (curl_cffi)
+    2. Semaphore rate limiting (10 concurrent)
+    3. Random delays (0.3-0.7s per request)
+    4. Exponential backoff on errors
+    5. Session refresh every 50 URLs
+    6. Checkpoint saves for resume capability
+    """
+    import random
+    
+    all_results = []
+    checkpoint_file = f'checkpoint_{datetime.now():%Y%m%d_%H%M%S}.csv'
+    
+    # Process in batches of 50 for session rotation
+    for batch_start in range(0, len(urls), 50):
+        batch = urls[batch_start:batch_start + 50]
+        
+        print(f"Batch {batch_start//50 + 1}: URLs {batch_start+1}-{batch_start+len(batch)}")
+        print("Refreshing session for security...")
+        
+        # Fresh session every 50 URLs
+        async with AsyncSession(impersonate="chrome110") as session:
+            semaphore = asyncio.Semaphore(10)
+            
+            tasks = []
+            for url in batch:
+                task = fetch_with_retry(session, url, semaphore, max_retries=3)
+                tasks.append(task)
+            
+            batch_results = []
+            for coro in asyncio.as_completed(tasks):
+                result = await coro
+                batch_results.append(result)
+                
+                # Random delay between processing results
+                await asyncio.sleep(random.uniform(1.0, 2.0))
+            
+            all_results.extend(batch_results)
+            
+            # Checkpoint save every batch
+            checkpoint_df = pd.DataFrame(all_results)
+            checkpoint_df.to_csv(checkpoint_file, index=False)
+            print(f"Checkpoint saved: {len(all_results)} total")
+    
+    return all_results
+`})}),`
+`,(0,n.jsx)(e.h3,{children:"Safety Features Explained"}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"1. Browser Impersonation (curl_cffi)"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Makes TLS handshake identical to real Chrome/Firefox"}),`
+`,(0,n.jsx)(e.li,{children:"Bypasses TLS fingerprinting (primary detection method)"}),`
+`,(0,n.jsx)(e.li,{children:"Mandatory for Cloudflare-protected sites"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"2. Semaphore Limiting"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Controls request velocity (not just volume)"}),`
+`,(0,n.jsx)(e.li,{children:"Prevents burst patterns that trigger behavioral analysis"}),`
+`,(0,n.jsx)(e.li,{children:"Start with 10, adjust based on 429 responses"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"3. Random Delays"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Mimics human pause/think time"}),`
+`,(0,n.jsx)(e.li,{children:"Prevents perfect timing patterns"}),`
+`,(0,n.jsx)(e.li,{children:"Use ranges: 0.3-0.7s per request, 1-2s between products"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"4. Exponential Backoff"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"On errors: wait 1s, 2s, 4s between retries"}),`
+`,(0,n.jsx)(e.li,{children:"On 429 errors: wait 2s, 4s, 8s (longer)"}),`
+`,(0,n.jsx)(e.li,{children:"Shows respect, reduces hammering detection"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"5. Session Rotation"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"New browser fingerprint every N requests"}),`
+`,(0,n.jsx)(e.li,{children:"Prevents long-running session detection"}),`
+`,(0,n.jsx)(e.li,{children:"Refresh every 50 products is good balance"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"6. Checkpoint Saves"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Resume capability if banned/interrupted"}),`
+`,(0,n.jsx)(e.li,{children:"Don't lose progress"}),`
+`,(0,n.jsx)(e.li,{children:"Save every 50 products or 10 minutes"}),`
+`]}),`
+`,(0,n.jsx)(e.h3,{children:"Performance Tuning"}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Conservative (Very Safe):"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Semaphore(5), sleep(0.5-1.0s), session refresh every 30"}),`
+`,(0,n.jsx)(e.li,{children:"1000 URLs in ~100 seconds"}),`
+`,(0,n.jsx)(e.li,{children:"Risk: Very low"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Balanced (Recommended):"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Semaphore(10), sleep(0.3-0.7s), session refresh every 50"}),`
+`,(0,n.jsx)(e.li,{children:"1000 URLs in ~40 seconds"}),`
+`,(0,n.jsx)(e.li,{children:"Risk: Low"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Aggressive (Higher Risk):"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Semaphore(20), sleep(0.2-0.5s), session refresh every 100"}),`
+`,(0,n.jsx)(e.li,{children:"1000 URLs in ~20 seconds"}),`
+`,(0,n.jsx)(e.li,{children:"Risk: Medium"}),`
+`]}),`
+`,(0,n.jsx)(e.h3,{children:"Monitoring & Adjustment"}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Watch for these signals:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"429 status codes \u2192 decrease semaphore, increase delays"}),`
+`,(0,n.jsx)(e.li,{children:"Connection resets \u2192 decrease semaphore"}),`
+`,(0,n.jsx)(e.li,{children:"403 after successful requests \u2192 you've been detected, wait 1hr"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Adaptive strategy:"})}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`error_count = 0
+for result in results:
+    if result['status'] == 429:
+        error_count += 1
+        if error_count > 5:
+            semaphore = asyncio.Semaphore(max(semaphore._value // 2, 3))
+            print(f"Too many 429s! Reducing to Semaphore({semaphore._value})")
+`})}),`
+`,(0,n.jsx)(e.hr,{}),`
+`,(0,n.jsx)(e.h2,{children:"Summary & Best Practices"}),`
+`,(0,n.jsx)(e.h3,{children:"Key Takeaways"}),`
+`,(0,n.jsxs)(e.ol,{children:[`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Asyncio for I/O-bound tasks"})," - 10-100x better than threads for network operations"]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Semaphores are mandatory"})," for rate limiting when scraping multiple URLs"]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Semaphore + sleep together"})," create natural traffic patterns"]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"curl_cffi bypasses TLS detection"}),", semaphores bypass behavioral detection"]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Session rotation"})," prevents long-running session detection"]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Checkpoint saves"})," provide resume capability"]}),`
+`]}),`
+`,(0,n.jsx)(e.h3,{children:"Decision Tree"}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`Is it I/O-bound (network/disk/DB)?
+\u251C\u2500 Yes \u2192 Use asyncio
+\u2502   \u251C\u2500 Scraping external site?
+\u2502   \u2502   \u251C\u2500 Yes \u2192 Use semaphore + random delays + session rotation
+\u2502   \u2502   \u2514\u2500 No \u2192 Plain asyncio.gather() is fine
+\u2502   \u2514\u2500 Need async library?
+\u2502       \u251C\u2500 Available \u2192 Use it (curl_cffi, aiohttp, asyncpg)
+\u2502       \u2514\u2500 Not available \u2192 Use ThreadPoolExecutor wrapper
+\u2514\u2500 No (CPU-bound) \u2192 Use ProcessPoolExecutor
+`})}),`
+`,(0,n.jsx)(e.h3,{children:"Production Checklist"}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"For any scraping project:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"\u2713 curl_cffi with browser impersonation"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Semaphore for rate limiting (start with 10)"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Random delays (0.3-0.7s per request)"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Exponential backoff on failures"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 429 error handling with longer waits"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Session rotation every 50 requests"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Checkpoint saves for resume capability"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Progress bar for visibility (tqdm)"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Success/failure reporting"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Logging for debugging"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"For production systems:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"\u2713 All above, plus:"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Proxy rotation (optional but recommended)"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Monitoring dashboard"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Alert on high failure rates"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Auto-pause on sustained 429s"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Database persistence (not just CSV)"}),`
+`,(0,n.jsx)(e.li,{children:"\u2713 Scheduled runs (weekly/daily)"}),`
+`]}),`
+`,(0,n.jsx)(e.h3,{children:"Final Recommendation"}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Your scraping workflow should be:"})}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:"language-python",children:`# Weekly: Full scrape
+async with AsyncSession(impersonate="chrome110") as session:
+    semaphore = asyncio.Semaphore(10)
+    results = await scrape_with_checkpoints(
+        session, urls, semaphore,
+        batch_size=50,  # Session refresh interval
+        checkpoint_interval=50,
+        random_delay=(0.3, 0.7)
+    )
+`})}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"This pattern:"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Looks human (random delays, natural patterns)"}),`
+`,(0,n.jsx)(e.li,{children:"Respects rate limits (semaphore + exponential backoff)"}),`
+`,(0,n.jsx)(e.li,{children:"Survives interruptions (checkpoints)"}),`
+`,(0,n.jsx)(e.li,{children:"Avoids detection (TLS impersonation + session rotation)"}),`
+`,(0,n.jsx)(e.li,{children:"Scales well (10,000+ URLs no problem)"}),`
+`,(0,n.jsx)(e.li,{children:"Runs fast (~30-50 requests/sec sustained)"}),`
+`]}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Risk level:"})," Very low when all features combined correctly."]})]})}function S(r={}){let{wrapper:e}=r.components||{};return e?(0,n.jsx)(e,Object.assign({},r,{children:(0,n.jsx)(h,r)})):h(r)}var _=S;return w(P);})();
+;return Component;0:{"P":null,"b":"PmJpE_CAKe708bl2i3I9t","p":"","c":["","blog","async-patterns"],"i":false,"f":[[["",{"children":["blog",{"children":[["slug","async-patterns","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/36365087aa901055.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"text-black bg-white dark:text-white dark:bg-black __variable_ac79ff __variable_8a4d12","children":[["$","head",null,{"children":["$","script",null,{"defer":true,"src":"https://cloud.umami.is/script.js","data-website-id":"34bb1a7b-b0fb-4194-8632-2fa4b14f33e9"}]}],["$","body",null,{"className":"antialiased max-w-xl mx-4 mt-8 lg:mx-auto","children":["$","main",null,{"className":"flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0","children":[["$","aside",null,{"className":"-ml-[8px] mb-16 tracking-tight","children":["$","div",null,{"className":"lg:sticky lg:top-20","children":["$","nav",null,{"className":"flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative","id":"nav","children":["$","div",null,{"className":"flex flex-row space-x-0 pr-10","children":[["$","$L2","/",{"href":"/","className":"transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1","children":"home"}],["$","$L2","/blog",{"href":"/blog","className":"transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1","children":"blog"}],["$","$L2","/cv.pdf",{"href":"/cv.pdf","className":"transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1","children":"cv"}]]}]}]}]}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","section",null,{"children":[["$","h1",null,{"className":"mb-8 text-2xl font-semibold tracking-tighter","children":"404 - Page Not Found"}],["$","p",null,{"className":"mb-4","children":"The page you are looking for does not exist."}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"className":"mb-16","children":[["$","ul",null,{"className":"font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300","children":[["$","li",null,{"children":["$","a",null,{"className":"flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100","rel":"noopener noreferrer","target":"_blank","href":"/rss","children":[["$","svg",null,{"width":"12","height":"12","viewBox":"0 0 12 12","fill":"none","xmlns":"http://www.w3.org/2000/svg","children":["$","path",null,{"d":"M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z","fill":"currentColor"}]}],["$","p",null,{"className":"ml-2 h-7","children":"rss"}]]}]}],["$","li",null,{"children":["$","a",null,{"className":"flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100","rel":"noopener noreferrer","target":"_blank","href":"https://github.com/ossa-ma","children":[["$","svg",null,{"width":"12","height":"12","viewBox":"0 0 12 12","fill":"none","xmlns":"http://www.w3.org/2000/svg","children":["$","path",null,{"d":"M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z","fill":"currentColor"}]}],["$","p",null,{"className":"ml-2 h-7","children":"github"}]]}]}],["$","li",null,{"children":["$","a",null,{"className":"flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100","rel":"noopener noreferrer","target":"_blank","href":"https://github.com/ossa-ma/blog","children":[["$","svg",null,{"width":"12","height":"12","viewBox":"0 0 12 12","fill":"none","xmlns":"http://www.w3.org/2000/svg","children":["$","path",null,{"d":"M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z","fill":"currentColor"}]}],["$","p",null,{"className":"ml-2 h-7","children":"view source"}]]}]}]]}],["$","p",null,{"className":"mt-8 text-neutral-600 dark:text-neutral-300","children":["© ",2025," Ossama Chaib"]}]]}]]}]}]]}]]}],{"children":["blog",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","async-patterns","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","section",null,{"children":[["$","script",null,{"type":"application/ld+json","suppressHydrationWarning":true,"dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BlogPosting\",\"headline\":\"Async Programming & Concurrency Patterns - Complete Guide\",\"datePublished\":\"2025-01-15T00:00:00.000Z\",\"dateModified\":\"2025-01-15T00:00:00.000Z\",\"description\":\"A comprehensive guide to async programming in Python, covering asyncio patterns, rate limiting, production strategies, and anti-ban scraping techniques for real-world applications.\",\"image\":\"https://ossa-ma.github.io/og.png\",\"url\":\"https://ossa-ma.github.io/blog/async-patterns\",\"author\":{\"@type\":\"Person\",\"name\":\"Ossama Chaib\"}}"}}],["$","h1",null,{"className":"title font-semibold text-2xl tracking-tighter","children":"Async Programming & Concurrency Patterns - Complete Guide"}],["$","div",null,{"className":"flex flex-wrap gap-2 mt-3","children":[["$","span","Python",{"className":"px-2 py-1 text-xs font-medium rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300","children":"Python"}],["$","span","Engineering",{"className":"px-2 py-1 text-xs font-medium rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300","children":"Engineering"}],["$","span","Async",{"className":"px-2 py-1 text-xs font-medium rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300","children":"Async"}],["$","span","Concurrency",{"className":"px-2 py-1 text-xs font-medium rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300","children":"Concurrency"}]]}],["$","div",null,{"className":"flex items-center gap-3 mt-2 mb-8 text-sm text-neutral-600 dark:text-neutral-400","children":[["$","p",null,{"children":"January 15, 2025"}],["$","span",null,{"children":"•"}],["$","p",null,{"children":[13," min read"]}]]}],["$","article",null,{"className":"prose","children":["$","$L5",null,{"code":"$6"}]}]]}],null,["$","$L7",null,{"children":["$L8",["$","$L9",null,{"promise":"$@a"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lb",null,{"children":"$Lc"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Ld",null,{"children":["$","div",null,{"hidden":true,"children":["$","$e",null,{"fallback":null,"children":"$Lf"}]}]}]]}],false]],"m":"$undefined","G":["$10","$undefined"],"s":false,"S":true}
+c:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+8:null
+a:{"metadata":[["$","title","0",{"children":"Async Programming & Concurrency Patterns - Complete Guide | Ossama Chaib"}],["$","meta","1",{"name":"description","content":"A comprehensive guide to async programming in Python, covering asyncio patterns, rate limiting, production strategies, and anti-ban scraping techniques for real-world applications."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","4",{"property":"og:title","content":"Async Programming & Concurrency Patterns - Complete Guide"}],["$","meta","5",{"property":"og:description","content":"A comprehensive guide to async programming in Python, covering asyncio patterns, rate limiting, production strategies, and anti-ban scraping techniques for real-world applications."}],["$","meta","6",{"property":"og:url","content":"https://ossa-ma.github.io/blog/async-patterns"}],["$","meta","7",{"property":"og:image","content":"https://ossa-ma.github.io/og.png"}],["$","meta","8",{"property":"og:type","content":"article"}],["$","meta","9",{"property":"article:published_time","content":"2025-01-15T00:00:00.000Z"}],["$","meta","10",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","11",{"name":"twitter:title","content":"Async Programming & Concurrency Patterns - Complete Guide"}],["$","meta","12",{"name":"twitter:description","content":"A comprehensive guide to async programming in Python, covering asyncio patterns, rate limiting, production strategies, and anti-ban scraping techniques for real-world applications."}],["$","meta","13",{"name":"twitter:image","content":"https://ossa-ma.github.io/og.png"}]],"error":null,"digest":"$undefined"}
+f:"$a:metadata"
