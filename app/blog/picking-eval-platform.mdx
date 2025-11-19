@@ -1,0 +1,164 @@
+---
+title: 'Picking an AI Eval Platform: Research Over Hype'
+publishedAt: '2025-10-15'
+summary: 'After weeks of research, I realized the real question wasn't "which platform is best" but "which platform matches your actual constraints." Here's how to choose without getting trapped by shiny features.'
+tags: ['AI', 'Engineering', 'Evals']
+---
+
+You've realized you need evals. If you haven't, you probably do. If you think you don't, have a look at this flowchart and find out.
+
+The next step is to figure out which eval platform is best for you (and your company). Here I'm going to mostly talk about those that I've been exposed to and those within the typical python/typescript tech stack.
+
+## Quick Overview:
+
+**Pydantic Evals** seemed like the obvious choice for Python: zero integration friction with an increasingly common Pydantic + FastAPI + Langfuse stack.
+
+**Braintrust's** Python eval syntax is clean and simple, yet scales to more complex multi-step workflows. Genuinely a joy to work with. Look how simple it is:
+
+```python
+from autoevals import Levenshtein
+from braintrust import Eval
+ 
+Eval(
+    "My Project",
+    data=lambda: [
+        {"input": "Hello", "expected": "Hi"},
+        {"input": "Goodbye", "expected": "Bye"},
+    ],
+    task=lambda input: call_my_llm(input),
+    scores=[Levenshtein],
+)
+```
+
+Braintrust is more for enterprise teams with mixed technical levels - project managers, forward deployed engineers, solutions architects, the occasional stakeholder. Cloud collaboration features. Both UI and SDK for building evals.
+
+**Opik** has pre-built metrics. All-in-one platform.
+
+**promptfoo** has security testing. YAML configuration. Local execution.
+
+**Laminar** - structured approach.
+
+After weeks of research, I realized the real question wasn't "which platform is best" but "which platform matches your actual constraints." For my project, that meant preserving my Langfuse investment, maintaining Python-first development, and avoiding vendor lock-in. 
+
+Pydantic Evals won not because it's the most feature-rich, but because it's the path of least resistance.
+
+
+## The Framework Trap: When Shiny Beats Practical
+
+Coming back to this project, my first instinct was to "modernize" everything. LangGraph looks amazing! CrewAI has such elegant APIs! Surely my hand-rolled `BaseAgent` is outdated?
+
+Then I actually did the research.
+
+LangGraph, CrewAI, AutoGen, Semantic Kernel—they're all designed for multi-agent orchestration. Agents talking to agents, hierarchical control flows, complex state management. Brilliant engineering for complex problems.
+
+But Gradient Ascent isn't a complex problem. It's one agent with one job: grade a paper. The only complexity is supporting multiple LLM providers (Gemini, Claude). 
+
+My custom BaseAgent does exactly this in ~200 lines of clean, understandable code. Adding LangGraph would introduce:
+- 3-4 new dependencies
+- A mental model mismatch (we don't need agent orchestration)
+- Abstraction layers solving problems we don't have
+- Documentation to learn for features we won't use
+
+The boring truth: the most maintainable code is code that solves your actual problem, not the interesting problem you wish you had.
+
+Choose boring technology. Future you will thank you.
+
+## The Boring Abstraction That Saved Me
+
+My `BaseAgent` is boring. It has one job: take an `AbstractLLMClient`, call `_make_llm_call()`, return results. That's it.
+
+But this boring abstraction is why I can test Gemini 2.0 and Claude 3.5 side-by-side in an afternoon instead of a week.
+
+Want to test a new model? Implement the `AbstractLLMClient` interface (~50 lines), plug it in, run your evals. No framework docs to read, no paradigm shifts to understand, no "this should work but doesn't" debugging.
+
+The best abstractions are boring:
+- One clear purpose
+- Minimal surface area
+- Easy to understand in 5 minutes
+- Swap implementations without changing callers
+
+Frameworks promise productivity through sophistication. Boring abstractions deliver productivity through simplicity.
+
+When you return to a project after 6 months, you want code you can understand immediately, not code that was clever six months ago.
+
+
+
+Looking at my TODO.txt file is like reading archaeological layers of ambition. "Implement plagiarism checker"—sure, but now models can detect plagiarism as a side effect of understanding. "Email student results"—or maybe we should wait for the inevitable AI-native communication paradigm.
+
+Here's what I almost did: implement Claude Skills because it seemed important, adopt LangGraph because it looked modern, normalize my database because it felt "right."
+
+Here's what I did instead: Research first.
+
+**Skills Investigation**:
+- Researched actual Claude Skills docs
+- Realized it's just YAML frontmatter + markdown files
+- Current `prompts.py` already solves this problem
+- Would add file management overhead without solving actual pain
+- **Conclusion**: Not today
+
+**Framework Investigation**:
+- Researched LangGraph, CrewAI, AutoGen
+- All designed for multi-agent orchestration
+- My use case: single agent, multiple models
+- Custom BaseAgent is simpler and perfect for this
+- **Conclusion**: Keep boring abstraction
+
+**Database Normalization Investigation**:
+- Yes, it's good architecture
+- No, it doesn't solve current pain
+- Current schema works fine
+- Without evals, can't measure if it improves anything
+- **Conclusion**: Defer until after evals exist
+
+The framework that matters: **Research → Measure → Decide**
+
+Never implement without data. Never adopt without understanding your actual problem first. Never choose interesting over boring without good reason.
+
+The lesson? In AI development, procrastination isn't always bad. That feature you didn't build six months ago? There's probably a trivial implementation available now. Those architectural decisions you agonized over? The constraints that drove them might no longer exist.
+
+Some of the best code I wrote in the last six months is code I decided NOT to write.
+
+## Practical Strategies for Project Resurrection
+
+### 1. Archaeology Before Architecture
+Before touching any code:
+- Read your old TODOs and laugh/cry
+- Run the existing system and marvel that it still works
+- Document what problems you were actually solving (they're easy to forget)
+
+### 2. Resist the Rewrite Urge
+Yes, everything could be better with the new models. No, you shouldn't rewrite everything. Pick one core flow—for Gradient Ascent, it's the grading pipeline—and modernize that first.
+
+### 3. Context Is Everything
+Modern AI development is 90% context management. Whether it's Claude Skills, Cursor Rules, or just well-organized Markdown files, invest in making your project's context AI-legible. Your future self (in 3 months) will thank you.
+
+### 4. Embrace Ephemeral Expertise
+That deep knowledge of MCP internals? Let it go. That perfect prompt you crafted? It's already obsolete. Focus on principles, not implementations. Understand why things work, not just how.
+
+### 5. Build for Obsolescence
+Every line of code you write should assume the underlying models will change dramatically in 3 months. Abstractions aren't just good practice—they're survival strategies.
+
+## The Uncomfortable Truth About AI Velocity
+
+Here's what keeps me up at night: we're all building on quicksand. Not technically—the APIs are stable, the models are reliable—but conceptually. The fundamental assumptions about what AI can and can't do shift monthly.
+
+That grading system that seemed impossibly ambitious in April? It's now table stakes. The real innovation edge has moved to predictive analytics, learning style adaptation, and personalized curriculum generation. By the time I implement those, the frontier will have moved again.
+
+## Conclusion: Surfing the Exponential
+
+Returning to an AI project after six months isn't really about updating dependencies or integrating new models. It's about accepting that you're not the same developer, working with the same tools, solving the same problems.
+
+The project that emerges from this revival won't be Gradient Ascent 2.0—it'll be something fundamentally different, built with tools and techniques that didn't exist when I started. And in six months, when I inevitably return to it again, I'll go through this entire process once more.
+
+The key isn't to resist this cycle—it's to design for it. Build systems that expect to be obsolete. Write documentation that assumes the reader (future you) has forgotten everything. Create abstractions that can wholesale swap their implementations.
+
+Most importantly, maintain humility. That clever solution you're implementing today? In six months, an AI will do it better with a three-word prompt.
+
+Welcome to the permanent revolution of AI development. The water's warm, even if the ground keeps shifting beneath our feet.
+
+---
+
+*P.S. By the time you read this, half the specific technologies mentioned will be outdated. The principles, hopefully, will endure at least until next Tuesday.*
+
+
+

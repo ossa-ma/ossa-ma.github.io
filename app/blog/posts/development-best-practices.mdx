@@ -24,6 +24,8 @@ This checklist serves as a comprehensive reference for development best practice
 - AsyncClient patterns over sync clients throughout the stack for non-blocking I/O.
 
 ### Async Programming Patterns
+(For deep-dive into async patterns, see [Complete Async Programming Guide](/blog/async-patterns))
+
 - Async/await consistently - never mix sync and async code paths.
 - Async context managers for all resource management (database, HTTP clients, file operations).
 - `asyncio.wait_for` handles a single awaitable object like await, but also lets you set a timeout to handle long-running tasks.
