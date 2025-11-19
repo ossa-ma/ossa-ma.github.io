@@ -15,6 +15,8 @@ This checklist serves as a comprehensive reference for development best practice
 - Use `uv` instead of `pip` for faster dependency resolution and more reliable package management.
 - Use `pyproject.toml` for dependency management.
 - Absolutely never use `poetry`.
+- Always use virtual environments (`python -m venv` or `uv venv`) for project isolation - prevents dependency conflicts and ensures reproducible builds.
+- Virtual environments are critical for Docker containers - create the venv in the container build process to ensure exact dependency matching between development and production environments.
 
 ### Library Preferences & Rationale
 - Pydantic over dataclasses/dictionaries for automatic validation and typing.
