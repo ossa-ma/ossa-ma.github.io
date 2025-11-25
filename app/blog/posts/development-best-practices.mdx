@@ -18,6 +18,12 @@ This checklist serves as a comprehensive reference for development best practice
 - Always use virtual environments (`python -m venv` or `uv venv`) for project isolation - prevents dependency conflicts and ensures reproducible builds.
 - Virtual environments are critical for Docker containers - create the venv in the container build process to ensure exact dependency matching between development and production environments.
 
+### Project Structure & Imports
+- The `src/` layout is outdated. Modern Python projects prefer flat structure with direct package directories.
+- `__init__.py` files are not needed in Python 3.3+ with namespace packages. They add no value and just create maintenance overhead.
+- Absolute imports over relative imports - they're clearer, easier to refactor, and work consistently across all contexts (tests, scripts, modules).
+- Example: `from myproject.services.user import get_user` instead of `from ..services.user import get_user` or organizing everything under a meaningless `src/` directory.
+
 ### Library Preferences & Rationale
 - Pydantic over dataclasses/dictionaries for automatic validation and typing.
 - aioboto3/aiobotocore over boto3 for async AWS operations that don't block the event loop.

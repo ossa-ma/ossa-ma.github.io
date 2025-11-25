@@ -63,17 +63,43 @@ The agent asked the questions their sales deck ignored. Here's the condensed ver
 
 ## What to Use Instead
 
-If you're evaluating AI agent platforms, at minimum compare against:
+A big trade off when building agentic systems is higher latency + LLM cost for better task performance. 
+
+If you're evaluating AI agent platforms, first remember look for the simplest solution to your problem first and only increase complexity when necessary.
+
+Here are your options:
 
 **Self-Hosted (No-Code):**
 - **Flowise** - Drag-and-drop, free, 20k+ stars
 - **LangFlow** - Visual builder, on-premise 
 - **Dify.AI** - Full platform, multi-tenant, built-in RAG
 
-**Code-First Frameworks:**
-- **LangChain**: Massive ecosystem, battle-tested (+ LangFlow for no-code)
+**The Big Three:**
+- **Claude Agent SDK**:
+Good in that it offers:
+- Agentic search - big boy term for bash scripts e.g. 'grep' and 'tail'
+- Semantic search - big boy term for chunking data, embedding it into a vector db, querying for vectors, usually faster but less accurate
+- Subagents - subagents are like python processes: used for parallelization and use their own isolated context windows (memory). They only send back relevant data back to the orchestrator agent.
+- Context maintenance - probably the most difficult thing to implement yourself, when agents run for long periods the context grows as you may have seen when working in Cursor or another AI IDE and you see
+the % increase as a chat gets longer. What Claude Agent SDK does is automatically summarize previous messages when the context limit approaches so the agent doesn't run out of context. Pretty useful.
+- Tools - both prebuilt and custom tools that typically involve creating and exposing an MCP server to your agent through the Claude Code interface.
+
+Not optimised for Python, a thin wrapper around Claude Code npm package.
+So all core logic e.g. agent loops, tool execution, prompt handling is optimised for node.
+No native tool interface, only MCP servers.
+No health checks.
+More reading:
+Early stage agents: https://www.anthropic.com/engineering/building-effective-agents
+
+- **Gemini Agent SDK**:
+- **OpenAI Agent SDK**:
+
+**Open Source Frameworks:**
+- **PydanticAI**: Type-safe, modern Python, great DX (by the Pydantic team), best choice
 - **CrewAI**: Multi-agent workflows
-- **PydanticAI**: Type-safe, modern Python, great DX (by the Pydantic team)
+
+**Avoid:**
+- **LangChain**: Massive ecosystem, but lowkey trash and bloated. Read this: https://octomind.dev/blog/why-we-no-longer-use-langchain-for-building-our-ai-agents
 
 **Or Just Build Your Own:**
 Like I did. Took less than a week. Complete control. Zero per-user fees. Exact features I need. No vendor drama.
@@ -98,5 +124,3 @@ The evaluation question alone should give you pause. If they can't clearly expla
 ---
 
 *The full Dust Buster system prompt is available if anyone wants it. I've written it to ask every uncomfortable question before you lock into a vendor.*
-
-

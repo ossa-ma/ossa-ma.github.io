@@ -40,3 +40,6 @@ next-env.d.ts
 .next
 .contentlayer
 /out
+
+
+/app/blog/hidden
