@@ -1,13 +1,13 @@
 ---
-title: 'Crashing an AI Promo Event: Questions You Should Ask Before Buying Into an AI Agent (or any) Platform'
+title: 'Crashing an AI Promo Event: What to Ask Before Buying Into an AI Agent Platform'
 publishedAt: '2025-11-09'
 summary: 'I crashed an AI event to expose the hard questions nobody asks about enterprise AI platforms - vendor lock-in, evaluation frameworks, and whether you should just build your own.'
 tags: ['AI', 'Opinion', 'Evals', 'Hating']
 ---
 
-I trolled an AI promo event by creating an agent on their own platform that grills companies about whether they should use them at all.
 
-Chronology:
+## Chronology
+
 1. Signed up for the Dust x Paatch "Agentic AI" event. Showed up in person.
 2. Sat down listening to long-winded pitch session while completely glossing over important questions about vendor lock-in, data sovereignty and others pertaining to enterprise agentic AI systems.
 3. Read Dust's docs. Realized they don't answer these questions there either. Started questioning if this was anything beyond a UI wrapper with integrations—stuff you can build in-house in a week (I know because I did).
@@ -16,7 +16,7 @@ Chronology:
 6. Prompt claude to draft up a system prompt for the Dust Buster agent - "a comprehensive and critical technology researcher specializing in helping people make informed decisions about AI agent platforms".
 7. Gave it a system prompt loaded with every uncomfortable question companies should ask before committing to ANY vendor.
 8. Published it to the shared hackathon workspace so attendees could find it.
-9. Leave the premises... SIKE, sit down, enjoy pizza, drink coke.
+9. Leave the premises... SIKE. Sit down, enjoy pizza, drink coke.
 10. They notice and approach in an attempt to answer some of my questions. No success, low confidence responses. Not good.
 11. You know when you hear "Oh thats interesting" it means that the solutions architect or forward deployed engineer has never given it a thought.
 12. Go home early, disappointed.
@@ -26,7 +26,6 @@ The agent asked the questions their sales deck ignored. Here's the condensed ver
 ---
 
 ## The Questions That Matter
-
 
 **Evaluation:**
 - "How do you know if your prompt changes actually improve anything, or are you just guessing?"
@@ -63,16 +62,9 @@ The agent asked the questions their sales deck ignored. Here's the condensed ver
 
 ## What to Use Instead
 
-A big trade off when building agentic systems is higher latency + LLM cost for better task performance. 
-
 If you're evaluating AI agent platforms, first remember look for the simplest solution to your problem first and only increase complexity when necessary.
 
 Here are your options:
-
-**Self-Hosted (No-Code):**
-- **Flowise** - Drag-and-drop, free, 20k+ stars
-- **LangFlow** - Visual builder, on-premise 
-- **Dify.AI** - Full platform, multi-tenant, built-in RAG
 
 **The Big Three:**
 - **Claude Agent SDK**:
@@ -83,20 +75,47 @@ Good in that it offers:
 - Context maintenance - probably the most difficult thing to implement yourself, when agents run for long periods the context grows as you may have seen when working in Cursor or another AI IDE and you see
 the % increase as a chat gets longer. What Claude Agent SDK does is automatically summarize previous messages when the context limit approaches so the agent doesn't run out of context. Pretty useful.
 - Tools - both prebuilt and custom tools that typically involve creating and exposing an MCP server to your agent through the Claude Code interface.
+- Fully customisable/extendable - SDK that you can just install and run on your own infrastructure. Full control over everything.
 
-Not optimised for Python, a thin wrapper around Claude Code npm package.
-So all core logic e.g. agent loops, tool execution, prompt handling is optimised for node.
-No native tool interface, only MCP servers.
-No health checks.
+Bad in that it's:
+- Not optimised for Python, a thin wrapper around Claude Code npm package.
+- So all core logic e.g. agent loops, tool execution, prompt handling is optimised for node.
+- No native tool interface, only MCP servers.
+- No health checks.
+- Have to manage your own memory and infrastructure if you want to self host (obviously).
+
 More reading:
 Early stage agents: https://www.anthropic.com/engineering/building-effective-agents
 
-- **Gemini Agent SDK**:
-- **OpenAI Agent SDK**:
+- **Google Agent Development Kit (ADK)**:
+The most "enterprise-ready" of the bunch.
+- Model agnostic and deployment agnostic.
+- Prebuilt tooling options + custom + easily integrate third party.
+- Easily containerise and deploy agents on your own, Vertex AI Agent Engine option available too.
+- Easily build multi-agent systems (orchestrators, sub-agents).
+- Comes with built-in observability, evaluation frameworks, and state management.
+- Offers a visual developer UI for debugging agent traces—something the others sorely lack.
 
-**Open Source Frameworks:**
-- **PydanticAI**: Type-safe, modern Python, great DX (by the Pydantic team), best choice
-- **CrewAI**: Multi-agent workflows
+- **OpenAI AgentKit**:
+Product-first kit. Focus is to help you build a product and ship it within the OpenAI ecosystem.
+- Full stack:Provides the runtime, memory management, and tool execution.
+- ChatKit Integration: Designed to ship conversational agents quickly.
+- Heavily tied to OpenAI's infrastructure and models.
+
+**Open Source Frameworks (For Builders):**
+- **PydanticAI**: Type-safe, modern Python, great DX (by the Pydantic team). The best choice imo if you want to write code.
+- **CrewAI**: Good for structured multi-agent workflows, but can be rigid.
+
+**Open Source Platforms (The Real Dust Alternatives):**
+If you want the "Platform" experience (UI, RAG, Integrations) but want to own your data:
+
+- **Dify.AI**: The closest open-source equivalent to Dust.
+  - Full RAG pipeline and LLM orchestration.
+  - Visual builder + API access.
+  - Self-hostable (Docker).
+  - For if you want Dust features without the Dust lock-in.
+
+- **LangFlow**: Visual drag-and-drop builder, great for prototyping flows.
 
 **Avoid:**
 - **LangChain**: Massive ecosystem, but lowkey trash and bloated. Read this: https://octomind.dev/blog/why-we-no-longer-use-langchain-for-building-our-ai-agents
@@ -121,6 +140,17 @@ I'm not saying don't use Dust if you're a non-technical person who wants to wast
 
 The evaluation question alone should give you pause. If they can't clearly explain how you'll measure success and prevent regressions, that's a problem.
 
+### A Note on "Enterprise Moats"
+To be fair to Dust, they do offer things that are annoying to build yourself: SOC 2 compliance, managed data connectors (Notion, Slack, etc.), and user management.
+
+If you are a large enterprise, paying for these "boring" infrastructure pieces might make sense. But don't confuse infrastructure with intelligence.
+- When building it yourself you own the data, so compliance is often simpler (it stays in your VPC). You can use open-source libraries for data connectors.
+- You are paying Dust a premium for the convenience of not managing these pipes.
+
+The only real pain point to build yourself is user management. Handling permissions and sharing agents across teams is tedious. If you don't want to build an auth system, Dust solves that. But is that worth the lock-in? Probably not.
+
 ---
+
+*Disclaimer: This post reflects my personal experience and opinions from attending a public promotional event. I encourage readers to do their own research and evaluation.*
 
 *The full Dust Buster system prompt is available if anyone wants it. I've written it to ask every uncomfortable question before you lock into a vendor.*
