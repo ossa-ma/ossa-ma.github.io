@@ -1,0 +1,67 @@
+---
+title: 'FDEs were why I invested in Palantir in 2022 (and sold it all in 2024)'
+publishedAt: '2025-12-04'
+summary: 'I wrote a university report on Palantir`s forward deployed engineers, invested my student savings at $11, and sold at $25. The stock is now at $175. I don`t regret it.'
+tags: ['Investing', 'Engineering', 'Opinion', 'Throwback']
+---
+
+## The Thesis
+
+In 2021, I wrote a university report on Agile software development. The assignment was to analyze how companies implement Agile methodologies. Most students picked the usual suspects—Spotify's squad model, Google's OKRs, Amazon's two-pizza teams.
+
+I picked Palantir because they were doing something completely different.
+
+Even their hiring process was different. They were hiring the best engineers in my cohort with a brutal 6-stage interview process spanning 4-6 weeks.
+
+They pioneered the 'forward deployed engineer' which is now a huge trend.
+
+![Forward Deployed Engineer job postings trend](/images/fde_trends.jpeg)
+*FDE roles are everywhere now*
+
+They were also significantly AI forward before it was trendy.
+
+I thought this was a big deal. Then I decided to invest a big chunk of my small student savings in Palantir.
+March 2022, share price was around $11.
+
+I kept buying throughout 2022 and 2023 as it dipped lower, averaging around $9 a share.
+
+However, I sold it all in June 2024 at $25 a share as they started to pull in military contracts (and lots of them). Not a big fan of military contracts but I guess thats where the money is. Morals first.
+
+And thats where the money was indeed. June was an inflection point for the share price.
+It literally rocketed up to $140 a share in a year, and is trading at $175 at the time of writing.
+
+I don't regret it at all. I got a 2.5x return on my investment. But more importantly, I was able to tell friends "I told you so".
+Market validation is a big deal, especially for new "investors".
+
+## The Report
+
+What made them different?
+
+**Small, Autonomous Teams**
+Teams of 4-5 people. No hierarchies. No project managers. Engineers made project-critical decisions themselves. They could modify two-week sprints and daily stand-ups to suit their needs. One team lead I interviewed ran retrospectives focused on team chemistry and motivation, not velocity metrics, quite whimsical.
+
+**Fluid Roles**
+Roles weren't static. A Deployment Strategist could be developing software and acting as joint product owner with the customer.
+
+**The FDSE Model**
+Traditional software engineers are compartmentalized. They get requirements from product managers, build features, ship code, and never talk to customers. Information travels through at least 2 stages of telephone before reaching them.
+
+FDSEs operate across the entire pipeline. They work on-site with clients, starting with open-ended questions like "How can we better identify money laundering?" They either customize existing Palantir solutions or build new ones. Then they work with internal teams to generalize features for other clients.
+
+One FDSE described it as: "How do I design, build, test, deploy and maintain a unique workflow for a non-technical customer to visualize high-noise data? How can I generalize this to fold it into the base platform?"
+
+## Why This Matters
+
+Most companies have layers of people between engineers and customers. Product managers, business analysts, account managers, project managers. Each layer adds delay and distortion.
+
+By the time a customer request reaches the engineer, it's been through 3-4 rounds of telephone. What gets built barely resembles what was needed.
+
+Enterprise software is full of this. Tools built for what managers think employees do, not what they actually do. I've seen this firsthand: features designed by people who never talked to the end users.
+
+FDEs cut through this. They sit with the customer, see the problem, build the solution. No translation layers. No telephone game.
+
+This is why every AI company is copying the model now. Anthropic, OpenAI, all of them have forward deployed roles. They realized you can't sell enterprise AI without engineers who understand the actual problem.
+
+---
+
+*My full university report is available [here](/documents/agile_and_palantir.pdf) if you want to read the deep dive into Palantir's approach to Agile, team structure, and the FDSE model.*

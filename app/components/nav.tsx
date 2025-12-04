@@ -7,7 +7,7 @@ const navItems = {
   '/blog': {
     name: 'blog',
   },
-  '/cv.pdf': {
+  '/documents/cv.pdf': {
     name: 'cv',
   },
 }
