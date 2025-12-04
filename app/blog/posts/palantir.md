@@ -1,7 +1,7 @@
 ---
 title: 'FDEs were why I invested in Palantir in 2022 (and sold it all in 2024)'
 publishedAt: '2025-12-04'
-summary: 'Why the hell is PLTR at $175? Does their engineering culture have anything to do with it?'
+summary: 'Why the hell is PLTR at $420bn market cap? Does their engineering culture have anything to do with it?'
 tags: ['Investing', 'Engineering', 'Opinion', 'Throwback']
 ---
 
