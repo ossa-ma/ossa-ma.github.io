@@ -45,18 +45,20 @@ Let's look at the numbers.
 We ran two benchmarks: one with a simple flat structure, and another with a typical nested e-commerce order (`Order` -> `User`, `Address`, `Items`).
 
 #### 1. Simple Structure (Flat User)
-| Library | Encode (us) | Decode (us) | Total (us) | vs msgspec |
-| :--- | :--- | :--- | :--- | :--- |
-| **msgspec** | **0.08** | **0.12** | **0.20** | **1.0x** |
-| pydantic v2 | 0.56 | 0.68 | 1.24 | 6.2x |
-| pydantic v2 (opt) | 0.50 | 0.50 | 1.00 | 5.0x |
+
+| Library | Encode (us)&nbsp;&nbsp;&nbsp;&nbsp; | Decode (us)&nbsp;&nbsp;&nbsp;&nbsp; | Total (us)&nbsp;&nbsp;&nbsp;&nbsp; | vs msgspec |
+| --- | --- | --- | --- | --- |
+| **msgspec** | **0.08** | **0.12** | **0.20** | |
+| pydantic v2 | 0.56 | 0.68 | 1.24 | 6.2x slower |
+| pydantic v2 (opt) &nbsp;&nbsp;&nbsp;&nbsp; | 0.50 | 0.50 | 1.00 | 5.0x slower |
 
 #### 2. Nested Structure (Order)
-| Library | Encode (us) | Decode (us) | Total (us) | vs msgspec |
-| :--- | :--- | :--- | :--- | :--- |
-| **msgspec** | **0.49** | **0.74** | **1.23** | **1.0x** |
-| pydantic v2 | 2.04 | 27.20 | 29.24 | 23.7x |
-| pydantic v2 (opt) | 1.79 | 25.79 | 27.58 | 22.4x |
+
+| Library | Encode (us)&nbsp;&nbsp;&nbsp;&nbsp; | Decode (us)&nbsp;&nbsp;&nbsp;&nbsp; | Total (us)&nbsp;&nbsp;&nbsp;&nbsp; | vs msgspec |
+| --- | --- | --- | --- | --- |
+| **msgspec** | **0.49** | **0.74** | **1.23** | |
+| pydantic v2 | 2.04 | 27.20 | 29.24 | 23.7x slower |
+| pydantic v2 (opt) &nbsp;&nbsp;&nbsp;&nbsp; | 1.79 | 25.79 | 27.58 | 22.4x slower |
 
 **The Verdict:** `msgspec` was **6x faster** for simple structures, but the gap widened to **~24x faster** for nested structures.
 
@@ -71,7 +73,7 @@ You can see there that for every benchmark msgspec objects and dicts were multit
 
 ## Why doesn't Pydantic do this?
 
-If `msgspec` is so fast, why doesn't Pydantic just copy its approach?
+If msgspec is so fast, why doesn't Pydantic just copy its approach?
 
 Because they have different goals.
 
@@ -95,9 +97,9 @@ obj = msgspec.json.decode(json_bytes, type=Data)
 
 So `msgspec` is faster. Why not use it everywhere?
 
-Without Pydantic you miss out on a lot...
+Without Pydantic you're missing out on a lot...
 Custom validation, cleaner DX, better logging, better more detailed and user friendly error messages, ecosystem advantages (FastAPI, the Langs), ORM integration, automatic JSON schema and OpenAPI generation, settings management (pydantic-settings).
 
-There's a reason its the de facto, the standard.
+There's a reason it's the de facto standard.
 
 If you have any alternatives, optimisation tips, tricks, ideas, better workflows, have identified any inaccuracies, any feedback on the blog post or want to say hello reach out to me here -> [ossamachaib.cs@gmail.com](mailto:ossamachaib.cs@gmail.com). 

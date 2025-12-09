@@ -11,8 +11,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export function generateMetadata({ params }) {
-  const post = allPosts.find((post) => post.slug === params.slug)
+export async function generateMetadata({ params }) {
+  const { slug } = await params
+  const post = allPosts.find((post) => post.slug === slug)
   if (!post) {
     return
   }
@@ -49,8 +50,9 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function Blog({ params }) {
-  const post = allPosts.find((post) => post.slug === params.slug)
+export default async function Blog({ params }) {
+  const { slug } = await params
+  const post = allPosts.find((post) => post.slug === slug)
 
   if (!post) {
     notFound()
@@ -68,7 +70,7 @@ export default function Blog({ params }) {
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {post.title}
       </h1>
-      
+
       {/* Tags */}
       {post.tags && post.tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mt-3">
