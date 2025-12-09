@@ -1,4 +1,5 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import remarkGfm from 'remark-gfm'
 
 const baseUrl = 'https://ossa-ma.github.io'
 
@@ -49,4 +50,7 @@ export const Post = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'app/blog/posts',
   documentTypes: [Post],
-}) 
+  mdx: {
+    remarkPlugins: [remarkGfm],
+  },
+})
