@@ -45,3 +45,6 @@ next-env.d.ts
 /app/blog/hidden
 
 .agent/
+
+
+/data
