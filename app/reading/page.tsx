@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
 interface ReadingEntry {
@@ -12,7 +12,18 @@ interface ReadingEntry {
 export default function ReadingPage() {
     // Read data at build time
     const dataPath = join(process.cwd(), 'data', 'reading.json');
-    const readings: ReadingEntry[] = JSON.parse(readFileSync(dataPath, 'utf-8'));
+
+    let readings: ReadingEntry[] = [];
+
+    try {
+        if (existsSync(dataPath)) {
+            const fileContent = readFileSync(dataPath, 'utf-8');
+            readings = fileContent.trim() ? JSON.parse(fileContent) : [];
+        }
+    } catch (error) {
+        console.error('Error reading reading.json:', error);
+        readings = [];
+    }
 
     return (
         <section>
@@ -57,6 +68,6 @@ export default function ReadingPage() {
                     <p className="text-neutral-600 dark:text-neutral-400">No reading entries yet.</p>
                 )}
             </div>
-        </section>
+        </section >
     );
 }

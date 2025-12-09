@@ -18,8 +18,8 @@ Pydantic's overhead is typically **10-50 microseconds** per model. With complex 
 Here is a rough guide on when Pydantic is appropriate:
 
 **Safe Zone (Use Pydantic):**
-- Latency budget: >10ms per request
-- Throughput: <1,000 req/sec
+- Latency budget: &gt;10ms per request
+- Throughput: &lt;1,000 req/sec
 - Use cases: Internal dashboards, CRUD APIs, background jobs, data science pipelines.
 
 **Gray Zone (Proceed with Caution):**
@@ -28,8 +28,8 @@ Here is a rough guide on when Pydantic is appropriate:
 - Use cases: Public APIs, high-traffic microservices.
 
 **Danger Zone (Look for Alternatives):**
-- Latency budget: <1ms
-- Throughput: >10,000 req/sec
+- Latency budget: &lt;1ms
+- Throughput: &gt;10,000 req/sec
 - Use cases: Real-time systems, high-frequency trading.
 
 *Note: If you are in the danger zone, the first question should be: "Should I even be using Python for this?" (Definitely not for HFT).*
