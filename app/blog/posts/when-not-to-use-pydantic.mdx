@@ -1,11 +1,11 @@
 ---
-title: 'When not to use Pydantic'
+title: 'When NOT to use Pydantic'
 publishedAt: '2025-12-09'
 summary: 'A dive into Pydantic performance and when to pick a different option.'
 tags: ['Python', 'Performance', 'Engineering', 'Backend']
 ---
 
-I recently had a discussion with an engineer who defaults immediately to using Pydantic `BaseModel`s for everything, whether building a personal dashboard API or an enterprise system processing 50,000 requests/sec. 
+I recently had a discussion with an engineer who defaults immediately to using Pydantic's `BaseModel` for everything, whether building a personal dashboard API or an enterprise system processing 50,000 requests/sec. 
 
 Not good.
 
@@ -75,9 +75,9 @@ If `msgspec` is so fast, why doesn't Pydantic just copy its approach?
 
 Because they have different goals.
 
-**Pydantic** is designed to be a general-purpose data validation library. It needs to ingest data from anywhere: dictionaries, ORM objects, class instances, environment variables, etc. It prioritizes flexibility and developer experience.
+Pydantic is designed to be a general-purpose data validation library. It needs to ingest data from anywhere: dictionaries, ORM objects, class instances, environment variables, etc. It prioritizes flexibility and developer experience.
 
-**msgspec**, on the other hand, is a specialized serialization library. It couples parsing and runtime validation tightly for maximum performance, but it is strictly focused on specific formats like JSON, MessagePack, and YAML.
+msgspec, on the other hand, is a specialized serialization library. It couples parsing and runtime validation tightly for maximum performance, but it is strictly focused on specific formats like JSON, MessagePack, and YAML.
 
 ```python
 import msgspec
@@ -100,4 +100,4 @@ Custom validation, cleaner DX, better logging, better more detailed and user fri
 
 There's a reason its the de facto, the standard.
 
-If you have any alternatives, optimisation tips, tricks, better workflows, have identified any inaccuracies, any feedback on the blog post or want to say hello reach out to me here -> [ossamachaib.cs@gmail.com](mailto:ossamachaib.cs@gmail.com). 
+If you have any alternatives, optimisation tips, tricks, ideas, better workflows, have identified any inaccuracies, any feedback on the blog post or want to say hello reach out to me here -> [ossamachaib.cs@gmail.com](mailto:ossamachaib.cs@gmail.com). 
