@@ -1,0 +1,103 @@
+---
+title: 'When not to use Pydantic'
+publishedAt: '2025-12-09'
+summary: 'A dive into Pydantic performance and when to pick a different option.'
+tags: ['Python', 'Performance', 'Engineering', 'Backend']
+---
+
+I recently had a discussion with an engineer who defaults immediately to using Pydantic `BaseModel`s for everything, whether building a personal dashboard API or an enterprise system processing 50,000 requests/sec. 
+
+Not good.
+
+While Pydantic is fantastic, beautiful, majestic for developer experience, it has a performance cost that is rarely discussed in depth. This post sheds some light on that cost and when you should look for alternatives.
+
+## The Latency Ladder
+
+Pydantic's overhead is typically **10-50 microseconds** per model. With complex validation, this can spike to **100+ microseconds**.
+
+Here is a rough guide on when Pydantic is appropriate:
+
+**Safe Zone (Use Pydantic):**
+- Latency budget: >10ms per request
+- Throughput: <1,000 req/sec
+- Use cases: Internal dashboards, CRUD APIs, background jobs, data science pipelines.
+
+**Gray Zone (Proceed with Caution):**
+- Latency budget: 1-10ms
+- Throughput: 1,000 - 10,000 req/sec
+- Use cases: Public APIs, high-traffic microservices.
+
+**Danger Zone (Look for Alternatives):**
+- Latency budget: <1ms
+- Throughput: >10,000 req/sec
+- Use cases: Real-time systems, high-frequency trading.
+
+*Note: If you are in the danger zone, the first question should be: "Should I even be using Python for this?" (Definitely not for HFT).*
+
+## One Alternative (I've explored (so far)): msgspec
+
+If you need raw speed in Python, the best alternative right now is **msgspec**. It offers **5-30x faster** decoding with validation compared to Pydantic.
+
+Let's look at the numbers.
+
+### Benchmark Results
+
+We ran two benchmarks: one with a simple flat structure, and another with a typical nested e-commerce order (`Order` -> `User`, `Address`, `Items`).
+
+#### 1. Simple Structure (Flat User)
+| Library | Encode (us) | Decode (us) | Total (us) | vs msgspec |
+| :--- | :--- | :--- | :--- | :--- |
+| **msgspec** | **0.08** | **0.12** | **0.20** | **1.0x** |
+| pydantic v2 | 0.56 | 0.68 | 1.24 | 6.2x |
+| pydantic v2 (opt) | 0.50 | 0.50 | 1.00 | 5.0x |
+
+#### 2. Nested Structure (Order)
+| Library | Encode (us) | Decode (us) | Total (us) | vs msgspec |
+| :--- | :--- | :--- | :--- | :--- |
+| **msgspec** | **0.49** | **0.74** | **1.23** | **1.0x** |
+| pydantic v2 | 2.04 | 27.20 | 29.24 | 23.7x |
+| pydantic v2 (opt) | 1.79 | 25.79 | 27.58 | 22.4x |
+
+**The Verdict:** `msgspec` was **6x faster** for simple structures, but the gap widened to **~24x faster** for nested structures.
+
+This performance difference is largely due to `msgspec`'s architecture. It parses JSON bytes directly into Python objects (Structs), skipping the intermediate dictionary creation step that Pydantic typically relies on.
+
+Our second benchmark used a nested structure, which amplifies this difference because Pydantic has to create intermediate dictionaries for every single nested object before validation even begins.
+
+You can find the benchmark script I used in [`experiments/bench_pydantic_vs_msgspec.py`](https://github.com/ossa-ma/ossa-ma.github.io/blob/main/experiments/bench_pydantic_vs_msgspec.py).
+
+I then found similar benchmarks, in fact an entire conversation between the two core maintainers Samuel Colvin of Pydantic and Jim Crist-Harif of msgspec going head to head discussing benchmarks [here](https://gist.github.com/jcrist/d62f450594164d284fbea957fd48b743).
+You can see there that for every benchmark msgspec objects and dicts were multitudes faster. Even with the Pydantic optimisations suggested by Sam.
+
+## Why doesn't Pydantic do this?
+
+If `msgspec` is so fast, why doesn't Pydantic just copy its approach?
+
+Because they have different goals.
+
+**Pydantic** is designed to be a general-purpose data validation library. It needs to ingest data from anywhere: dictionaries, ORM objects, class instances, environment variables, etc. It prioritizes flexibility and developer experience.
+
+**msgspec**, on the other hand, is a specialized serialization library. It couples parsing and runtime validation tightly for maximum performance, but it is strictly focused on specific formats like JSON, MessagePack, and YAML.
+
+```python
+import msgspec
+
+class Data(msgspec.Struct):
+    id: int
+    name: str
+    value: float
+
+# Direct JSON → validated object (very fast)
+obj = msgspec.json.decode(json_bytes, type=Data)
+```
+
+## The Trade-offs
+
+So `msgspec` is faster. Why not use it everywhere?
+
+Without Pydantic you miss out on a lot...
+Custom validation, cleaner DX, better logging, better more detailed and user friendly error messages, ecosystem advantages (FastAPI, the Langs), ORM integration, automatic JSON schema and OpenAPI generation, settings management (pydantic-settings).
+
+There's a reason its the de facto, the standard.
+
+If you have any alternatives, optimisation tips, tricks, better workflows, have identified any inaccuracies, any feedback on the blog post or want to say hello reach out to me here -> [ossamachaib.cs@gmail.com](mailto:ossamachaib.cs@gmail.com). 
