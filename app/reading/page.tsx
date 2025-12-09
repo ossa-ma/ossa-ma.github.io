@@ -65,7 +65,7 @@ export default function ReadingPage() {
                 ))}
 
                 {readings.length === 0 && (
-                    <p className="text-neutral-600 dark:text-neutral-400">No reading entries yet.</p>
+                    <p className="text-neutral-600 dark:text-neutral-400">Nothing yet. Hmm...</p>
                 )}
             </div>
         </section >

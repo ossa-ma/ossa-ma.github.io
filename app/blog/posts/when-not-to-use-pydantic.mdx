@@ -32,6 +32,7 @@ Here is a rough guide on when Pydantic is appropriate:
 - Throughput: &gt;10,000 req/sec
 - Use cases: Real-time systems, high-frequency trading.
 
+
 *Note: If you are in the danger zone, the first question should be: "Should I even be using Python for this?" (Definitely not for HFT).*
 
 ## One Alternative (I've explored (so far)): msgspec
@@ -102,4 +103,13 @@ Custom validation, cleaner DX, better logging, better more detailed and user fri
 
 There's a reason it's the de facto standard.
 
-If you have any alternatives, optimisation tips, tricks, ideas, better workflows, have identified any inaccuracies, any feedback on the blog post or want to say hello reach out to me here -> [ossamachaib.cs@gmail.com](mailto:ossamachaib.cs@gmail.com). 
+If you have any alternatives, optimisation tips, tricks, ideas, better workflows, have identified any inaccuracies, any feedback on the blog post or want to say hello reach out to me here -> [ossamachaib.cs@gmail.com](mailto:ossamachaib.cs@gmail.com).
+
+
+## Coming Soon... The Hidden Costs (Startup & Memory)
+
+While runtime speed is crucial, I've been investigating another critical dimension: **Startup Time and Memory Footprint**.
+
+I've been doing some reading and research that Pydantic V2 might be significantly heavier than V1 (for a while now).
+
+I'll be publishing the results in **Part 2** once I've crunched the numbers and churned the words. Stay tuned (yes you have no way of doing this, don't worry working on a subscribe to my blog! feature rn).
