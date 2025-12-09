@@ -47,6 +47,9 @@ export const metadata: Metadata = {
     description: "Ossama's portfolio.",
     images: [`${baseUrl}/og.png`],
   },
+  verification: {
+    google: 'lfj8abXk0Gbd8ud0xCHKkE11WrJLt3drwNJe6KQCXio',
+  },
 }
 
 const cx = (...classes) => classes.filter(Boolean).join(' ')
