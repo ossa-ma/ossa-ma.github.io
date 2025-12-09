@@ -1,10 +1,14 @@
 """
-A benchmark comparing the performance of:
-- msgspec: https://github.com/jcrist/msgspec
-- pydantic V2: https://docs.pydantic.dev/dev-v2/
-- pydantic V2 (Optimized): Using TypedDict + TypeAdapter
+Benchmark: msgspec vs Pydantic V2
 
-Simulating web request/response handling with an E-commerce Order model.
+Comparing performance for a typical web API scenario:
+1. Simple flat model (User)
+2. Nested complex model (E-commerce Order)
+
+We test:
+- msgspec (Structs)
+- Pydantic V2 (BaseModel)
+- Pydantic V2 Optimized (TypedDict + TypeAdapter)
 """
 
 import datetime
@@ -13,20 +17,18 @@ import random
 import string
 import timeit
 import uuid
-from typing import List, Annotated
+from typing import List
 from typing_extensions import TypedDict
 
 import msgspec
 import pydantic
 
 
-# -----------------------------------------------------------------------------
-# Data Generation
-# -----------------------------------------------------------------------------
+# --- Data Generators ---
 
 
 def make_order_data():
-    """Generate a random order dictionary"""
+    """Simulates a nested e-commerce order payload."""
     UTC = datetime.timezone.utc
 
     rand = random.Random(42)
@@ -64,7 +66,7 @@ def make_order_data():
 
 
 def make_simple_data():
-    """Generate a simple flat dictionary (User)"""
+    """Simulates a simple flat user payload."""
     rand = random.Random(42)
 
     def randstr(min_len=5, max_len=10):
@@ -75,18 +77,21 @@ def make_simple_data():
 
 
 def bench(name, raw_data, dumps, loads, convert):
-    # Warmup and verification
+    # Setup: convert raw dict to the target object type (if needed)
     msg = convert(raw_data)
-    json_data = dumps(msg)
-    msg2 = loads(json_data)
-    del msg2
 
-    # Benchmark Dumps (Serialization) - simulating outgoing response
+    # Verify roundtrip works (sanity check)
+    json_data = dumps(msg)
+    _ = loads(json_data)
+
+    # Measure Encoding (Serialization)
+    # Simulates sending a response
     timer = timeit.Timer("func(data)", setup="", globals={"func": dumps, "data": msg})
     n, t = timer.autorange()
     dumps_time = t / n
 
-    # Benchmark Loads (Validation/Decoding) - simulating incoming request
+    # Measure Decoding (Validation)
+    # Simulates parsing a request
     timer = timeit.Timer("func(data)", setup="", globals={"func": loads, "data": json_data})
     n, t = timer.autorange()
     loads_time = t / n
@@ -94,9 +99,7 @@ def bench(name, raw_data, dumps, loads, convert):
     return dumps_time, loads_time
 
 
-# -----------------------------------------------------------------------------
-# 1. msgspec
-# -----------------------------------------------------------------------------
+# --- 1. msgspec ---
 
 
 class AddressStruct(msgspec.Struct):
@@ -132,6 +135,7 @@ def bench_msgspec(data):
     enc = msgspec.json.Encoder()
     dec = msgspec.json.Decoder(OrderStruct)
 
+    # msgspec needs Structs, not dicts
     def convert(data):
         return msgspec.convert(data, OrderStruct)
 
@@ -148,9 +152,7 @@ def bench_msgspec_simple(data):
     return bench("msgspec (simple)", data, enc.encode, dec.decode, convert)
 
 
-# -----------------------------------------------------------------------------
-# 2. Pydantic V2 (Standard BaseModel)
-# -----------------------------------------------------------------------------
+# --- 2. Pydantic V2 (Standard) ---
 
 
 class AddressModel(pydantic.BaseModel):
@@ -208,9 +210,8 @@ def bench_pydantic_v2_simple(data):
     )
 
 
-# -----------------------------------------------------------------------------
-# 3. Pydantic V2 Optimized (TypedDict + TypeAdapter)
-# -----------------------------------------------------------------------------
+# --- 3. Pydantic V2 Optimized (TypedDict + TypeAdapter) ---
+# This is the "fast path" often recommended for Pydantic
 
 
 class AddressDict(TypedDict):
@@ -253,16 +254,10 @@ user_adapter = pydantic.TypeAdapter(SimpleUserDict)
 
 
 def bench_pydantic_optimized(data):
-    # For TypedDict, "convert" is just passing the dict, but we need to ensure
-    # UUIDs/Datetimes are parsed if we want a fair comparison of "object" state.
-    # However, TypedDict at runtime IS just a dict.
-    # To simulate "validated object" state for serialization benchmark,
-    # we'll use the output of validation.
-
+    # For TypedDict, we need to simulate the "validated" state
+    # by running validation once first.
     def convert(data):
-        # Validate first to get the "parsed" python objects (UUIDs, datetimes)
-        # This is what we would have in our application after validation
-        json_str = json.dumps(data).encode("utf-8")  # naive serialization for setup
+        json_str = json.dumps(data).encode("utf-8")
         return order_adapter.validate_json(json_str)
 
     return bench(
@@ -288,57 +283,54 @@ def bench_pydantic_optimized_simple(data):
     )
 
 
-# -----------------------------------------------------------------------------
-# Run itttt
-# -----------------------------------------------------------------------------
-
 if __name__ == "__main__":
-    print(f"Generating Data...")
+    print("Generating test data...")
     nested_data = make_order_data()
     simple_data = make_simple_data()
 
-    print("\nRunning benchmarks (1000 iterations handled by timeit)...")
-
+    print("\nRunning benchmarks (1000 iterations)...")
     results = []
 
-    # Simple
+    # Simple Tests
     print("\n--- Simple Structure (Flat User) ---")
-    ms_dumps, ms_loads = bench_msgspec_simple(simple_data)
-    results.append(("msgspec (simple)", ms_dumps, ms_loads))
+    results.append(bench_msgspec_simple(simple_data))
+    results.append(bench_pydantic_v2_simple(simple_data))
+    results.append(bench_pydantic_optimized_simple(simple_data))
 
-    pv2_dumps, pv2_loads = bench_pydantic_v2_simple(simple_data)
-    results.append(("pydantic v2 (simple)", pv2_dumps, pv2_loads))
-
-    pv2opt_dumps, pv2opt_loads = bench_pydantic_optimized_simple(simple_data)
-    results.append(("pydantic v2 (opt, simple)", pv2opt_dumps, pv2opt_loads))
-
-    # Nested
+    # Nested Tests
     print("\n--- Nested Structure (Order) ---")
-    ms_dumps, ms_loads = bench_msgspec(nested_data)
-    results.append(("msgspec (nested)", ms_dumps, ms_loads))
+    results.append(bench_msgspec(nested_data))
+    results.append(bench_pydantic_v2(nested_data))
+    results.append(bench_pydantic_optimized(nested_data))
 
-    pv2_dumps, pv2_loads = bench_pydantic_v2(nested_data)
-    results.append(("pydantic v2 (nested)", pv2_dumps, pv2_loads))
-
-    pv2opt_dumps, pv2opt_loads = bench_pydantic_optimized(nested_data)
-    results.append(("pydantic v2 (opt, nested)", pv2opt_dumps, pv2opt_loads))
-
-    # Print Results
+    # Format Results
     print(
         f"\n{'Library':<30} | {'Encode (us)':<12} | {'Decode (us)':<12} | {'Total (us)':<12} | {'vs msgspec':<10}"
     )
     print("-" * 90)
 
-    # Calculate baselines
-    simple_baseline = results[0][1] + results[0][2]
-    nested_baseline = results[3][1] + results[3][2]
+    # We know the order:
+    # 0-2 are Simple (msgspec, pydantic, pydantic-opt)
+    # 3-5 are Nested (msgspec, pydantic, pydantic-opt)
 
-    for i, (name, dumps, loads) in enumerate(results):
+    names = [
+        "msgspec (simple)",
+        "pydantic v2 (simple)",
+        "pydantic v2 (opt, simple)",
+        "msgspec (nested)",
+        "pydantic v2 (nested)",
+        "pydantic v2 (opt, nested)",
+    ]
+
+    simple_baseline = results[0][0] + results[0][1]
+    nested_baseline = results[3][0] + results[3][1]
+
+    for i, (dumps, loads) in enumerate(results):
+        name = names[i]
         total = dumps + loads
-        if "simple" in name:
-            factor = total / simple_baseline
-        else:
-            factor = total / nested_baseline
+
+        baseline = simple_baseline if "simple" in name else nested_baseline
+        factor = total / baseline
 
         print(
             f"{name:<30} | {dumps * 1e6:<12.2f} | {loads * 1e6:<12.2f} | {total * 1e6:<12.2f} | {factor:.1f}x"
