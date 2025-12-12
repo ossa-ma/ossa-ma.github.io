@@ -1,0 +1,53 @@
+[
+  {
+    "url": "https://gricha.dev/blog/the-highest-quality-codebase",
+    "title": "The highest quality codebase",
+    "author": null,
+    "publishedDate": null,
+    "addedDate": "2025-12-12",
+    "thoughts": "Claude definitely opts for complexity given an open-ended optimisation question. However prompt diff."
+  },
+  {
+    "url": "https://developers.raycast.com/basics/create-your-first-extension",
+    "title": "Create Your First Extension | Raycast API",
+    "author": null,
+    "publishedDate": "2025-04-07",
+    "addedDate": "2025-12-11",
+    "thoughts": "Super useful, used it to create this very extension I am typing in right now!"
+  },
+  {
+    "url": "https://charles.gitlab-pages.computer.surgery/blog/python-project-progression.html",
+    "title": "Python Project Progression - Charles' Blog",
+    "author": null,
+    "publishedDate": null,
+    "addedDate": "2025-12-10"
+  },
+  {
+    "url": "https://charles.gitlab-pages.computer.surgery/blog/python-pydantic-pitfalls.html",
+    "title": "Python/Pydantic Pitfalls - Charles' Blog",
+    "author": null,
+    "publishedDate": null,
+    "addedDate": "2025-12-10"
+  },
+  {
+    "url": "https://flower.ai/docs/framework/tutorial-series-what-is-federated-learning.html",
+    "title": "What is Federated Learning?",
+    "author": null,
+    "publishedDate": null,
+    "addedDate": "2025-12-10"
+  },
+  {
+    "url": "https://nabeelqu.co/advice",
+    "title": "Nabeel S. Qureshi",
+    "author": null,
+    "publishedDate": "2022-07-04",
+    "addedDate": "2025-12-03"
+  },
+  {
+    "url": "https://nabeelqu.co/reflections-on-palantir",
+    "title": "Nabeel S. Qureshi",
+    "author": null,
+    "publishedDate": "2024-10-15",
+    "addedDate": "2025-12-03"
+  }
+]
