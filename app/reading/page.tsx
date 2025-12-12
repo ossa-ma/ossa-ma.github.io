@@ -7,6 +7,7 @@ interface ReadingEntry {
     author: string | null;
     publishedDate: string | null;
     addedDate: string;
+    thoughts?: string;
 }
 
 export default function ReadingPage() {
@@ -34,28 +35,37 @@ export default function ReadingPage() {
 
             <div className="space-y-6">
                 {readings.map((entry, index) => (
-                    <div key={index} className="border-l-2 border-neutral-200 dark:border-neutral-800 pl-4">
-                        <a
-                            href={entry.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-medium text-lg hover:underline"
-                        >
-                            {entry.title}
-                        </a>
-                        <div className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
-                            {entry.author && <span>{entry.author}</span>}
-                            {entry.author && entry.publishedDate && <span className="mx-2">•</span>}
-                            {entry.publishedDate && (
-                                <span>{new Date(entry.publishedDate).toLocaleDateString('en-US', {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric'
-                                })}</span>
-                            )}
+                    <div key={index} className="flex flex-col">
+                        <div className="flex w-full justify-between items-baseline gap-4">
+                            <a
+                                href={entry.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-medium text-neutral-900 dark:text-neutral-100 hover:underline truncate"
+                            >
+                                {entry.title}
+                            </a>
+                            <div className="shrink-0 text-xs text-neutral-500 dark:text-neutral-400 font-mono uppercase">
+                                {entry.author && <span>{entry.author}</span>}
+                                {entry.author && entry.publishedDate && <span className="mx-2">•</span>}
+                                {entry.publishedDate && (
+                                    <span>{new Date(entry.publishedDate).toLocaleDateString('en-US', {
+                                        month: 'short',
+                                        day: 'numeric',
+                                        year: 'numeric'
+                                    })}</span>
+                                )}
+                            </div>
                         </div>
-                        <div className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
-                            Added {new Date(entry.addedDate).toLocaleDateString('en-US', {
+
+                        {entry.thoughts && (
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
+                                {entry.thoughts}
+                            </p>
+                        )}
+
+                        <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-1 font-mono">
+                            Read on {new Date(entry.addedDate).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'short',
                                 day: 'numeric'

@@ -22,37 +22,39 @@ export default function Page() {
         where I explore topics that I'm passionate about or random things that won't leave my mind
         until they are written down.
       </p>
-      <div className="my-8">
-        <h2 className="mb-4 text-xl font-semibold tracking-tighter">
+      <div className="my-8 flex flex-col space-y-4">
+        <h2 className="text-sm font-medium tracking-wider text-neutral-500 dark:text-neutral-400">
           Posts
         </h2>
-        {allPosts
-          .sort((a, b) => {
-            if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
-              return -1
-            }
-            return 1
-          })
-          .map((post) => (
-            <Link
-              key={post.slug}
-              className="flex flex-col space-y-1 mb-4"
-              href={`/blog/${post.slug}`}
-            >
-              <div className="w-full flex flex-col">
-                <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-                  {post.title}
-                </p>
-                <p className="text-neutral-600 dark:text-neutral-400">
-                  {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </p>
-              </div>
-            </Link>
-          ))}
+        <div className="flex flex-col space-y-4">
+          {allPosts
+            .sort((a, b) => {
+              if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
+                return -1
+              }
+              return 1
+            })
+            .map((post) => (
+              <Link
+                key={post.slug}
+                className="flex flex-col space-y-1"
+                href={`/blog/${post.slug}`}
+              >
+                <div className="flex w-full justify-between items-baseline gap-4">
+                  <p className="text-neutral-900 dark:text-neutral-100 tracking-tight font-medium">
+                    {post.title}
+                  </p>
+                  <p className="text-neutral-500 dark:text-neutral-400 text-sm font-mono uppercase tabular-nums shrink-0 text-right">
+                    {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: '2-digit',
+                    })}
+                  </p>
+                </div>
+              </Link>
+            ))}
+        </div>
       </div>
     </section>
   )
