@@ -1,5 +1,6 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
+import { formatDate } from 'app/blog/utils';
 
 interface ReadingEntry {
     url: string;
@@ -33,7 +34,7 @@ export default function ReadingPage() {
                 Articles, papers, and posts I've read, in reverse chronological order.
             </p>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
                 {readings.map((entry, index) => (
                     <div key={index} className="flex flex-col">
                         <div className="flex w-full justify-between items-baseline gap-4">
@@ -45,15 +46,11 @@ export default function ReadingPage() {
                             >
                                 {entry.title}
                             </a>
-                            <div className="shrink-0 text-xs text-neutral-500 dark:text-neutral-400 font-mono uppercase">
+                            <div className="shrink-0 text-xs text-neutral-500 dark:text-neutral-400 font-mono">
                                 {entry.author && <span>{entry.author}</span>}
                                 {entry.author && entry.publishedDate && <span className="mx-2">•</span>}
                                 {entry.publishedDate && (
-                                    <span>{new Date(entry.publishedDate).toLocaleDateString('en-US', {
-                                        month: 'short',
-                                        day: 'numeric',
-                                        year: 'numeric'
-                                    })}</span>
+                                    <span>{formatDate(entry.publishedDate)}</span>
                                 )}
                             </div>
                         </div>
@@ -65,11 +62,7 @@ export default function ReadingPage() {
                         )}
 
                         <div className="text-xs text-neutral-400 dark:text-neutral-500 mt-1 font-mono">
-                            Read on {new Date(entry.addedDate).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'short',
-                                day: 'numeric'
-                            })}
+                            Read on {formatDate(entry.addedDate)}
                         </div>
                     </div>
                 ))}

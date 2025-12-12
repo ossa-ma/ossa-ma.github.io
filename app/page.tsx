@@ -1,5 +1,6 @@
 import { allPosts } from 'contentlayer/generated'
 import Link from 'next/link'
+import { formatDate } from 'app/blog/utils'
 
 export default function Page() {
   return (
@@ -44,12 +45,8 @@ export default function Page() {
                   <p className="text-neutral-900 dark:text-neutral-100 tracking-tight font-medium">
                     {post.title}
                   </p>
-                  <p className="text-neutral-500 dark:text-neutral-400 text-sm font-mono uppercase tabular-nums shrink-0 text-right">
-                    {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: '2-digit',
-                    })}
+                  <p className="text-neutral-500 dark:text-neutral-400 text-sm font-mono tabular-nums shrink-0 text-right">
+                    {formatDate(post.publishedAt)}
                   </p>
                 </div>
               </Link>
