@@ -1,0 +1,226 @@
+---
+title: 'blog meet rlog: A frictionless reading log for your blog'
+publishedAt: '2025-12-15'
+summary: 'Introducing rlog, a frictionless, local‑first reading log that lives on your blog and helps you track, share, and reuse what you read.'
+tags: ['Tooling', 'Productivity', 'Open Source']
+---
+
+I read a lot. Articles, blog posts, technical discussions, threads, documentation, anything but actual books. And like most developers, I've struggled to keep track of it all.
+
+Most reading trackers focus on books. I wanted something for everything else I consume online and I wanted it public on my blog. So I created a rlog.
+
+So I built **rlog**, a frictionless reading log that lives on your blog.
+
+## What's a rlog?
+
+A **rlog** (reading log) is a publicly shareable record of everything you read online. Think of it like a commit history, but for your reading.
+
+The concept is simple:
+1. You read something worth remembering
+2. You log it (one keyboard command)
+3. It appears on your blog at `/reading`
+4. Readers can see what shaped your thinking
+
+It's knowledge sharing in its purest form. No algorithms, no recommendations, just a chronological list of what you've read.
+
+## Why This Matters
+
+### 1. Knowledge Sharing
+
+Ever read someone's blog and think, "This person knows their stuff. What do they read?"
+
+With rlog, the answer is one click away: `example.com/reading`
+
+It's intellectual transparency. It says, "Here's where my ideas come from. Here's what shaped my thinking."
+
+### 2. Research Trails
+
+> "A research trail is as important as the outcome of the research."  
+> — Me, just now
+
+When you're deep in a problem, you read 50 articles. Three months later, you vaguely remember "that one post about caching strategies"—but where was it?
+
+With rlog, every article you've ever read is catalogued with:
+- URL
+- Title
+- Author
+- Date read
+- Your notes
+
+It's a research breadcrumb trail you can follow back.
+
+### 3. Rabbit Hole Documentation
+
+Some of my best insights come from 3am deep-dives into obscure topics. I'll have 15 tabs open, jumping from post to post, connecting dots.
+
+The next morning, I barely remember what I read—let alone in what order.
+
+With rlog's "Log Window" command, I can bulk-save entire research sessions. Later, I can reconstruct my thought process: "Oh right, I started with serverless cold starts, which led to Lambda internals, which led to container runtimes..."
+
+### 4. Citation Machine
+
+Ever try to cite something you read weeks ago? Good luck finding it again.
+
+With rlog, all your sources are already logged with proper metadata. Need to reference that article about Redis persistence? Search your reading log. It's there with the URL, author, and date.
+
+### 5. Context for AI
+
+This is where it gets interesting.
+
+Imagine giving every article a "usefulness score" from 1-10. You read "Understanding Lambda Cold Starts"—super useful, you give it a 10.
+
+Now imagine an agent that periodically scans your reading log, extracts insights from highly-rated articles, and builds a personalized knowledge base.
+
+Your AI reads what you read. It learns what you value. Over time, it becomes *your* AI—trained on your intellectual diet.
+
+### 6. Logging Things Feels Nice
+
+You want to feel productive, you want to comment on an article, you may want to run some analysis on things you've read (Reading Wrapped maybe?). It's satisfying to have a record of your intellectual consumption.
+
+## How It Works
+
+To make logging completely frictionless, I built a Raycast extension.
+
+### The Basic Flow
+
+1. You're reading an article
+2. `Option+Space` → "Log Read"
+3. rlog auto-detects your browser, fetches the URL
+4. Scrapes metadata (title, author, date)
+5. You optionally add a comment
+6. It writes to `data/reading.json` in your blog repo
+7. Optionally commits and pushes to git
+
+Done. 5 seconds, never left your keyboard.
+
+The extension automatically detects which browser you're using:
+- **Chrome**: Full support for multiple profiles using JXA
+- **Safari**: Native AppleScript support
+- **Firefox**: Reads from the session store
+
+If it can't detect a browser, it falls back to your clipboard. Just copy the URL and run the command.
+
+### Bulk Operations
+
+The killer feature: bulk-logging entire windows.
+
+I often have 10+ tabs open during research. Before rlog, I'd lose track of what I read. Now I just run "Log Window" and capture everything at once.
+
+It's also perfect for documenting rabbit holes.
+
+### New Commands
+- **View Read Log** – Open a window showing your reading history (`reading.json`).
+- **View Reading List** – Open a window showing your saved “read later” items (`reading_list.json`).
+- **Open Random Article** – Open a random article from your reading list in the browser.
+
+### The Output: reading.json
+
+All your data lives in a simple JSON file:
+
+```json
+[
+  {
+    "url": "https://example.com/article",
+    "title": "How to Build Better Software",
+    "author": "John Developer",
+    "publishedDate": "2025-12-10",
+    "dateRead": "2025-12-14T10:30:00Z",
+    "thoughts": "Great insights on testing strategies"
+  }
+]
+```
+
+This is intentional. JSON is:
+- **Portable**: Works with any tooling
+- **Version-controlled**: Git tracks every change
+- **Human-readable**: No proprietary format
+- **Programmable**: Easy to analyze, transform, display
+
+You can do whatever you want with it. Build a custom display page. Feed it to an LLM. Run analytics. Export to other formats. It's *your* data.
+
+### The Display: /reading
+
+For Next.js blogs, rlog includes a one-click setup that injects a `/reading` page:
+
+- Chronological list of everything you've read
+- Grouped by month
+- Searchable
+- RSS feed support (coming soon)
+
+But you don't need Next.js. Any static site works—just consume the JSON and render it however you want.
+
+## Why Local-First?
+
+rlog is deliberately local-first. No signup, no cloud, no tracking.
+
+Why?
+
+1. **Privacy**: Your reading habits are yours. No one else's business.
+2. **Ownership**: Your data lives in *your* repo. No vendor lock-in.
+3. **Speed**: No API calls, no network latency. Everything is instant.
+4. **Simplicity**: No auth, no servers, no maintenance.
+
+{/* ## The Future: Beyond Logging
+
+Right now, rlog is a logging tool. But the vision is bigger.
+
+### Phase 1: Free Tier (Now)
+- Raycast extension
+- Local JSON storage
+- Browser integration
+- Bulk operations
+- Git sync
+- Next.js page injection
+
+### Phase 2: Pro Tier (Coming Soon)
+- **AI Summaries**: Auto-generate TL;DRs of logged articles
+- **Semantic Search**: Find articles by concept, not just keywords
+- **Citation Generator**: One-click MLA/APA citations
+- **Cloud Sync**: Access your reading log across devices
+- **Reading Habits Analytics**: Heatmaps, trends, patterns
+
+### Phase 3: Transcendent Tier (Long-term Vision)
+- **Second Brain**: AI-powered knowledge management
+- **Personal Knowledge Graph**: Connect articles to notes, projects, tasks
+- **ML Clustering**: Auto-group articles by theme
+- **Personalized Recommendations**: Based on *your* reading patterns
+- **Multi-Modal Support**: PDFs, podcasts, YouTube videos
+- **Team Plans**: Shared knowledge bases for organizations
+- **Reading Wrapped**: Annual summary of your reading habits
+
+The goal isn't to build another reading app. It's to build **infrastructure for personal knowledge management**—with reading logs as the foundation. */}
+
+## Who This Is For
+
+Right now, rlog is for:
+- **Developers who blog**: Share your intellectual influences
+- **Technical writers**: Keep track of research sources
+- **Researchers**: Document your exploration process
+- **Curious people**: Track your rabbit holes
+
+It assumes you're comfortable with:
+- Installing Raycast
+- Pointing to a local git repo
+- Understanding JSON files
+
+But I want to expand this. The vision is for rlog to work for *anyone*—from casual readers to power users.
+
+Future plans include:
+- Browser extensions (no Raycast required)
+- Mobile share targets (log from your phone)
+- Hosted reading pages (no blog setup required)
+- Visual import tools (paste browser history)
+
+The local-first, keyboard-driven version ships first because that's what *I* need. But the infrastructure is designed to support multiple interfaces.
+
+## Try It Out
+
+If this resonates with you, try rlog:
+
+**GitHub**: [github.com/ossa-ma/rlog](https://github.com/ossa-ma/rlog)  
+**Raycast Extension**: 
+**My rlog**: [ossa-ma.github.io/reading](https://ossa-ma.github.io/reading)
+
+Install it. Use it for a week. See if it changes how you think about reading.
+
+If you have ideas, feedback, or feature requests—raise an issue on the Github, otherwise reach out -> [ossamachaib.cs@gmail.com](mailto:ossamachaib.cs@gmail.com).. This scratches my itch, but I'm happy to make it scratch yours too.
