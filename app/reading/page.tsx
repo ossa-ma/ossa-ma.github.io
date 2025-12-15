@@ -30,9 +30,17 @@ export default function ReadingPage() {
     return (
         <section>
             <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Reading Log</h1>
-            <p className="text-neutral-600 dark:text-neutral-400 mb-8">
+            <p className="text-neutral-600 dark:text-neutral-400 mb-2">
                 Articles, papers, and posts I've read, in reverse chronological order.
             </p>
+            <a
+                href="https://github.com/ossa-ma/rlog"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors mb-8 block"
+            >
+                Managed with rlog ↗
+            </a>
 
             <div className="space-y-4">
                 {readings.map((entry, index) => (

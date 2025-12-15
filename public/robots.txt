@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /cv
 Allow: /
 
-Sitemap: https://ossa-ma.github.io/sitemap.xml 
+Sitemap: https://ossa-ma.github.io/sitemap.xml
