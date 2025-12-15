@@ -123,10 +123,22 @@ async def purchase_credits(
 - IDE autocomplete everywhere
 - No need to write `__init__`, validation methods, or serialization logic
 
-**When NOT to use Pydantic:**
-- Internal utility functions (just use dicts or tuples)
-- Simple data grouping (use TypedDict or dataclass)
-- Performance-critical paths (Pydantic has overhead)
+When NOT to use Pydantic:
+- High-performance serialization: If you are processing >10k req/sec, Pydantic's overhead (10-50µs) adds up. Use `msgspec` instead—it's 10-50x faster and strictly typed (Rust-like).
+- Internal utility functions: Just use `TypedDict` or simple classes. Pydantic is for *boundaries* (API, DB, Config).
+
+### Pydantic Best Practices & Pitfalls
+- Pydantic V2 coerces types by default (e.g., `age="23"` becomes `23`). For robust APIs, enable strict mode to catch client errors early:
+  ```python
+  model_config = ConfigDict(strict=True)
+  ```
+- Don't create a dummy `UsersList` model just to validate a list of users. Use `TypeAdapter`:
+  ```python
+  ta = TypeAdapter(list[User])
+  users = ta.validate_json(json_data)
+  ```
+- Don't manually add `alias="firstName"` to every field. Use `alias_generator` to handle `snake_case` (Python) <-> `camelCase` (JSON) conversion automatically.
+- Always remember `model.model_dump(by_alias=True)` when sending data back to the client, otherwise you'll leak your internal snake_case names.
 
 ### Error Handling & Resilience
 - Structured exception hierarchy - custom exceptions for different error categories
@@ -219,6 +231,7 @@ async def purchase_credits(
 
 ## Conclusion
 
-The key is consistency - pick patterns that work for your team and apply them across your codebase. These guidelines serve as a foundation that can be adapted based on specific project requirements and constraints.
+The key is consistency - pick patterns that work and apply them across your codebase.
+These guidelines serve as a foundation that can be adapted based on specific project requirements and constraints.
 
 I'll continue to add to this as I improve as a software engineer.
