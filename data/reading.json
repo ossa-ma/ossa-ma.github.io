@@ -1,5 +1,66 @@
 [
   {
+    "url": "https://ossa-ma.github.io/blog/async-patterns",
+    "title": "Async Programming & Concurrency Patterns - Complete Guide",
+    "author": "Ossama Chaib",
+    "publishedDate": "2025-01-15",
+    "addedDate": "2025-12-15"
+  },
+  {
+    "url": "https://ossa-ma.github.io/blog/development-best-practices",
+    "title": "Development Best Practices: A Checklist For Myself and My Agents",
+    "author": "Ossama Chaib",
+    "publishedDate": "2025-09-06",
+    "addedDate": "2025-12-15"
+  },
+  {
+    "url": "https://ossa-ma.github.io/blog/when-not-to-use-pydantic",
+    "title": "When NOT to use Pydantic",
+    "author": "Ossama Chaib",
+    "publishedDate": "2025-12-09",
+    "addedDate": "2025-12-15",
+    "thoughts": "Hey this is quite good!"
+  },
+  {
+    "url": "https://blog.rongarret.info/2025/01/i-am-not-failure-lessons-learned-from.html",
+    "title": "I am (not) a Failure: Lessons Learned From Six (and a half) Failed Startup Attempts",
+    "author": "Ron",
+    "publishedDate": "2025-01-12",
+    "addedDate": "2025-12-15",
+    "thoughts": "All it took was 1 year at Google in 2000 to fund a lifetime of failures, lessons learned though"
+  },
+  {
+    "url": "https://news.ycombinator.com/showhn.html",
+    "title": "Show HN Guidelines",
+    "author": null,
+    "publishedDate": null,
+    "addedDate": "2025-12-14",
+    "thoughts": "Required reading for my first Show HN"
+  },
+  {
+    "url": "https://nabeelqu.co/advice",
+    "title": "Advice That Actually Worked For Me",
+    "author": null,
+    "publishedDate": "2022-07-03",
+    "addedDate": "2025-12-13"
+  },
+  {
+    "url": "https://developers.raycast.com/basics/prepare-an-extension-for-store",
+    "title": "Prepare an Extension for Store | Raycast API",
+    "author": null,
+    "publishedDate": "2025-09-18",
+    "addedDate": "2025-12-13",
+    "thoughts": "Part of the process to get this extension to the people!"
+  },
+  {
+    "url": "https://danpalmer.me/2022-09-13-raycast-extension-dev/",
+    "title": "Developing Raycast Extensions – Dan Palmer",
+    "author": null,
+    "publishedDate": null,
+    "addedDate": "2025-12-12",
+    "thoughts": "Excellent pros and cons of raycast development, still holds up 3 years later."
+  },
+  {
     "url": "https://gricha.dev/blog/the-highest-quality-codebase",
     "title": "The highest quality codebase",
     "author": null,
@@ -17,7 +78,7 @@
   },
   {
     "url": "https://charles.gitlab-pages.computer.surgery/blog/python-project-progression.html",
-    "title": "Python Project Progression - Charles' Blog",
+    "title": "Python project progression",
     "author": null,
     "publishedDate": null,
     "addedDate": "2025-12-10"
@@ -37,17 +98,19 @@
     "addedDate": "2025-12-10"
   },
   {
-    "url": "https://nabeelqu.co/advice",
-    "title": "Nabeel S. Qureshi",
-    "author": null,
-    "publishedDate": "2022-07-04",
-    "addedDate": "2025-12-03"
+    "url": "https://gist.github.com/jcrist/d62f450594164d284fbea957fd48b743",
+    "title": "A quick benchmark comparing msgspec (https://github.com/jcrist/msgspec), pydantic v1, and pydantic v2",
+    "author": "jcrist",
+    "publishedDate": "2022-07-23",
+    "addedDate": "2025-12-07",
+    "thoughts": "Useful discussion between msgspec and Pydantic founders on performance"
   },
   {
     "url": "https://nabeelqu.co/reflections-on-palantir",
-    "title": "Nabeel S. Qureshi",
+    "title": "Reflections on Palantir",
     "author": null,
-    "publishedDate": "2024-10-15",
-    "addedDate": "2025-12-03"
+    "publishedDate": "2024-10-14",
+    "addedDate": "2025-12-04",
+    "thoughts": "Best article on culture at Palantir"
   }
 ]

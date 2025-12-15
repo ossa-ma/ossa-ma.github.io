@@ -1,0 +1,72 @@
+[
+  {
+    "url": "https://ossa-ma.github.io/blog/async-patterns",
+    "title": "Async Programming & Concurrency Patterns - Complete Guide",
+    "addedAt": "2025-12-15T14:39:38.820Z"
+  },
+  {
+    "url": "https://ossa-ma.github.io/blog/development-best-practices",
+    "title": "Development Best Practices: A Checklist For Myself and My Agents",
+    "addedAt": "2025-12-15T14:38:34.387Z"
+  },
+  {
+    "url": "https://ossa-ma.github.io/blog/when-not-to-use-pydantic",
+    "title": "When NOT to use Pydantic",
+    "addedAt": "2025-12-15T14:38:34.382Z"
+  },
+  {
+    "url": "https://bensima.com/posts/speedrunning-mlops.html",
+    "title": "Speedrunning ML Ops",
+    "addedAt": "2025-12-15T12:38:43.561Z"
+  },
+  {
+    "url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+    "title": "Writing effective tools for AI agents—using AI agents",
+    "addedAt": "2025-12-15T01:11:44.842Z"
+  },
+  {
+    "url": "https://setosa.io/ev/markov-chains/",
+    "title": "Markov Chains explained visually",
+    "addedAt": "2025-12-15T01:00:59.025Z"
+  },
+  {
+    "url": "https://martinfowler.com/articles/build-own-coding-agent.html",
+    "title": "Building your own CLI Coding Agent with Pydantic-AI",
+    "addedAt": "2025-12-15T00:41:42.416Z"
+  },
+  {
+    "url": "https://www.darioamodei.com/essay/machines-of-loving-grace",
+    "title": "Dario Amodei — Machines of Loving Grace",
+    "addedAt": "2025-12-15T00:38:27.223Z"
+  },
+  {
+    "url": "https://platform.openai.com/docs/guides/reinforcement-fine-tuning",
+    "title": "Reinforcement fine-tuning",
+    "addedAt": "2025-12-13T23:40:26.963Z"
+  },
+  {
+    "url": "https://google.github.io/adk-docs/",
+    "title": "Agent Development Kit",
+    "addedAt": "2025-12-13T23:36:29.277Z"
+  },
+  {
+    "url": "https://www.raycast.com/settings/affiliate",
+    "title": "Raycast - Your shortcut to everything",
+    "addedAt": "2025-12-13T14:12:32.217Z"
+  },
+  {
+    "url": "https://arxiv.org/pdf/2311.11482",
+    "title": "Untitled",
+    "addedAt": "2025-12-12T01:01:45.725Z"
+  },
+  {
+    "url": "https://arxiv.org/pdf/2201.11903",
+    "title": "Untitled",
+    "addedAt": "2025-12-12T01:01:31.476Z"
+  },
+  {
+    "url": "https://arxiv.org/pdf/2305.10601",
+    "title": "Untitled",
+    "addedAt": "2025-12-12T01:01:23.950Z"
+  }
+]
