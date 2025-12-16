@@ -1,5 +1,15 @@
 [
   {
+    "url": "https://www.deisenroth.cc/teaching/2024-25/ml-seminar/",
+    "title": "Machine Learning Seminar (2024/25)",
+    "addedAt": "2025-12-16T16:29:22.673Z"
+  },
+  {
+    "url": "https://arxiv.org/pdf/2203.09795",
+    "title": "2203.09795",
+    "addedAt": "2025-12-15T19:39:31.339Z"
+  },
+  {
     "url": "https://ossa-ma.github.io/blog/async-patterns",
     "title": "Async Programming & Concurrency Patterns - Complete Guide",
     "addedAt": "2025-12-15T14:39:38.820Z"

@@ -1,23 +1,41 @@
 [
   {
-    "url": "https://ossa-ma.github.io/blog/async-patterns",
-    "title": "Async Programming & Concurrency Patterns - Complete Guide",
-    "author": "Ossama Chaib",
-    "publishedDate": "2025-01-15",
-    "addedDate": "2025-12-15"
+    "url": "https://martinalderson.com/posts/ai-agents-are-starting-to-eat-saas/",
+    "title": "AI agents are starting to eat SaaS",
+    "author": "Martin Alderson",
+    "publishedDate": "2025-12-15",
+    "addedDate": "2025-12-16",
+    "thoughts": "Good post but no concrete examples just predictions"
+  },
+  {
+    "url": "https://a16z.com/why-software-is-eating-the-world/",
+    "title": "Why Software Is Eating the World",
+    "author": "Marc Andreessen",
+    "publishedDate": "2011-08-20",
+    "addedDate": "2025-12-16",
+    "thoughts": "An egghead gives surprisingly accurate market and cultural predictions in 2011"
+  },
+  {
+    "url": "https://expandingawareness.org/blog/the-appropriate-amount-of-effort-is-zero/",
+    "title": "The appropriate amount of effort is zero",
+    "author": "Michael Ashcroft",
+    "publishedDate": "2025-08-28",
+    "addedDate": "2025-12-16",
+    "thoughts": "Anecdotal at best, high effort is important throughout life, especially during preparation, the swimmer and the runners trained excrutiangly hard to breeze through their races"
+  },
+  {
+    "url": "https://asteriskmag.com/issues/12-books/ideas-arent-getting-harder-to-find",
+    "title": "Ideas Aren’t Getting Harder to Find—Asterisk",
+    "author": "Karthik Tadepalli",
+    "publishedDate": null,
+    "addedDate": "2025-12-16",
+    "thoughts": "Bullish"
   },
   {
     "url": "https://ossa-ma.github.io/blog/development-best-practices",
     "title": "Development Best Practices: A Checklist For Myself and My Agents",
     "author": "Ossama Chaib",
     "publishedDate": "2025-09-06",
-    "addedDate": "2025-12-15"
-  },
-  {
-    "url": "https://ossa-ma.github.io/blog/when-not-to-use-pydantic",
-    "title": "When NOT to use Pydantic",
-    "author": "Ossama Chaib",
-    "publishedDate": "2025-12-09",
     "addedDate": "2025-12-15",
     "thoughts": "Hey this is quite good!"
   },
