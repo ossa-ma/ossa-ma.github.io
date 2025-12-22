@@ -1,5 +1,42 @@
 [
   {
+    "url": "http://infolab.stanford.edu/~backrub/google.html",
+    "title": "The Anatomy of a Large-Scale Hypertextual Web Search Engine",
+    "author": null,
+    "publishedDate": null,
+    "addedDate": "2025-12-22",
+    "thoughts": "Google Search breakdown"
+  },
+  {
+    "url": "https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf",
+    "title": "Wang03-shazam.pdf",
+    "author": null,
+    "publishedDate": null,
+    "addedDate": "2025-12-22",
+    "thoughts": "Paper on how Shazam works"
+  },
+  {
+    "url": "https://www.augmentcode.com/blog/announcing-context-lineage",
+    "title": "Context Engine. Now with full Commit history",
+    "author": "Sylvain Giuliani",
+    "publishedDate": "2025-07-29",
+    "addedDate": "2025-12-21"
+  },
+  {
+    "url": "https://www.kdnuggets.com/semantic-search-with-vector-databases",
+    "title": "How Semantic Search works",
+    "author": "https://www.facebook.com/kdnuggets",
+    "publishedDate": null,
+    "addedDate": "2025-12-20"
+  },
+  {
+    "url": "https://blog.cloudflare.com/python-workers-advancements/",
+    "title": "The Cloudflare Blog",
+    "author": "@d0m96",
+    "publishedDate": "2025-12-08",
+    "addedDate": "2025-12-18"
+  },
+  {
     "url": "https://martinalderson.com/posts/ai-agents-are-starting-to-eat-saas/",
     "title": "AI agents are starting to eat SaaS",
     "author": "Martin Alderson",
@@ -130,5 +167,13 @@
     "publishedDate": "2024-10-14",
     "addedDate": "2025-12-04",
     "thoughts": "Best article on culture at Palantir"
+  },
+  {
+    "url": "https://www.barry.ooo/posts/fde-culture",
+    "title": "Born in the field",
+    "author": null,
+    "publishedDate": "2024-11-07",
+    "addedDate": "2025-11-29",
+    "thoughts": "More on PLTR FDEs and being a \"founder factory\""
   }
 ]
