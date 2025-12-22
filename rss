@@ -5,6 +5,18 @@
         <link>https://ossa-ma.github.io</link>
         <description>This is my portfolio RSS feed</description>
         <item>
+          <title>On Indexing: From Google to Shazam to AI Agents</title>
+          <link>https://ossa-ma.github.io/blog/on-indexing</link>
+          <description>Exploring different indexing case studies.</description>
+          <pubDate>Sat, 20 Dec 2025 00:00:00 GMT</pubDate>
+        </item>
+<item>
+          <title>blog meet rlog: A frictionless reading log for your blog</title>
+          <link>https://ossa-ma.github.io/blog/blog-meet-rlog</link>
+          <description>Introducing rlog, a frictionless, local‑first reading log that lives on your blog and helps you track, share, and reuse what you read.</description>
+          <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
+        </item>
+<item>
           <title>When NOT to use Pydantic</title>
           <link>https://ossa-ma.github.io/blog/when-not-to-use-pydantic</link>
           <description>A dive into Pydantic performance and when to pick a different option.</description>

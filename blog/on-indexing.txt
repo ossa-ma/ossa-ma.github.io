@@ -1,0 +1,138 @@
+3:I[7504,[],""]
+5:I[3943,[],""]
+6:I[6912,["912","static/chunks/912-c16b6b6898ab86c5.js","404","static/chunks/app/blog/page-dad96da453df42ff.js"],""]
+4:["slug","on-indexing","d"]
+0:["-MfOS5evhXpMMvjKgt9Vm",[[["",{"children":["blog",{"children":[["slug","on-indexing","d"],{"children":["__PAGE__?{\"slug\":\"on-indexing\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["slug","on-indexing","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/256433df933bf65d.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","className":"text-black bg-white dark:text-white dark:bg-black __variable_ac79ff __variable_8a4d12","children":[["$","head",null,{"children":["$","script",null,{"defer":true,"src":"https://cloud.umami.is/script.js","data-website-id":"34bb1a7b-b0fb-4194-8632-2fa4b14f33e9"}]}],["$","body",null,{"className":"antialiased max-w-xl mx-4 mt-8 lg:mx-auto","children":["$","main",null,{"className":"flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0","children":[["$","aside",null,{"className":"-ml-[8px] mb-16 tracking-tight","children":["$","div",null,{"className":"lg:sticky lg:top-20","children":["$","nav",null,{"className":"flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative","id":"nav","children":["$","div",null,{"className":"flex flex-row space-x-0 pr-10","children":[["$","$L6","/",{"href":"/","className":"transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1","children":"home"}],["$","$L6","/blog",{"href":"/blog","className":"transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1","children":"blog"}],["$","$L6","/reading",{"href":"/reading","className":"transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1","children":"reading"}],["$","$L6","/documents/cv.pdf",{"href":"/documents/cv.pdf","className":"transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1","children":"cv"}]]}]}]}]}],["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","section",null,{"children":[["$","h1",null,{"className":"mb-8 text-2xl font-semibold tracking-tighter","children":"404 - Page Not Found"}],["$","p",null,{"className":"mb-4","children":"The page you are looking for does not exist."}]]}],"notFoundStyles":[]}],["$","footer",null,{"className":"mb-16","children":[["$","ul",null,{"className":"font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300","children":[["$","li",null,{"children":["$","a",null,{"className":"flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100","rel":"noopener noreferrer","target":"_blank","href":"/rss","children":[["$","svg",null,{"width":"12","height":"12","viewBox":"0 0 12 12","fill":"none","xmlns":"http://www.w3.org/2000/svg","children":["$","path",null,{"d":"M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z","fill":"currentColor"}]}],["$","p",null,{"className":"ml-2 h-7","children":"rss"}]]}]}],["$","li",null,{"children":["$","a",null,{"className":"flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100","rel":"noopener noreferrer","target":"_blank","href":"https://github.com/ossa-ma","children":[["$","svg",null,{"width":"12","height":"12","viewBox":"0 0 12 12","fill":"none","xmlns":"http://www.w3.org/2000/svg","children":["$","path",null,{"d":"M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z","fill":"currentColor"}]}],["$","p",null,{"className":"ml-2 h-7","children":"github"}]]}]}],["$","li",null,{"children":["$","a",null,{"className":"flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100","rel":"noopener noreferrer","target":"_blank","href":"https://github.com/ossa-ma/blog","children":[["$","svg",null,{"width":"12","height":"12","viewBox":"0 0 12 12","fill":"none","xmlns":"http://www.w3.org/2000/svg","children":["$","path",null,{"d":"M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z","fill":"currentColor"}]}],["$","p",null,{"className":"ml-2 h-7","children":"view source"}]]}]}]]}],["$","p",null,{"className":"mt-8 text-neutral-600 dark:text-neutral-300","children":["© ",2025," Ossama Chaib"]}]]}]]}]}]]}]],null],null],["$L7",null]]]]
+8:I[5435,["308","static/chunks/app/blog/%5Bslug%5D/page-04d34069abaa713e.js"],"Mdx"]
+9:T41c2,var Component=(()=>{var d=Object.create;var o=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,m=Object.prototype.hasOwnProperty;var f=(i,e)=>()=>(e||i((e={exports:{}}).exports,e),e.exports),y=(i,e)=>{for(var t in e)o(i,t,{get:e[t],enumerable:!0})},a=(i,e,t,s)=>{if(e&&typeof e=="object"||typeof e=="function")for(let r of p(e))!m.call(i,r)&&r!==t&&o(i,r,{get:()=>e[r],enumerable:!(s=u(e,r))||s.enumerable});return i};var w=(i,e,t)=>(t=i!=null?d(g(i)):{},a(e||!i||!i.__esModule?o(t,"default",{value:i,enumerable:!0}):t,i)),b=i=>a(o({},"__esModule",{value:!0}),i);var c=f((A,h)=>{h.exports=_jsx_runtime});var I={};y(I,{default:()=>k,frontmatter:()=>v});var n=w(c()),v={title:"On Indexing: From Google to Shazam to AI Agents",publishedAt:"2025-12-20",summary:"Exploring different indexing case studies.",tags:["Technical Deep Dive","Infrastructure","AI"]};function l(i){let e=Object.assign({p:"p",h2:"h2",strong:"strong",img:"img",em:"em",ol:"ol",li:"li",ul:"ul",code:"code",pre:"pre",h3:"h3",a:"a"},i.components);return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.p,{children:"I've been reading into indexing lately."}),`
+`,(0,n.jsx)(e.p,{children:"Specifically the kind that lets Google search 100 petabytes of web content before you finish typing. The kind that lets Shazam identify a song from a 5-second clip in noisy environment. The kind that every single AI startup is now desperately trying to build because their agents are hallucinating without it."}),`
+`,(0,n.jsx)(e.p,{children:"Let's get into it."}),`
+`,(0,n.jsx)(e.h2,{children:"The OG: How Google Indexes the Internet"}),`
+`,(0,n.jsx)(e.p,{children:"Google obviously doesn't search the internet when you type a query. That would be impossibly slow so instead, it searches an index which is a massive, pre-computed data structure that serves as its representation of the entire web."}),`
+`,(0,n.jsxs)(e.p,{children:["It starts with ",(0,n.jsx)(e.strong,{children:"crawlers"}),". Googlebots are constantly roaming the web, following links like a graph traversal algorithm that never terminates. They read sitemaps, follow hrefs, and take snapshots of everything."]}),`
+`,(0,n.jsxs)(e.p,{children:["Then comes the ",(0,n.jsx)(e.strong,{children:"indexer"}),". This is where the magic happens. It's not just storing text; it's rendering HTML, executing JavaScript (which is expensive as hell at scale), detecting duplicates, and extracting thousands of signals. Is this page fresh? Is it spam? Is it mobile-friendly?"]}),`
+`,(0,n.jsxs)(e.p,{children:["Finally, ",(0,n.jsx)(e.strong,{children:"retrieval"}),`. When you search for "best grilled chicken in London", you're querying this massive, distributed index. The system has to sift through billions of documents, rank them by relevance, and serve the top 10 results in under 200ms.`]}),`
+`,(0,n.jsx)(e.p,{children:"It's the blueprint for everything we do in information retrieval. Crawl, Index, Serve."}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.img,{src:"/images/google-architecture-diagram-2000.gif",alt:"Google Architecture Diagram"}),`
+`,(0,n.jsx)(e.em,{children:"Damn architecture diagrams used to be terrible"})]}),`
+`,(0,n.jsx)(e.h2,{children:"How Shazam Indexes Murrrsic"}),`
+`,(0,n.jsx)(e.p,{children:"I was talking to a friend about Shazam's business model, trying to understand ways they made money over their 23-year tenure. At the same time, I was reading into indexing."}),`
+`,(0,n.jsx)(e.p,{children:"Then I realized: how on earth does Shazam actually work? They must use indexing, but how do they translate music into an indexable, retrievable, searchable medium?"}),`
+`,(0,n.jsx)(e.p,{children:"You can't just hash the file. A recording of a song you hear from another car in traffic that has you leaning out of the window to record has background noise, distortion, people talking, engines revving, backfiring. The binary data is completely different from the studio master."}),`
+`,(0,n.jsx)(e.p,{children:'The solution is audio fingerprinting, and specifically a technique called "Constellation Maps".'}),`
+`,(0,n.jsxs)(e.ol,{children:[`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Spectrograms"}),": Turn the audio into a 2D graph of frequency (y-axis) vs. time (x-axis), where the intensity/color represents the amplitude."]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Peak Finding"}),': Look for the "peaks": the loudest, most intense frequencies at any given moment. These are the points that survive the noise of a crowded coffee shop.']}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Constellations"}),": Connect these peaks into pairs (anchor point + target point)."]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Hashing"}),": Hash the frequency of the anchor, the frequency of the target, and the time difference between them."]}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:"For example, a pair might be:"}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsxs)(e.li,{children:["Anchor peak at ",(0,n.jsx)(e.strong,{children:"(t=1.2s, f=800Hz)"})]}),`
+`,(0,n.jsxs)(e.li,{children:["Target peak at ",(0,n.jsx)(e.strong,{children:"(t=1.8s, f=1200Hz)"})]}),`
+`,(0,n.jsxs)(e.li,{children:["Offset = ",(0,n.jsx)(e.strong,{children:"(\u0394t=0.6s, \u0394f=400Hz)"})]}),`
+`]}),`
+`,(0,n.jsxs)(e.p,{children:["This gets hashed into a compact identifier: ",(0,n.jsx)(e.code,{children:'hash(800, 1200, 0.6) \u2192 "A3B7F2"'})]}),`
+`,(0,n.jsx)(e.p,{children:"The magic is that these fingerprints survive distortion. Even with background noise and compression, the relative positions of frequency peaks stay roughly the same."}),`
+`,(0,n.jsx)(e.p,{children:"Shazam's index maps fingerprints to songs:"}),`
+`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`Fingerprint \u2192 (Song ID, Time Offset)
+"A4B4F3"    \u2192 (Song #42, 1.2s)
+"D8E4C9"    \u2192 (Song #42, 2.7s)
+`})}),`
+`,(0,n.jsx)(e.p,{children:"When you record audio, Shazam:"}),`
+`,(0,n.jsxs)(e.ol,{children:[`
+`,(0,n.jsx)(e.li,{children:"Generates fingerprints from your clip"}),`
+`,(0,n.jsx)(e.li,{children:"Looks them up in the index"}),`
+`,(0,n.jsx)(e.li,{children:"Finds candidates (songs with matching fingerprints)"}),`
+`,(0,n.jsx)(e.li,{children:"Checks if fingerprints align in time"}),`
+`,(0,n.jsx)(e.li,{children:"Returns the best match"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:"The entire lookup happens in under a second against a database of millions of songs."}),`
+`,(0,n.jsx)(e.p,{children:"This is indexing at its finest: pre-compute robust features, hash them for fast lookup, and match in real-time."}),`
+`,(0,n.jsx)("small",{className:"text-gray-500",children:(0,n.jsx)(e.p,{children:"(Side note: This same technique powers YouTube's Content ID, which scans 500+ hours of video uploaded every minute. Same principle, different scale.)"})}),`
+`,(0,n.jsx)(e.h2,{children:"The New Wave: Indexing for Agents"}),`
+`,(0,n.jsx)(e.p,{children:'This is where we are today. Dozens of startups are aiming to be "the context layer for AI agents." They promise better retrieval, reduced hallucinations, and improved querying over existing agent tooling.'}),`
+`,(0,n.jsx)(e.p,{children:`If you ask an agent "how do I fix the auth bug?", it can't answer unless it knows your auth code.`}),`
+`,(0,n.jsx)(e.p,{children:"So we're back to indexing. But indexing code and internal docs is a different compared to the public web."}),`
+`,(0,n.jsx)(e.p,{children:`The lazy answer is "just chunk the text, embed it with OpenAI, and throw it in a vector database." But this doesn't work, especially not for code and especially not in production.`}),`
+`,(0,n.jsx)(e.p,{children:"Let's break it down without getting too too complicated."}),`
+`,(0,n.jsx)(e.h3,{children:"The Real Architecture"}),`
+`,(0,n.jsx)(e.p,{children:"A single index can't handle everything. Different query types need different data structures."}),`
+`,(0,n.jsx)(e.p,{children:"The systems that actually work (not just the demos) are using a multi-index approach:"}),`
+`,(0,n.jsxs)(e.ol,{children:[`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Semantic Index (Vectors)"}),": For the vague, conceptual questions."]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Keyword Index (BM25)"}),`: For the precise, "I know what I'm looking for" queries.`]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Graph Index"}),': For the relationships. "Function A calls Function B which is defined in File C."']}),`
+`]}),`
+`,(0,n.jsxs)(e.p,{children:["You query all three, merge the results, re-rank them, and ",(0,n.jsx)(e.em,{children:"then"})," feed them to the LLM."]}),`
+`,(0,n.jsx)(e.h3,{children:"More on BM25: A 40 Year Old Algorithm"}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"BM25"})," is a ranking function from the 80s that relies on keyword matching. It's being used now for exact precise matching."]}),`
+`,(0,n.jsxs)(e.p,{children:[`The default method, vector search, is fuzzy. It's great for concepts ("how do I handle errors?") but terrible for specifics. If I search for a specific error code `,(0,n.jsx)(e.code,{children:"ERR_CONNECTION_REFUSED"}),", vector search might give me generic networking docs. I don't want generic docs. I want the exact line of code that throws that error."]}),`
+`,(0,n.jsxs)(e.p,{children:["For code, BM25 is often better than vectors. Developers use precise terminology. If I search for ",(0,n.jsx)(e.code,{children:"UserAuthenticationService"}),", I want that exact class. BM25 gives me that. Vectors might give me ",(0,n.jsx)(e.code,{children:"CustomerLoginResponse"}),` because it's "semantically similar."`]}),`
+`,(0,n.jsx)(e.h2,{children:"The Hard Parts"}),`
+`,(0,n.jsx)(e.h3,{children:"Incremental Reindexing"}),`
+`,(0,n.jsx)(e.p,{children:"You can't reindex everything on every single change. Most architectures have background workers to watch for changes and update only affected documents."}),`
+`,(0,n.jsx)(e.p,{children:"However the classic swe hickup is dependency tracking. If file A imports file B, and B changes, do you reindex A? What about files that import A? How far does the cascade go?"}),`
+`,(0,n.jsx)(e.p,{children:"We can build reference graphs to help so that when a 'symbol' changes, the graph tells you what depends on it. Reindex those dependencies, not the entire codebase."}),`
+`,(0,n.jsx)(e.p,{children:"But building and maintaining the graph is expensive. You need to parse code structure, track imports and especially watch out for circular dependencies."}),`
+`,(0,n.jsx)(e.h3,{children:"Version Tracking"}),`
+`,(0,n.jsx)(e.p,{children:'You need to know not just "this file changed" but "this specific function signature changed from version A to version B."'}),`
+`,(0,n.jsx)(e.p,{children:"That requires:"}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Parsing code structure (AST analysis)"}),`
+`,(0,n.jsx)(e.li,{children:"Diffing at the symbol level not just the line level"}),`
+`,(0,n.jsx)(e.li,{children:"Storing version history in the index"}),`
+`,(0,n.jsx)(e.li,{children:"Filtering results by version when querying"}),`
+`]}),`
+`,(0,n.jsx)(e.p,{children:"At scale, this becomes a distributed systems problem. How often do you refetch? Every hour? Every day? How do you prioritize which sources to refresh first?"}),`
+`,(0,n.jsx)(e.h2,{children:"The Context Window Constraint"}),`
+`,(0,n.jsx)(e.p,{children:"The real bottleneck isn't search speed. It's how much context you can fit in the prompt. You can't just dump the whole index into the prompt. Yes, even with your newly increased Claude 200K context windows or Gemini's 1M token windows. You have to be efficient about what you include."}),`
+`,(0,n.jsx)(e.p,{children:"If your index returns 50 relevant snippets but you can only use 5, better start improving your ranking algo."}),`
+`,(0,n.jsx)(e.h3,{children:"Token Efficiency"}),`
+`,(0,n.jsx)(e.p,{children:"Speaking of context windows returning 200 tokens of highly relevant context beats returning 2,000 tokens of maybe-relevant context."}),`
+`,(0,n.jsx)(e.p,{children:"This is why BM25 can outperform embeddings for code search. Exact matches are more token-efficient. You don't need to include surrounding context to disambiguate."}),`
+`,(0,n.jsx)(e.p,{children:"Embeddings return fuzzy matches. You need more context to help the LLM understand why this snippet is relevant."}),`
+`,(0,n.jsx)(e.h3,{children:"Confidence Scoring"}),`
+`,(0,n.jsx)(e.p,{children:"Not all matches are equal. Some systems score results by confidence:"}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"High confidence (0.85)"}),`: Type annotations, import statements, function definitions
+`,(0,n.jsx)(e.strong,{children:"Medium confidence (0.65)"}),`: Word matches in comments, test files
+`,(0,n.jsx)(e.strong,{children:"Low confidence (0.45)"}),": Partial matches, string literals"]}),`
+`,(0,n.jsx)(e.p,{children:`Instead of "here are 50 places this symbol appears," it's "here are 35 high-confidence usages and 15 maybes."`}),`
+`,(0,n.jsx)(e.p,{children:"The agent can prioritize high-confidence results and only include low-confidence ones if needed."}),`
+`,(0,n.jsx)(e.h2,{children:"The Cold Start Problem"}),`
+`,(0,n.jsx)(e.p,{children:"New projects have no history. The index is empty. The agent has no context."}),`
+`,(0,n.jsx)(e.p,{children:"One solution: pre-index common public sources. Framework docs, standard libraries, popular packages. New users can query immediately without configuring anything."}),`
+`,(0,n.jsx)(e.p,{children:"When you add private repos, they merge into the same index. The agent doesn't distinguish between public docs and internal code\u2014it's all searchable."}),`
+`,(0,n.jsx)(e.p,{children:"But pre-indexed sources are generic. Your specific use case isn't covered. How do you bootstrap useful context from zero?"}),`
+`,(0,n.jsx)(e.p,{children:"Some systems watch for patterns. If you're importing a library, automatically fetch and index its docs. If you're calling an API, index the provider's documentation."}),`
+`,(0,n.jsx)(e.h2,{children:"The Cost Problem"}),`
+`,(0,n.jsx)(e.p,{children:"Embeddings are cheap per query but expensive at scale. Costs WILL add up if you're indexing millions of documents and reindexing daily/hourly."}),`
+`,(0,n.jsx)(e.p,{children:"You could try to remedy this by self-hosting your embedding models. But then you need GPUs, model serving, monitoring, updates."}),`
+`,(0,n.jsx)(e.p,{children:"At scale, you can optimize:"}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Cache embeddings for common queries"}),`
+`,(0,n.jsx)(e.li,{children:"Use smaller, faster models for less critical searches"}),`
+`,(0,n.jsx)(e.li,{children:"Batch embedding generation during off-peak hours"}),`
+`,(0,n.jsx)(e.li,{children:"Compress vectors (product quantization, binary embeddings)"}),`
+`]}),`
+`,(0,n.jsx)(e.h2,{children:"Alright let's wrap it up"}),`
+`,(0,n.jsx)(e.p,{children:"We're moving from a world where we search for links (Google) to a world where we search for answers (Agents). How philosophical.."}),`
+`,(0,n.jsx)(e.p,{children:"But honestly the quality of the answer depends a lot on the quality of the index. If your index is stale, or can't find the specific function you asked for, the smartest model in the world can't save you."}),`
+`,(0,n.jsx)(e.p,{children:"Google solved this for the web. Now we must solve it for everything else."}),`
+`,(0,n.jsx)("small",{className:"text-gray-500",children:(0,n.jsx)(e.p,{children:"Part two will be on ranking! Check back in a week. I don't have a substack or email or whatever, just be back in one week (roughly)."})}),`
+`,(0,n.jsx)(e.h2,{children:"Further Reading"}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"On Google"}),":"]}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.a,{href:"http://infolab.stanford.edu/~backrub/google.html",children:"The Anatomy of a Large-Scale Hypertextual Web Search Engine"})," (The original paper)"]}),`
+`]}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"On Shazam"}),":"]}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.a,{href:"https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf",children:"An Industrial-Strength Audio Search Algorithm"})," (The paper that explains the magic)"]}),`
+`]}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"On Vector Search"}),":"]}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.a,{href:"http://ann-benchmarks.com/",children:"ANN Benchmarks"})," (See how slow your vector DB actually is)"]}),`
+`]})]})}function x(i={}){let{wrapper:e}=i.components||{};return e?(0,n.jsx)(e,Object.assign({},i,{children:(0,n.jsx)(l,i)})):l(i)}var k=x;return b(I);})();
+;return Component;2:["$","section",null,{"children":[["$","script",null,{"type":"application/ld+json","suppressHydrationWarning":true,"dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BlogPosting\",\"headline\":\"On Indexing: From Google to Shazam to AI Agents\",\"datePublished\":\"2025-12-20T00:00:00.000Z\",\"dateModified\":\"2025-12-20T00:00:00.000Z\",\"description\":\"Exploring different indexing case studies.\",\"image\":\"https://ossa-ma.github.io/og.png\",\"url\":\"https://ossa-ma.github.io/blog/on-indexing\",\"author\":{\"@type\":\"Person\",\"name\":\"Ossama Chaib\"}}"}}],["$","h1",null,{"className":"title font-semibold text-2xl tracking-tighter","children":"On Indexing: From Google to Shazam to AI Agents"}],["$","div",null,{"className":"flex flex-wrap gap-2 mt-3","children":[["$","span","Technical Deep Dive",{"className":"px-2 py-1 text-xs font-medium rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300","children":"Technical Deep Dive"}],["$","span","Infrastructure",{"className":"px-2 py-1 text-xs font-medium rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300","children":"Infrastructure"}],["$","span","AI",{"className":"px-2 py-1 text-xs font-medium rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300","children":"AI"}]]}],["$","div",null,{"className":"flex items-center gap-3 mt-2 mb-8 text-sm text-neutral-600 dark:text-neutral-400","children":[["$","p",null,{"children":"Dec 20, 2025"}],["$","span",null,{"children":"•"}],["$","p",null,{"children":[9," min read"]}]]}],["$","article",null,{"className":"prose","children":["$","$L8",null,{"code":"$9"}]}]]}]
+7:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"On Indexing: From Google to Shazam to AI Agents | Ossama Chaib"}],["$","meta","3",{"name":"description","content":"Exploring different indexing case studies."}],["$","meta","4",{"name":"robots","content":"index, follow"}],["$","meta","5",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","6",{"name":"google-site-verification","content":"lfj8abXk0Gbd8ud0xCHKkE11WrJLt3drwNJe6KQCXio"}],["$","meta","7",{"property":"og:title","content":"On Indexing: From Google to Shazam to AI Agents"}],["$","meta","8",{"property":"og:description","content":"Exploring different indexing case studies."}],["$","meta","9",{"property":"og:url","content":"https://ossa-ma.github.io/blog/on-indexing"}],["$","meta","10",{"property":"og:image","content":"https://ossa-ma.github.io/og.png"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"property":"article:published_time","content":"2025-12-20T00:00:00.000Z"}],["$","meta","13",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","14",{"name":"twitter:title","content":"On Indexing: From Google to Shazam to AI Agents"}],["$","meta","15",{"name":"twitter:description","content":"Exploring different indexing case studies."}],["$","meta","16",{"name":"twitter:image","content":"https://ossa-ma.github.io/og.png"}],["$","meta","17",{"name":"next-size-adjust"}]]
+1:null

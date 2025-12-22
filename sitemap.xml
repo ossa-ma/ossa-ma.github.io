@@ -2,15 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://ossa-ma.github.io</loc>
-<lastmod>2025-12-12</lastmod>
+<lastmod>2025-12-22</lastmod>
 </url>
 <url>
 <loc>https://ossa-ma.github.io/blog</loc>
-<lastmod>2025-12-12</lastmod>
+<lastmod>2025-12-22</lastmod>
 </url>
 <url>
 <loc>https://ossa-ma.github.io/blog/async-patterns</loc>
 <lastmod>2025-01-15T00:00:00.000Z</lastmod>
+</url>
+<url>
+<loc>https://ossa-ma.github.io/blog/blog-meet-rlog</loc>
+<lastmod>2025-12-15T00:00:00.000Z</lastmod>
 </url>
 <url>
 <loc>https://ossa-ma.github.io/blog/crashing-ai-promo</loc>
@@ -27,6 +31,10 @@
 <url>
 <loc>https://ossa-ma.github.io/blog/from-dynamic-to-static</loc>
 <lastmod>2025-07-31T00:00:00.000Z</lastmod>
+</url>
+<url>
+<loc>https://ossa-ma.github.io/blog/on-indexing</loc>
+<lastmod>2025-12-20T00:00:00.000Z</lastmod>
 </url>
 <url>
 <loc>https://ossa-ma.github.io/blog/pltr-fdes</loc>
