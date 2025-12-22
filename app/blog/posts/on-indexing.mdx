@@ -1,0 +1,203 @@
+---
+title: 'On Indexing: From Google to Shazam to AI Agents'
+publishedAt: '2025-12-20'
+summary: 'Exploring different indexing case studies.'
+tags: ['Technical Deep Dive', 'Infrastructure', 'AI']
+---
+
+I've been reading into indexing lately.
+
+Specifically the kind that lets Google search 100 petabytes of web content before you finish typing. The kind that lets Shazam identify a song from a 5-second clip in noisy environment. The kind that every single AI startup is now desperately trying to build because their agents are hallucinating without it.
+
+Let's get into it.
+
+## The OG: How Google Indexes the Internet
+
+Google obviously doesn't search the internet when you type a query. That would be impossibly slow so instead, it searches an index which is a massive, pre-computed data structure that serves as its representation of the entire web.
+
+It starts with **crawlers**. Googlebots are constantly roaming the web, following links like a graph traversal algorithm that never terminates. They read sitemaps, follow hrefs, and take snapshots of everything.
+
+Then comes the **indexer**. This is where the magic happens. It's not just storing text; it's rendering HTML, executing JavaScript (which is expensive as hell at scale), detecting duplicates, and extracting thousands of signals. Is this page fresh? Is it spam? Is it mobile-friendly?
+
+Finally, **retrieval**. When you search for "best grilled chicken in London", you're querying this massive, distributed index. The system has to sift through billions of documents, rank them by relevance, and serve the top 10 results in under 200ms.
+
+It's the blueprint for everything we do in information retrieval. Crawl, Index, Serve.
+
+![Google Architecture Diagram](/images/google-architecture-diagram-2000.gif)
+*Damn architecture diagrams used to be terrible*
+
+## How Shazam Indexes Murrrsic
+
+I was talking to a friend about Shazam's business model, trying to understand ways they made money over their 23-year tenure. At the same time, I was reading into indexing.
+
+Then I realized: how on earth does Shazam actually work? They must use indexing, but how do they translate music into an indexable, retrievable, searchable medium?
+
+You can't just hash the file. A recording of a song you hear from another car in traffic that has you leaning out of the window to record has background noise, distortion, people talking, engines revving, backfiring. The binary data is completely different from the studio master.
+
+The solution is audio fingerprinting, and specifically a technique called "Constellation Maps".
+
+1.  **Spectrograms**: Turn the audio into a 2D graph of frequency (y-axis) vs. time (x-axis), where the intensity/color represents the amplitude.
+2.  **Peak Finding**: Look for the "peaks": the loudest, most intense frequencies at any given moment. These are the points that survive the noise of a crowded coffee shop.
+3.  **Constellations**: Connect these peaks into pairs (anchor point + target point).
+4.  **Hashing**: Hash the frequency of the anchor, the frequency of the target, and the time difference between them.
+
+For example, a pair might be:
+- Anchor peak at **(t=1.2s, f=800Hz)**
+- Target peak at **(t=1.8s, f=1200Hz)**
+- Offset = **(Δt=0.6s, Δf=400Hz)**
+
+This gets hashed into a compact identifier: `hash(800, 1200, 0.6) → "A3B7F2"`
+
+The magic is that these fingerprints survive distortion. Even with background noise and compression, the relative positions of frequency peaks stay roughly the same.
+
+Shazam's index maps fingerprints to songs:
+
+```
+Fingerprint → (Song ID, Time Offset)
+"A4B4F3"    → (Song #42, 1.2s)
+"D8E4C9"    → (Song #42, 2.7s)
+```
+
+When you record audio, Shazam:
+1. Generates fingerprints from your clip
+2. Looks them up in the index
+3. Finds candidates (songs with matching fingerprints)
+4. Checks if fingerprints align in time
+5. Returns the best match
+
+The entire lookup happens in under a second against a database of millions of songs.
+
+This is indexing at its finest: pre-compute robust features, hash them for fast lookup, and match in real-time.
+
+<small className="text-gray-500">
+(Side note: This same technique powers YouTube's Content ID, which scans 500+ hours of video uploaded every minute. Same principle, different scale.)
+</small>
+
+## The New Wave: Indexing for Agents
+
+This is where we are today. Dozens of startups are aiming to be "the context layer for AI agents." They promise better retrieval, reduced hallucinations, and improved querying over existing agent tooling.
+
+If you ask an agent "how do I fix the auth bug?", it can't answer unless it knows your auth code.
+
+So we're back to indexing. But indexing code and internal docs is a different compared to the public web.
+
+The lazy answer is "just chunk the text, embed it with OpenAI, and throw it in a vector database." But this doesn't work, especially not for code and especially not in production.
+
+Let's break it down without getting too too complicated.
+
+### The Real Architecture
+
+A single index can't handle everything. Different query types need different data structures.
+
+The systems that actually work (not just the demos) are using a multi-index approach:
+
+1.  **Semantic Index (Vectors)**: For the vague, conceptual questions.
+2.  **Keyword Index (BM25)**: For the precise, "I know what I'm looking for" queries.
+3.  **Graph Index**: For the relationships. "Function A calls Function B which is defined in File C."
+
+You query all three, merge the results, re-rank them, and *then* feed them to the LLM.
+
+### More on BM25: A 40 Year Old Algorithm
+
+**BM25** is a ranking function from the 80s that relies on keyword matching. It's being used now for exact precise matching.
+
+The default method, vector search, is fuzzy. It's great for concepts ("how do I handle errors?") but terrible for specifics. If I search for a specific error code `ERR_CONNECTION_REFUSED`, vector search might give me generic networking docs. I don't want generic docs. I want the exact line of code that throws that error.
+
+For code, BM25 is often better than vectors. Developers use precise terminology. If I search for `UserAuthenticationService`, I want that exact class. BM25 gives me that. Vectors might give me `CustomerLoginResponse` because it's "semantically similar."
+
+## The Hard Parts
+
+### Incremental Reindexing
+
+You can't reindex everything on every single change. Most architectures have background workers to watch for changes and update only affected documents.
+
+However the classic swe hickup is dependency tracking. If file A imports file B, and B changes, do you reindex A? What about files that import A? How far does the cascade go?
+
+We can build reference graphs to help so that when a 'symbol' changes, the graph tells you what depends on it. Reindex those dependencies, not the entire codebase.
+
+But building and maintaining the graph is expensive. You need to parse code structure, track imports and especially watch out for circular dependencies.
+
+### Version Tracking
+
+You need to know not just "this file changed" but "this specific function signature changed from version A to version B."
+
+That requires:
+- Parsing code structure (AST analysis)
+- Diffing at the symbol level not just the line level
+- Storing version history in the index
+- Filtering results by version when querying
+
+At scale, this becomes a distributed systems problem. How often do you refetch? Every hour? Every day? How do you prioritize which sources to refresh first?
+
+## The Context Window Constraint
+
+The real bottleneck isn't search speed. It's how much context you can fit in the prompt. You can't just dump the whole index into the prompt. Yes, even with your newly increased Claude 200K context windows or Gemini's 1M token windows. You have to be efficient about what you include.
+
+If your index returns 50 relevant snippets but you can only use 5, better start improving your ranking algo.
+
+### Token Efficiency
+
+Speaking of context windows returning 200 tokens of highly relevant context beats returning 2,000 tokens of maybe-relevant context.
+
+This is why BM25 can outperform embeddings for code search. Exact matches are more token-efficient. You don't need to include surrounding context to disambiguate.
+
+Embeddings return fuzzy matches. You need more context to help the LLM understand why this snippet is relevant.
+
+### Confidence Scoring
+
+Not all matches are equal. Some systems score results by confidence:
+
+**High confidence (0.85)**: Type annotations, import statements, function definitions
+**Medium confidence (0.65)**: Word matches in comments, test files
+**Low confidence (0.45)**: Partial matches, string literals
+
+Instead of "here are 50 places this symbol appears," it's "here are 35 high-confidence usages and 15 maybes."
+
+The agent can prioritize high-confidence results and only include low-confidence ones if needed.
+
+## The Cold Start Problem
+
+New projects have no history. The index is empty. The agent has no context.
+
+One solution: pre-index common public sources. Framework docs, standard libraries, popular packages. New users can query immediately without configuring anything.
+
+When you add private repos, they merge into the same index. The agent doesn't distinguish between public docs and internal code—it's all searchable.
+
+But pre-indexed sources are generic. Your specific use case isn't covered. How do you bootstrap useful context from zero?
+
+Some systems watch for patterns. If you're importing a library, automatically fetch and index its docs. If you're calling an API, index the provider's documentation.
+
+## The Cost Problem
+
+Embeddings are cheap per query but expensive at scale. Costs WILL add up if you're indexing millions of documents and reindexing daily/hourly.
+
+You could try to remedy this by self-hosting your embedding models. But then you need GPUs, model serving, monitoring, updates.
+
+At scale, you can optimize:
+- Cache embeddings for common queries
+- Use smaller, faster models for less critical searches
+- Batch embedding generation during off-peak hours
+- Compress vectors (product quantization, binary embeddings)
+
+## Alright let's wrap it up
+
+We're moving from a world where we search for links (Google) to a world where we search for answers (Agents). How philosophical..
+
+But honestly the quality of the answer depends a lot on the quality of the index. If your index is stale, or can't find the specific function you asked for, the smartest model in the world can't save you.
+
+Google solved this for the web. Now we must solve it for everything else.
+
+<small className="text-gray-500">
+Part two will be on ranking! Check back in a week. I don't have a substack or email or whatever, just be back in one week (roughly).
+</small>
+
+## Further Reading
+
+**On Google**:
+- [The Anatomy of a Large-Scale Hypertextual Web Search Engine](http://infolab.stanford.edu/~backrub/google.html) (The original paper)
+
+**On Shazam**:
+- [An Industrial-Strength Audio Search Algorithm](https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf) (The paper that explains the magic)
+
+**On Vector Search**:
+- [ANN Benchmarks](http://ann-benchmarks.com/) (See how slow your vector DB actually is)
