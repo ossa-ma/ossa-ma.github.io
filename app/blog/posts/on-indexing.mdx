@@ -7,13 +7,13 @@ tags: ['Technical Deep Dive', 'Infrastructure', 'AI']
 
 I've been reading into indexing lately.
 
-Specifically the kind that lets Google search 100 petabytes of web content before you finish typing. The kind that lets Shazam identify a song from a 5-second clip in noisy environment. The kind that every single AI startup is now desperately trying to build because their agents are hallucinating without it.
+Specifically the kind that lets Google search 100 petabytes of web content before you finish typing. The kind that lets Shazam identify a song from a 5-second clip in noisy environment. The kind that every single AI startup is now trying to build because their agents are hallucinating without it.
 
 Let's get into it.
 
 ## The OG: How Google Indexes the Internet
 
-Google obviously doesn't search the internet when you type a query. That would be impossibly slow so instead, it searches an index which is a massive, pre-computed data structure that serves as its representation of the entire web.
+Sorry to disappoint you but Google doesn't actually search the internet when you type a query. That would be impossibly slow. Instead it searches an index which is a massive, pre-computed data structure that serves as its representation of the entire web.
 
 It starts with **crawlers**. Googlebots are constantly roaming the web, following links like a graph traversal algorithm that never terminates. They read sitemaps, follow hrefs, and take snapshots of everything.
 
@@ -75,11 +75,9 @@ This is indexing at its finest: pre-compute robust features, hash them for fast 
 
 ## The New Wave: Indexing for Agents
 
-This is where we are today. Dozens of startups are aiming to be "the context layer for AI agents." They promise better retrieval, reduced hallucinations, and improved querying over existing agent tooling.
+This is where we are today. Dozens of startups are aiming to be "the context layer for AI agents." They promise better retrieval, reduced hallucinations and smarter answers.
 
-If you ask an agent "how do I fix the auth bug?", it can't answer unless it knows your auth code.
-
-So we're back to indexing. But indexing code and internal docs is a different compared to the public web.
+If you ask an agent "how do I fix the auth bug?", it can't answer unless it knows your auth code. So we're back to indexing. But indexing code and internal docs is different from indexing the public web.
 
 The lazy answer is "just chunk the text, embed it with OpenAI, and throw it in a vector database." But this doesn't work, especially not for code and especially not in production.
 
@@ -89,45 +87,56 @@ Let's break it down without getting too too complicated.
 
 A single index can't handle everything. Different query types need different data structures.
 
-The systems that actually work (not just the demos) are using a multi-index approach:
+The systems that work use all three:
 
-1.  **Semantic Index (Vectors)**: For the vague, conceptual questions.
-2.  **Keyword Index (BM25)**: For the precise, "I know what I'm looking for" queries.
+1.  **Semantic Index (Vectors)**: For the vague, conceptual questions. "What's the auth flow here?"
+2.  **Keyword Index (BM25)**: For the precise, "I know what I'm looking for" queries. "Where is UserAuthService defined?"
 3.  **Graph Index**: For the relationships. "Function A calls Function B which is defined in File C."
 
-You query all three, merge the results, re-rank them, and *then* feed them to the LLM.
+Example query: "authentication error"
 
-### More on BM25: A 40 Year Old Algorithm
+- A semantic index returns conceptual matches - auth flow documentation, general error handling patterns. Useful for understanding, but not for debugging.
+- A keyword index returns exact matches - the specific line that throws AuthenticationError, the test that catches it. Precise, but misses context.
+- A graph index returns relationships - which functions call the auth code, where it's imported, what depends on it. Critical for impact analysis.
 
-**BM25** is a ranking function from the 80s that relies on keyword matching. It's being used now for exact precise matching.
+You query all three in parallel, merge results with a fancing ranking algorithm (Reciprocal Rank Fusion), and feed the top candidates to the LLM.
+
+### More on BM25
+
+**BM25** is a ranking function from the 90s that relies on keyword matching. It's being used now for code search.
 
 The default method, vector search, is fuzzy. It's great for concepts ("how do I handle errors?") but terrible for specifics. If I search for a specific error code `ERR_CONNECTION_REFUSED`, vector search might give me generic networking docs. I don't want generic docs. I want the exact line of code that throws that error.
 
-For code, BM25 is often better than vectors. Developers use precise terminology. If I search for `UserAuthenticationService`, I want that exact class. BM25 gives me that. Vectors might give me `CustomerLoginResponse` because it's "semantically similar."
+BM25 excels at this. It's a probabilistic model that ranks results by:
+
+- Term frequency (with saturation - mentioning "auth" 100 times doesn't help)
+- Inverse document frequency (rare terms like ERR_CONNECTION_REFUSED matter more than common terms like "error")
+- Document length normalization (prevents keyword stuffing)
+
+For code, where developers use precise terminology, BM25 often outperforms embeddings. If I search for `UserAuthService`, I want that exact class, not `CustomerLoginResponse` because it's semantically close.
 
 ## The Hard Parts
 
+
 ### Incremental Reindexing
 
-You can't reindex everything on every single change. Most architectures have background workers to watch for changes and update only affected documents.
+You can't reindex everything on every commit. Most architectures have background workers to watch for changes and update only affected documents.
+The solution is to build a dependency graph.
 
-However the classic swe hickup is dependency tracking. If file A imports file B, and B changes, do you reindex A? What about files that import A? How far does the cascade go?
+When `auth.ts` changes, the graph tells you what imports it. Reindex those files. When a function signature changes, reindex its callers.
 
-We can build reference graphs to help so that when a 'symbol' changes, the graph tells you what depends on it. Reindex those dependencies, not the entire codebase.
-
-But building and maintaining the graph is expensive. You need to parse code structure, track imports and especially watch out for circular dependencies.
+The cost: parsing code structure, tracking imports and especially handling circular dependencies. But it's the only way to stay fresh without burning CPU.
 
 ### Version Tracking
 
-You need to know not just "this file changed" but "this specific function signature changed from version A to version B."
+Most hallucinations come from stale docs. The model quotes valid code from the wrong version.
 
-That requires:
-- Parsing code structure (AST analysis)
-- Diffing at the symbol level not just the line level
-- Storing version history in the index
+The fix requires:
+- Parsing at the symbol level (AST analysis), not just line-level diffs
+- Storing version metadata in the index
 - Filtering results by version when querying
 
-At scale, this becomes a distributed systems problem. How often do you refetch? Every hour? Every day? How do you prioritize which sources to refresh first?
+Example: If you're on React 18, don't show class component patterns from the React 15 era. This seems obvious but requires tracking "when was this doc last valid."
 
 ## The Context Window Constraint
 
