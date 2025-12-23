@@ -1,5 +1,28 @@
 [
   {
+    "url": "https://arxiv.org/pdf/2512.07828",
+    "title": "2512.07828",
+    "author": null,
+    "publishedDate": null,
+    "addedDate": "2025-12-23",
+    "thoughts": "Interesting paper by Perplexity on adoption and usage of AI agents, exposes the growing class divide"
+  },
+  {
+    "url": "https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html",
+    "title": "How Long Contexts Fail",
+    "author": "Drew Breunig",
+    "publishedDate": "2025-06-22",
+    "addedDate": "2025-12-23",
+    "thoughts": "Good breakdown of model context failure"
+  },
+  {
+    "url": "https://filiph.net/text/memex-is-already-here,-it%27s-just-not-evenly-distributed.html",
+    "title": "Memex trails",
+    "author": "Filip Hracek",
+    "publishedDate": null,
+    "addedDate": "2025-12-22"
+  },
+  {
     "url": "http://infolab.stanford.edu/~backrub/google.html",
     "title": "The Anatomy of a Large-Scale Hypertextual Web Search Engine",
     "author": null,
@@ -83,6 +106,13 @@
     "publishedDate": "2025-01-12",
     "addedDate": "2025-12-15",
     "thoughts": "All it took was 1 year at Google in 2000 to fund a lifetime of failures, lessons learned though"
+  },
+  {
+    "url": "https://ericgardner.info/notes/knowledge-management-june-2025",
+    "title": "Knowledge Management in the Age of AI",
+    "author": null,
+    "publishedDate": null,
+    "addedDate": "2025-12-14"
   },
   {
     "url": "https://news.ycombinator.com/showhn.html",
