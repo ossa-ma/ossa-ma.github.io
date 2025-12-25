@@ -13,7 +13,7 @@ Jonathan Ross, Groq CEO, November 5th 2025, explaining why Groq wasn't competing
 
 49 days later, Nvidia paid $20 billion for Groq's assets and hired Ross along with his entire executive team.
 
-But here's the thing: this wasn't actually an acquisition. At least not in the traditional sense. Nvidia paid $20 billion for Groq's IP and people, but explicitly did NOT buy the company.
+Except this wasn't actually an acquisition, at least not in the traditional sense. Nvidia paid $20 billion for Groq's IP and people, but explicitly did NOT buy the company.
 Jensen Huang's statement was surgical: "While we are adding talented employees to our ranks and licensing Groq's IP, we are not acquiring Groq as a company."
 
 That phrasing is the entire story. Because what Nvidia carved out of the deal tells you everything about why this happened.
@@ -30,48 +30,6 @@ What Nvidia explicitly did NOT buy:
 
 GroqCloud continues as an independent company under CFO Simon Edwards.
 This is Nvidia's largest acquisition ever (previous record was Mellanox at $7B in 2019), and they structured it to leave the actual operating business behind. That doesn't happen by accident.
-
-## The Valuation Math Doesn't Add Up (Unless You Understand What Nvidia Really Bought)
-
-Groq raised $750 million in September 2025 at a post-money valuation of $6.9 billion.
-
-Xmas Eve, three months later, Nvidia paid $20 billion. That's a $13.1 billion premium over the last valuation, or roughly 3x what investors thought the company was worth 90 days earlier.
-
-For context, that $20B represents approximately 40x Groq's target revenue. Compare that to Anthropic's recent funding round, which valued the company at roughly 20x revenue.
-Nvidia paid double the multiple for a company with slashed revenue projections (The Information reported in July 2025 that Groq had cut over $1 billion from its 2025 revenue forecast, pushing those expectations to 2026).
-
-Why would Nvidia pay $13.1 billion more than the market rate for technology they could build?? Nvidia has the PDK, the volume, the talent, the infrastructure and obviously the truckloads of cash.
-They could ship a competitive SRAM-based inference architecture before Groq could take meaningful market share.
-
-The answer is that the technology was worth $6.9B (what the market said in September). The other $13.1B was paying for solutions to multiple strategic problems:
-
-1. **Avoiding geopolitical entanglement**: The Saudi deal made traditional acquisition impossible. Buying GroqCloud would mean inheriting CFIUS scrutiny, congressional questions, export control reviews. Structuring a deal that sidesteps this entirely while still getting the tech and talent? Worth the premium.
-
-2. **Neutralizing Meta/Llama**: The April 2025 partnership gave Groq distribution to millions of developers. If Llama + Groq became the default open-source inference stack, that's a structural threat to Nvidia's ecosystem.
-
-3. **Eliminating GroqCloud**: Nvidia has invested in other cloud AI providers. GroqCloud was a competitor. The carve-out ensures it dies.
-
-4. **Political access**: Chamath (the bastard) makes $2B when you consider that Social Capital's stake was probably ~10% after dilution. David Sacks (another bastard) looks good (major AI deal under his watch as AI Czar). Nvidia gets favourable regulatory treatment.
-
-5. **Regulatory arbitrage**: Non-exclusive licensing avoids antitrust scrutiny. Traditional acquisition of this size? Years of regulatory review. Non-exclusive licensing? Clean. No monopoly concerns because "anyone can license it." But in practice, Nvidia gets the talent (Ross + team can't work for competitors), the IP (can integrate before anyone else), and the elimination of GroqCloud.
-
-That $13.1B premium is the price of solving all these problems simultaneously, announced on Xmas Eve when media are inactive. By the time everyone's back from vacation, it's old news and the Chamath/Sacks/Trump connections get less scrutiny.
-
-## The Saudi Arabia Problem
-
-In February 2025, Saudi Arabia committed $1.5 billion to expand Groq's Dammam data center. The publicly stated goal was supporting SDAIA's ALLaM, Saudi Arabia's Arabic large language model. The actual goal was Vision 2030: positioning the Kingdom as an AI superpower.
-
-Groq built the region's largest inference cluster in eight days in December 2024. From that Dammam facility, GroqCloud serves "nearly four billion people regionally adjacent to the KSA." This isn't API access. This is critical AI infrastructure for a nation-state, funded by the Public Investment Fund, processing inference workloads at national scale.
-
-According to Ross in the Series E announcement, Groq powers Humain's services including the Humain chat product and supported OpenAI's GPT-OSS model release in Saudi Arabia. Groq operates 13 facilities across the US, Canada, Europe, and the Middle East. Ross noted that capacity expanded more than 10% in the month before the funding announcement and all of that capacity was already in use. Customers were asking for more capacity than Groq could satisfy.
-
-That creates a CFIUS (Committee on Foreign Investment in the United States) problem. A U.S. chip company, venture-backed by American investors, building sovereign AI capability for Saudi Arabia. If Nvidia had acquired GroqCloud outright, they would inherit those contracts and the regulatory scrutiny that comes with them. Foreign investment reviews, export control questions, congressional inquiries about why an American company is providing cutting-edge AI to a Middle Eastern monarchy.
-
-By carving out GroqCloud, Nvidia gets the technology and the talent without the geopolitical mess. The Saudi contracts stay with Edwards and the independent GroqCloud entity. Clean separation. No CFIUS entanglement.
-
-But let's be clear about what this carve-out actually means: **GroqCloud is meant to die.** The question "how does GroqCloud operate without the hardware IP?" answers itself. It doesn't. Without Ross and the engineering team, without the IP rights, without Nvidia's support, GroqCloud will quietly wind down over the next 12-18 months. The Saudi contracts will get restructured or redirected. The Dammam facility either scales down or gets sold to a non-U.S. entity. This wasn't a carve-out to preserve GroqCloud. It was a carve-out to avoid inheriting the Saudi problem while ensuring GroqCloud dies anyway.
-
-And Nvidia's cloud partners (the ones Nvidia has invested in) are happy. One less competitor.
 
 ## LPU vs TPU vs CPU: Why SRAM Matters
 
@@ -90,56 +48,59 @@ This creates massive advantages for inference:
 
 And 10x better energy efficiency because you're not constantly moving data across a memory bus.
 
-The trade-off is brutal: only 14GB of SRAM per rack means you can't run Llama 3.1 405B. And LPUs can't train models at all. This is an inference-only architecture with limited model size support.
+Serious trade off though, only 14GB of SRAM per rack means you can't run Llama 3.1 405B. And LPUs can't train models at all. This is an inference-only architecture with limited model size support.
 
-But here's what makes this interesting: if DRAM/HBM prices continue climbing (which they are), and if inference becomes the dominant AI workload (which it is), SRAM-based architectures become economically compelling despite the size limitations. Most production AI applications aren't running 405B models. They're running 7B-70B models that need low latency and high throughput.
+But here's what makes this interesting: if DRAM/HBM prices continue climbing (DRAM has tripled in a year I should've gone all in DRAM in Jan I'm done with indexes), and if inference becomes the dominant AI workload (which it is), SRAM-based architectures become economically compelling despite the size limitations. Most production AI applications aren't running 405B models. They're running 7B-70B models that need low latency and high throughput.
 
-One theory circulating is that OpenAI's DRAM land grab is targeting non-Nvidia platforms, which would make Nvidia's GPU-based inference less competitive on cost. An SRAM-based architecture hedges against that. But even if that's true, Nvidia could develop a competitive SRAM design in one development cycle. They have everything they need.
+## The $13.1B Premium and the Non-Traditional Structure
 
-So why pay $20B for it? Because they need it NOW, and the $13.1B premium is buying more than just technical capability.
+Groq raised $750 million in September 2025 at a post-money valuation of $6.9 billion. Three months later on Xmas Eve, Nvidia paid $20 billion through a "non-exclusive licensing agreement" that acquired all IP and talent while explicitly NOT buying the company.
 
-## Who Nvidia Actually Acquired (And Who They Already Had)
+That's a $13.1 billion premium (3x the September valuation) for a company valued at 40x target revenue (double Anthropic's recent 20x multiple) with slashed projections (The Information reported Groq cut over $1B from 2025 revenue forecasts).
 
-Groq's foundational paper, "A Software-defined Tensor Streaming Multiprocessor for Large-scale Machine Learning," lists 21 authors. Where those authors are now tells you everything about what Nvidia actually bought and what was already gone.
+The structure is the story. Traditional M&A would trigger:
+- CFIUS review (given Saudi contracts)
+- Antitrust scrutiny (Nvidia's dominant position)
+- Shareholder votes and disclosure requirements
+- Multi-year regulatory review
 
-**Already at Nvidia before the acquisition:**
-- **Dennis Abts**: Groq Chief Architect (2017-2022) → Nvidia Distinguished Research Scientist (2022-Present). Abts was Groq's Chief Architect who left for Nvidia in 2022, three years before the acquisition. Was he feeding intelligence to Nvidia? Did Nvidia recruit him specifically to understand Groq's architecture?
-- **Elyas Mehtabuddin**: Groq MLE (2021-2022) → Google SWE (2022-2024) → Nvidia Research Engineer (2024-Present). Joined Nvidia in 2024, before the acquisition announcement.
+Non-exclusive licensing bypasses all of it. No acquisition means no CFIUS review. "Non-exclusive" means no monopoly concerns (anyone can license Groq's tech). No shareholder votes, minimal disclosure.
 
-**Left Groq for competitors before the acquisition:**
-- **Jeremy Fowers**: Microsoft Principal Engineer (2017-2021) → Groq Principal MLE (2021-2023) → AMD Principal Engineer (2023-Present)
-- **Ibrahim Ahmed**: Groq Staff SWE (2020-2022) → Google SWE (2022-Present)
-- **Chetan Tekur**: Nvidia (2018-2021) → Groq Senior PM (2021-2022) → Google PM (2022-Present)
-- **Jennifer Hwang**: Groq Senior Director Engineering (2017-2023) → Unknown
-- **Garrin Kimmel**: Groq Principal SWE (2017-2023) → Unknown
-- **Peter Lillian**: Groq MLE (2020-2024) → Unknown
-- **Ashwin Murthy**: Meta SWE (2015-2019) → Groq MLE (2020-2023) → Unknown
-- **Thomas Sohmers**: Groq Tech Strategy Director (2021-2023) → Unknown
-- **Stephen Maresh**: Intel (2003-2016) → Groq (2021-2022) → Microsoft (2023-Present)
+But in practice: Nvidia gets the IP (can integrate before anyone else), the talent (Ross + team can't work for competitors now), and the elimination of GroqCloud (will likely die without IP or leadership). The "non-exclusive" label is legal fiction. When you acquire all the IP and hire everyone who knows how to use it, exclusivity doesn't matter.
 
-**Still at Groq (what Nvidia actually acquired):**
-- **Jonathan Ross**: CEO and Founder
-- **Andrew Ling**: VP/Country Manager (2020-Present)
-- **Roberto DiCeccio**: Director Compiler Engineering (2020-Present)
-- **David Han**: Senior Compiler Manager, ex-Intel (2020-Present)
-- **John Thompson**: Principal Engineer, ex-Intel (2017-Present)
-- **Kris Kang**: Compiler Engineer, ex-Intel (2021-Present)
-- **Matt Boyd**: Principal SWE (2018-Present)
-- **Andrew Bitar**: Principal Engineer (2020-Present)
-- **Sahil Parma**: Senior Staff SWE, ex-Nvidia (2019-Present)
-- **Mike Bye**: Design Engineer (2017-Present)
+The question isn't just why Nvidia paid $13.1B more than market rate for technology they could build themselves (they have the PDK, volume, talent, infrastructure, and cash). The question is why they structured it this way.
 
-Notice the pattern:
+**The $13.1B premium bought five things a traditional acquisition couldn't:**
 
-**The 2022-2023 exodus**: Nearly half the paper's authors left Groq in 2022-2023, right around the time Dennis Abts joined Nvidia. Jennifer Hwang, Garrin Kimmel, Jeremy Fowers, Ashwin Murthy, Thomas Sohmers, Ibrahim Ahmed, Chetan Tekur, Stephen Maresh all left within a 12-month window. That's not normal attrition. That's people who knew something was wrong.
+1. **Regulatory arbitrage**: Non-exclusive licensing avoids years of antitrust review. Structure the deal as IP licensing + talent acquisition, and regulators have no grounds to block it. This alone is worth billions in time and certainty.
 
-**The core compiler/hardware team stayed**: The people who actually built the LPU architecture and compiler stack are still there: Roberto DiCeccio (compiler director), David Han (compiler manager), John Thompson (principal engineer), Kris Kang (compiler engineer), Matt Boyd, Andrew Bitar. These are the specialists Nvidia wanted. Not the people who already left for Google, AMD, and Microsoft.
+2. **Neutralizing Meta/Llama**: The April 2025 partnership gave Groq distribution to millions of developers. If Llama + Groq became the default open-source inference stack, Nvidia's ecosystem gets commoditized. Kill the partnership before it scales.
 
-**Intel → Groq → Big Tech pipeline**: Multiple authors went Intel → Groq → Google/Microsoft/AMD/Nvidia. David Han, John Thompson, Kris Kang, Stephen Maresh all came from Intel. Groq was a talent farm for Big Tech, and now Nvidia gets what's left of that farm.
+3. **Eliminating GroqCloud without inheriting Saudi contracts**: Nvidia has invested in other cloud providers. GroqCloud was a competitor. Traditional acquisition would mean inheriting $1.5B worth of contracts to build AI infrastructure for Saudi Arabia, triggering CFIUS scrutiny. The carve-out kills GroqCloud while avoiding geopolitical entanglement.
 
-**Dennis Abts is the smoking gun**: Groq's Chief Architect leaves for Nvidia in 2022 as a Distinguished Research Scientist. That's not a lateral move. That's Nvidia recruiting the person who designed Groq's architecture to understand how it works. Three years later, Nvidia pays $20B for the company. Either Nvidia had incredible foresight, or Abts provided the intel they needed to know exactly what they were buying. He wasn't the only one: Elyas Mehtabuddin (Groq MLE) joined Nvidia in 2024, months before the acquisition announcement. Nvidia was systematically recruiting Groq's technical talent while evaluating whether to acquire the company.
+4. **Political access**: Chamath makes ~$2B (Social Capital's ~10% stake). Sacks looks good (major AI deal under his watch as AI Czar). Nvidia gets favorable regulatory treatment from the Trump administration. Timing it for Christmas Eve ensures minimal media scrutiny of these connections.
 
-The paper authorship is a time capsule showing what Groq looked like before it became obvious the company wouldn't make it independently. By the time Nvidia bought them, half the talent had already scattered to competitors.
+5. **Preempting other acquirers**: Ross invented Google's TPU. If Google had acquired Groq and brought Ross back, they'd have the original TPU creator plus LPU IP. Amazon and Microsoft were also exploring alternatives to Nvidia GPUs. Better to pay $20B now than compete with Ross at Google/Amazon/Microsoft later.
+
+**Two speculative reasons worth considering:**
+
+6. **Blocking Google/Amazon/Microsoft from partnering with Groq**: Both are developing custom AI chips (Trainium, Maia). If either had hired Ross + team or licensed Groq's tech, Nvidia's inference dominance faces a real challenger. If Google had acquired Groq and brought Ross back, they'd have the original TPU inventor plus LPU IP.
+
+7. **Chiplet integration for future products**: Nvidia might integrate LPU as a chiplet alongside GPUs in Blackwell or future architectures. Having Ross's team makes that possible. You can't integrate IP you don't own, and you can't build it without the people who invented it.
+
+That's how business works when regulation hasn't caught up to structural innovation. Nvidia paid $6.9B for technology and $13.1B to solve everything else using a deal structure that traditional antitrust can't touch.
+
+## The Saudi Arabia Problem
+
+In February 2025, Saudi Arabia committed $1.5 billion to expand Groq's Dammam data center. The publicly stated goal was supporting SDAIA's ALLaM, Saudi Arabia's Arabic large language model. The actual goal was Vision 2030: positioning the Kingdom as an AI superpower.
+
+Groq built the region's largest inference cluster in eight days in December 2024. From that Dammam facility, GroqCloud serves "nearly four billion people regionally adjacent to the KSA." This isn't API access. This is critical AI infrastructure for a nation-state, funded by the Public Investment Fund, processing inference workloads at national scale.
+
+According to Ross in the Series E announcement, Groq powers Humain's services including the Humain chat product and supported OpenAI's GPT-OSS model release in Saudi Arabia. Groq operates 13 facilities across the US, Canada, Europe, and the Middle East. Ross noted that capacity expanded more than 10% in the month before the funding announcement and all of that capacity was already in use. Customers were asking for more capacity than Groq could satisfy.
+
+That creates a CFIUS (Committee on Foreign Investment in the United States) problem. A U.S. chip company, venture-backed by American investors, building sovereign AI capability for Saudi Arabia. If Nvidia had acquired GroqCloud outright, they would inherit those contracts and the regulatory scrutiny that comes with them. Foreign investment reviews, export control questions, congressional inquiries about why an American company is providing cutting-edge AI to a Middle Eastern monarchy.
+
+By carving out GroqCloud, Nvidia gets the technology and the talent without the geopolitical mess. The Saudi contracts stay with Edwards and the independent GroqCloud entity. Clean separation. No CFIUS entanglement.
 
 ## Who Actually Gets Paid (And Who Gets Left Behind)
 
@@ -227,37 +188,25 @@ After dilution from raising $1.7 billion across Series C, D, and E rounds, Socia
 
 Why do I hate Chamath?
 
-Let's look at this sh*t he dumped on retail with his abysmal SPAC track record:
+Let's look at the sh he dumped on retail with his abysmal SPAC track record:
 - IPOA (Virgin Galactic): -98.5% since inception
 - IPOB (Opendoor): -62.9% (was -95% before a brief spike)
 - IPOC (Clover Health): -74.4%
 - IPOE (SoFi): +46% (still underperformed S&P 500's +86%)
 
-Across 18 SPAC deals, investors averaged a 14% loss. Chamath personally dumped $213 million of Virgin Galactic stock before it crashed, using PIPE structures that let him exit while retail investors stayed locked up. In October 2025, when launching a new SPAC, he posted a warning telling retail investors not to buy it: "these vehicles are not ideal for most retail investors."
+Chamath personally dumped $213 million of Virgin Galactic stock before it crashed, using PIPE structures that let him exit while retail investors stayed locked up. In October 2025, when launching a new SPAC, he posted a warning telling retail investors not to buy it: "these vehicles are not ideal for most retail investors."
 
 The Groq bet was classic venture capital: concentrated bet on an exceptional founder (Jonathan Ross, the engineer who invented Google's TPU) building non-obvious technology. Social Capital's 2017 internal memo projected a "High" exit scenario of $3.2 billion. They landed within range despite dilution.
 
-But retail investors never got access to deals like Groq. They got Virgin Galactic.
+But retail investors never got access to deals like Groq. They got Virgin Galactic. LOL.
 
 ## What This Actually Means
 
-Nvidia just made its largest acquisition ever to acquire inference technology from a nine-year-old startup valued at $6.9B three months earlier, paying a $13.1B premium to avoid inheriting geopolitical liabilities while eliminating competitive threats. That tells you several things:
+The GroqCloud carve-out is precedent-setting. Non-exclusive licensing is regulatory arbitrage that lets dominant players neutralize threats without traditional acquisition scrutiny. When startups build infrastructure for nation-states with complicated U.S. relations, it creates acquisition complications that traditional M&A can't solve.
 
-**The technology was worth what the market said it was worth**: $6.9B. Sophisticated investors including BlackRock and Neuberger Berman underwrote that valuation 90 days before the Nvidia deal. The $13.1B premium is what Nvidia paid for everything else.
+Ross said in November that Groq wasn't competing with Nvidia because "competition is a waste of money." He was right, just not in the way he meant. You can't compete with someone who has $20 billion to acquire you and the political connections to make the deal happen over Christmas Eve.
 
-**Inference is the battleground, but competition isn't coming from Groq**: Nvidia's real threats are Google's TPU, Amazon's Trainium, AMD's Instinct, and Intel's ARC. Groq wasn't going to take meaningful market share from any of them. But Groq created other problems (geopolitical, ecosystem) that justified the premium to eliminate.
-
-**Geopolitics constrains deals in ways traditional antitrust doesn't capture**: The GroqCloud carve-out is precedent-setting. When startups build infrastructure for nation-states with complicated U.S. relations, it creates acquisition complications that traditional M&A can't solve. Non-exclusive licensing is regulatory arbitrage that lets dominant players neutralize threats without traditional acquisition scrutiny.
-
-**The "America First" AI narrative is transactional**: When the people promoting American AI dominance are simultaneously cutting deals with Saudi Arabia, and those contradictions require $20 billion to resolve while enriching political allies, it raises questions about whose interests the "American AI Alliance" actually serves.
-
-**Access to exceptional founders is gatekept, and the returns are privatized**: Chamath got access to Jonathan Ross in 2017 because of Social Capital's network and reputation. That single relationship generated $2 billion. Retail investors got SPACs that averaged 14% losses. The system is designed this way.
-
-**Timing matters**: Announcing on Christmas Eve when media and YouTubers are inactive ensures the Chamath/Sacks/Trump connections get minimal scrutiny. By the time everyone's back from vacation, it's old news.
-
-Ross said in November that Groq wasn't competing with Nvidia because "competition is a waste of money." He was right, just not in the way he meant. You can't compete with someone who has $20 billion to acquire you and the political connections to make the deal happen over Christmas Eve. Especially when your investors' geopolitical deal-making creates liabilities that only an acquisition can resolve.
-
-Nvidia paid $6.9B for technology and $13.1B to solve everything else. That's how business works when one company has a dominant position and a massive war chest. It's literally the thesis Peter Thiel sets out in Zero to One: once you have dominance, you just buy any business that has potential to disrupt your revenue. And when regulation hasn't caught up to non-exclusive licensing deals, you can do it without traditional antitrust scrutiny.
+It's literally the thesis Peter Thiel sets out in Zero to One: once you have dominance, you just buy any business that has potential to disrupt your revenue. And when regulation hasn't caught up to non-exclusive licensing deals, you can do it without traditional antitrust scrutiny.
 
 ---
 
