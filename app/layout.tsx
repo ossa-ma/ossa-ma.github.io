@@ -74,6 +74,17 @@ export default function RootLayout({
           src="https://cloud.umami.is/script.js"
           data-website-id="34bb1a7b-b0fb-4194-8632-2fa4b14f33e9"
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: "Ossama Chaib",
+              url: baseUrl,
+            }),
+          }}
+        />
       </head>
       <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
