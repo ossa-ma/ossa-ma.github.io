@@ -5,9 +5,9 @@
         <link>https://ossa-ma.github.io</link>
         <description>This is my portfolio RSS feed</description>
         <item>
-          <title>Inside the Deal That Lets Nvidia Buy Competitors Without Antitrust Scrutiny</title>
+          <title>Nvidia's $20B Antitrust Loophole</title>
           <link>https://ossa-ma.github.io/blog/groq</link>
-          <description>Nvidia paid $20 billion for Groq through a 'non-exclusive licensing deal' that avoids traditional M&A oversight, and more...</description>
+          <description>The Groq deal that dodged regulators, enriched Chamath, and sidestepped Saudi entanglements</description>
           <pubDate>Thu, 25 Dec 2025 00:00:00 GMT</pubDate>
         </item>
 <item>
@@ -41,15 +41,15 @@
           <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
         </item>
 <item>
-          <title>Crashing an AI Promo Event: What to Ask Before Buying Into an AI Agent Platform</title>
+          <title>Crashing an AI Promo Event</title>
           <link>https://ossa-ma.github.io/blog/crashing-ai-promo</link>
-          <description>I crashed an AI event to expose the hard questions nobody asks about enterprise AI platforms - vendor lock-in, evaluation frameworks, and whether you should just build your own.</description>
+          <description>What to ask before buying into an AI agent platform</description>
           <pubDate>Sun, 09 Nov 2025 00:00:00 GMT</pubDate>
         </item>
 <item>
-          <title>Development Best Practices: A Checklist For Myself and My Agents</title>
+          <title>A Best Practices Checklist for Myself and My Agents</title>
           <link>https://ossa-ma.github.io/blog/development-best-practices</link>
-          <description>A comprehensive checklist of development best practices across Python, frontend, infrastructure, security, and database domains for quick reference in any project.</description>
+          <description>Development best practices across Python, frontend, infrastructure, security, and databases</description>
           <pubDate>Sat, 06 Sep 2025 00:00:00 GMT</pubDate>
         </item>
 <item>
