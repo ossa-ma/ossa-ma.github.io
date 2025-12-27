@@ -7,7 +7,7 @@
         <item>
           <title>Nvidia's $20B Antitrust Loophole</title>
           <link>https://ossa-ma.github.io/blog/groq</link>
-          <description>The Groq deal that dodged regulators, enriched Chamath, and sidestepped Saudi entanglements</description>
+          <description>The Groq deal that dodged regulators, enriched Chamath, sidestepped Saudi entanglements and a whole bunch more</description>
           <pubDate>Thu, 25 Dec 2025 00:00:00 GMT</pubDate>
         </item>
 <item>
@@ -51,12 +51,6 @@
           <link>https://ossa-ma.github.io/blog/development-best-practices</link>
           <description>Development best practices across Python, frontend, infrastructure, security, and databases</description>
           <pubDate>Sat, 06 Sep 2025 00:00:00 GMT</pubDate>
-        </item>
-<item>
-          <title>Birth of a Blog. But first, a technical difficulty: Converting a Next.js Blog for GitHub Pages</title>
-          <link>https://ossa-ma.github.io/blog/from-dynamic-to-static</link>
-          <description>A deep dive into transforming a server-rendered Next.js template into a fully static site for free hosting on GitHub Pages.</description>
-          <pubDate>Thu, 31 Jul 2025 00:00:00 GMT</pubDate>
         </item>
     </channel>
   </rss>
