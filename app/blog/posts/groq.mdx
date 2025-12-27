@@ -5,12 +5,11 @@ summary: "The Groq deal that dodged regulators, enriched Chamath, sidestepped Sa
 tags: ['AI', 'Research', 'Opinion/Mild Hating', 'Geopolitical Circlejerk', 'Venture Capital']
 ---
 
-"You're taking on a giant what gives you the audacity?"
+"You're taking on a giant. What gives you the audacity?"
 
-"I think that was a polite way to ask why in the world are we competing with Nvidia, so we're not.
-Competition is a waste of money, competition fundamentally means you are taking something someone else is doing and trying to copy it, you're wasting R&D dollars trying to do the exact same thing they've done instead of using them to differentiate."
+On November 5th, 2025, Groq CEO Jonathan Ross was asked why he was even bothering to challenge Nvidia. He didn't blink:
 
-Jonathan Ross, Groq CEO, November 5th 2025, explaining why Groq wasn't competing with Nvidia.
+"I think that was a polite way to ask why in the world are we competing with Nvidia, so we're not. Competition is a waste of money; competition fundamentally means you are taking something someone else is doing and trying to copy it. You're wasting R&D dollars trying to do the exact same thing they've done instead of using them to differentiate."
 
 49 days later, Nvidia paid $20 billion for Groq's assets and hired Ross along with his entire executive team.
 
@@ -19,14 +18,16 @@ Jensen Huang's statement was surgical: "While we are adding talented employees t
 
 That phrasing is the entire story. Because what Nvidia carved out of the deal tells you everything about why this happened.
 
+Forget the AI doomer takes about a bubble forming, lets look into the actual reasons.
+
 ## What Nvidia Actually Bought (And What It Didn't)
 
-What Nvidia acquired:
+Nvidia acquired:
 - All of Groq's intellectual property and patents
 - Non-exclusive licensing rights to Groq's inference technology
 - Jonathan Ross (CEO), Sunny Madra (President), and the entire senior leadership team
 
-What Nvidia explicitly did NOT buy:
+Nvidia explicitly did NOT buy:
 - GroqCloud (the cloud infrastructure business)
 
 GroqCloud continues as an independent company under CFO Simon Edwards.
@@ -48,6 +49,9 @@ This creates massive advantages for inference:
 - Mixtral 8x7B: 480 tokens/sec (4096 token context)
 
 And 10x better energy efficiency because you're not constantly moving data across a memory bus.
+
+![SOTA model tokens/sec throughput on GPU inference](/images/sota_tps_chart.png)
+*Compare this to SOTA model tokens/sec throughput on GPU inference*
 
 Serious trade off though, only 14GB of SRAM per rack means you can't run Llama 3.1 405B. And LPUs can't train models at all. This is an inference-only architecture with limited model size support.
 
@@ -188,7 +192,7 @@ But retail investors never got access to deals like Groq. They got Virgin Galact
 
 Nvidia paid $20 billion for a company valued at $6.9 billion three months earlier, structured the deal to avoid traditional M&A oversight, killed the cloud business without inheriting Saudi contracts, and enriched the exact people (Chamath, Sacks) who spent the last year promoting "American AI leadership" while cutting deals with foreign governments. The employees who built the technology either got hired by Nvidia or have been utterly shafted.
 
-This was fun to look into. If you have any questions or comments [shout me](mailto:ossamachaib.cs@gmail.com).
+This was fun to look into. If you have any questions or comments, [shout me](mailto:ossamachaib.cs@gmail.com).
 
 ---
 
