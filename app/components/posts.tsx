@@ -19,7 +19,10 @@ export function BlogPosts() {
             href={`/blog/${post.slug}`}
           >
             <div className="w-full flex flex-col">
-              <p>{post.title}</p>
+              <p className="font-medium">{post.title}</p>
+              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                {post.summary}
+              </p>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
                 {formatDate(post.publishedAt)}
               </p>
