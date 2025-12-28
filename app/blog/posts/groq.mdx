@@ -59,6 +59,12 @@ Serious trade off though, only 14GB of SRAM per rack means you can't run Llama 3
 But here's what makes this interesting: if DRAM/HBM prices continue climbing (DRAM has tripled in a year I should've gone all in DRAM at the start of the year I'm done with indexes), and if inference becomes the dominant AI workload (which it is), SRAM-based architectures become economically compelling despite the size limitations.
 AND production AI applications seem to be moving from 405B-1T models to running 7B-70B models that need low latency and high throughput.
 
+**Clarification:** Some readers pointed out I oversimplified when SRAM makes economic sense. If you're building a voice assistant or AI agent that talks to one person at a time, [Groq's approach wins](https://groq.com/blog/inside-the-lpu-deconstructing-groq-speed). You get 300-500 tokens/sec that feels instant, and you're using the hardware efficiently because it's designed for exactly this scenario. Try running a GPU for just one user and most of the chip sits idle burning money.
+
+But if you're running ChatGPT's API serving thousands of people simultaneously? [GPUs win](https://modelgate.ai/blogs/ai-automation-insights/groq-vs-nvidia-inference-real-time-agents). One rack of GPUs can handle 64-256 users at once. Groq needs [9 racks just for Llama 70B](https://x.com/swyx/status/1759759125314146699) and is designed for one user at a time. The hardware math doesn't work at scale.
+
+The cost breakdown: Groq's GroqCloud API is [about 50% cheaper per token](https://newsletter.semianalysis.com/p/groq-inference-tokenomics-speed-but) than GPU APIs for single-user cases. But if you're buying the hardware yourself, 9 racks of Groq chips ($11.5M) serving a handful of users versus 1 rack of GPUs serving hundreds. GPUs are an order of magnitude cheaper per user.
+
 ## The $13.1B Premium and the Non-Traditional Structure
 
 Groq raised $750 million in September 2025 at a post-money valuation of $6.9 billion. Three months later on Xmas Eve, Nvidia paid $20 billion through a "non-exclusive licensing agreement" that acquired all IP and talent while explicitly NOT buying the company.
