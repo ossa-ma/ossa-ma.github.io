@@ -1,15 +1,24 @@
 ---
-title: "Nvidia Groq Update: Everyone Gets Rich, Nobody Knows What GroqCloud Actually Does Now"
+title: "Nvidia Groq Update: Everyone Gets Rich, Patent Warfare Begins"
 publishedAt: "2025-12-28"
 summary: "New details on the $20B Nvidia-Groq deal: I was wrong about employees getting screwed, but the real story is worse for GroqCloud"
-tags: ['AI', 'Research', 'Opinion/Mild Hating', 'Venture Capital']
+tags: ['AI', 'Research', 'Chip Talk', 'Patent Warfare', 'Startups']
 ---
 
-A few days ago my post on [Nvidia's $20B Groq acquisition](/blog/groq) blew up, I argued how the deal was basically regulatory and supply chain arbitrage wrapped in an acquihire.
-I also speculated that most employees were staying at GroqCloud and getting screwed while VCs and executives cashed out at the $20B valuation.
+A few days ago my post on [Nvidia's $20B Groq acquisition](/blog/groq) blew up. Got the regulatory arbitrage angle right. Got the employee compensation angle completely wrong.
 
-I was wrong about the second part. [Axios got the actual deal terms](https://www.axios.com/2025/12/28/nvidia-groq-shareholders), and apparently everyone gets paid lets gooooo!
-However, the details make it even clearer that GroqCloud is indeed a shell company that will not survive 2026.
+I was wrong.
+
+[Everyone gets paid at the $20B valuation:](https://www.axios.com/2025/12/28/nvidia-groq-shareholders) VCs, employees, founders, the whole cap table. 85% upfront, the rest by end of 2026. No one got left behind.
+
+Good news, right?
+
+Not exactly. Nvidia bought a patent arsenal that will likely weaponize through NPEs (Non-Practicing Entities) to create a "scorched-earth zone" around SRAM-based inference.
+Nvidia gets protected. Everyone else gets sued.
+
+And GroqCloud? The deal confirms it's now a shell company running at 10% capacity with no IP, no technical leadership and 2.5 million developers wondering who's actually running the service now.
+
+Let's get into it.
 
 ## The Actual Deal Structure
 
@@ -35,6 +44,26 @@ For context: Instagram was 13 people for $1B, WhatsApp was 55 people for $19B. *
 - Anyone at the company less than one year gets their vesting cliff dropped 
 
 So Chamath's Social Capital still makes ~$2.0B (some speculate up to $4.0B) but good news everyone else makes money too. No one got left behind.
+
+## Why $20B?: The Patent Scorched-Earth Strategy
+
+I covered the basics in [my previous post](/blog/groq). Nvidia gets the team, the implementation knowledge of making SRAM-first inference work at commercial scale and neutralizes a competitor threatening GPU dominance in low-latency inference.
+
+I completely missed a very important angle:
+
+[Tanj Bennett from Semianalysis](https://semianalysis.com/author/tanj/) pointed out that Groq's patents will likely end up in an NPE (Non-Practicing Entity) portfolio. Strategic patent trolls is the technical term I believe.
+
+Here's how that works: GroqCloud still exists as a shell company with patents. Those patents eventually get sold or transferred to an NPE that specializes in patent litigation. The NPE doesn't build products they simply sue people for patent infringement.
+
+Now imagine Google, Amazon, or any other company tries to build SRAM-based inference chips. The NPE (armed with Groq's patents) sues them. The target company has two options:
+1. Pay a (potentially/very likely) exorbitant licensing fee
+2. Abandon the SRAM inference approach entirely
+
+Nvidia, of course, already HAS non-exclusive licensing rights. They're protected. Everyone else faces a patent minefield.
+
+This creates a, as Tanj puts it, "scorched-earth zone" around Nvidia's position.
+
+Either way, GroqCloud as an independent entity isn't the point. It's a side effect. The remaining 10% are there to keep customer contracts alive while Nvidia decides what to do with the implementation knowledge they just acquired and while the patent portfolio becomes a competitive moat.
 
 ## The GroqCloud Problem
 
@@ -89,31 +118,11 @@ Then you find out:
 - All the IP is licensed to Nvidia
 - Your point of contact is now... a CFO and 10% of the original workforce?
 
-**What team is left to help you?** When you file a support ticket who answers? (Don't say an AI AGENT PLEASE.) When you need a feature for your enterprise deployment, who builds it? (AGAIN, DO NOT SAY AN AI AGENT.) When the Llama API needs an update to support Llama 5, who does the integration work? (...)
+**What team is left to help you?** When you file a support ticket who answers? (Don't say an ai agent.) When you need a feature for your enterprise deployment, who builds it? (AGAIN, DO NOT SAY AN AI AGENT.) When the Llama API needs an update to support Llama 5, who does the integration work? (...)
 
 If you're IBM and you just bet on GroqCloud integration in October, what's your Q1 2026 plan? If you're one of 2.5 million developers building on the GroqCloud API, do you start looking at alternatives?
 
 GroqCloud can keep the servers running. They can maintain existing deployments. But can they innovate? Can they compete? Can they even keep up with the pace of change in AI when the team that built everything is gone?
-
-## Why $20B?: The Patent Scorched-Earth Strategy
-
-I covered the basics in [my previous post](/blog/groq). Nvidia gets the team, the implementation knowledge of making SRAM-first inference work at commercial scale, and neutralizes a competitor threatening GPU dominance in low-latency inference.
-
-But there's an angle I completely missed, and it might be the most important part:
-
-[Tanj Bennett from Semianalysis](https://semianalysis.com/author/tanj/) pointed out that Groq's patents will likely end up in an NPE (Non-Practicing Entity) portfolio. Strategic patent trolls is the technical term I believe.
-
-Here's how that works: GroqCloud still exists as a shell company with patents. Those patents eventually get sold or transferred to an NPE that specializes in patent litigation. The NPE doesn't build products they simply sue people for patent infringement.
-
-Now imagine Google, Amazon, or any other company tries to build SRAM-based inference chips. The NPE (armed with Groq's patents) sues them. The target company has two options:
-1. Pay a (potentially/very likely) exorbitant licensing fee
-2. Abandon the SRAM inference approach entirely
-
-Nvidia, of course, already HAS non-exclusive licensing rights. They're protected. Everyone else faces a patent minefield.
-
-This creates a, as Tanj puts it, "scorched-earth zone" around Nvidia's position.
-
-Either way, GroqCloud as an independent entity isn't the point. It's a side effect. The remaining 10% are there to keep customer contracts alive while Nvidia decides what to do with the implementation knowledge they just acquired and while the patent portfolio becomes a competitive moat.
 
 ## To Conclude (Again)
 
