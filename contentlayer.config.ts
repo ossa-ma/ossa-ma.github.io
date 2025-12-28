@@ -13,6 +13,7 @@ export const Post = defineDocumentType(() => ({
     summary: { type: 'string' },
     image: { type: 'string' },
     tags: { type: 'list', of: { type: 'string' }, required: false },
+    hnNumber1: { type: 'boolean', required: false },
   },
   computedFields: {
     slug: {

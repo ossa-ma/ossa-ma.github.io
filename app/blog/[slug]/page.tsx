@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { allPosts } from 'contentlayer/generated'
 import { formatDate } from '../utils'
 import { Mdx } from '@/app/components/mdx-client'
+import { HNBadge } from '@/app/components/hn-badge'
 
 const baseUrl = 'https://ossa-ma.github.io'
 
@@ -71,10 +72,11 @@ export default async function Blog({ params }) {
         {post.title}
       </h1>
 
-      {/* Tags */}
-      {post.tags && post.tags.length > 0 && (
+      {/* Tags and HN Badge */}
+      {((post.tags && post.tags.length > 0) || post.hnNumber1) && (
         <div className="flex flex-wrap gap-2 mt-3">
-          {post.tags.map((tag) => (
+          {post.hnNumber1 && <HNBadge />}
+          {post.tags && post.tags.map((tag) => (
             <span
               key={tag}
               className="px-2 py-1 text-xs font-medium rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300"

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { allPosts } from 'contentlayer/generated'
 import { formatDate } from '../blog/utils'
+import { HNBadge } from './hn-badge'
 
 export function BlogPosts() {
   return (
@@ -19,7 +20,10 @@ export function BlogPosts() {
             href={`/blog/${post.slug}`}
           >
             <div className="w-full flex flex-col">
-              <p className="font-medium">{post.title}</p>
+              <div className="flex items-center gap-2 flex-wrap">
+                <p className="font-medium">{post.title}</p>
+                {post.hnNumber1 && <HNBadge />}
+              </div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
                 {post.summary}
               </p>
