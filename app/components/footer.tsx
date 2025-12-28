@@ -18,6 +18,39 @@ function ArrowIcon() {
 export default function Footer() {
   return (
     <footer className="mb-16">
+      {/* Newsletter Signup */}
+      <div className="mt-8 mb-8">
+        <p className="mb-2 text-neutral-600 dark:text-neutral-300 font-medium">
+          Get notified on new posts
+        </p>
+        <form
+          // action="https://buttondown.com/api/emails/embed-subscribe/ossama"
+          action="https://formsubmit.co/ossamachaib.cs@gmail.com"
+          method="post"
+          target="popupwindow"
+          className="flex gap-2"
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="Email address"
+            required
+            style={{ padding: '8px 14px' }}
+            className="min-w-0 flex-auto appearance-none rounded-md border border-neutral-300 bg-white text-base text-neutral-900 placeholder:text-neutral-400 outline-none focus:border-neutral-900 focus:ring-2 focus:ring-neutral-900 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 dark:focus:border-neutral-100 dark:focus:ring-neutral-100"
+          />
+          <button
+            type="submit"
+            style={{ padding: '8px 24px' }}
+            className="flex-none rounded-md bg-neutral-900 text-base font-medium text-white hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
+          >
+            Subscribe
+          </button>
+        </form>
+        <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-2">
+          No spam. Ever. I will cherish and guard your email like a newborn baby. A beautiful doe. Unsubscribe anytime.
+        </p>
+      </div>
+
       <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
         <li>
           <a
