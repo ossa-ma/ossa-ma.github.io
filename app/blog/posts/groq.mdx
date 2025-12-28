@@ -37,11 +37,11 @@ This is Nvidia's largest acquisition ever (previous record was Mellanox at $7B i
 
 To understand why Nvidia paid anything for Groq, you need to understand the architectural bet Ross made when he left Google.
 
-**CPUs and GPUs** are built around external DRAM/HBM (High Bandwidth Memory). Every compute operation requires shuttling data between the processor and off-chip memory. This works fine for general-purpose computing, but for inference workloads, that constant round-trip creates latency and energy overhead. GPUs evolved from graphics rendering, so they're optimized for parallel training workloads, not sequential inference.
+**CPUs and GPUs** are built around external DRAM/HBM (High Bandwidth Memory). Every compute operation requires shuttling data between the processor and off-chip memory. This works fine for general-purpose computing, but for inference workloads, that constant round-trip creates latency and energy overhead. Since GPUs evolved from graphics rendering they're optimized for parallel training workloads and not SEQUENTIAL inference.
 
-**TPUs (Google's Tensor Processing Units)** reduce some of this overhead with larger on-chip buffers and a systolic array architecture, but they still rely on HBM for model weights and activations. They're deterministic in execution but non-deterministic in memory access patterns.
+**TPUs (Google's Tensor Processing Units)** reduce this overhead by passing data directly between processors like an assembly line. But they still rely on external memory (HBM) to store the model. This means the calculations are predictable, but the speed of fetching data from memory is not.
 
-**LPUs (Groq's Language Processing Units)** take a different approach: massive on-chip SRAM instead of external DRAM/HBM. The entire model (for models that fit) lives in SRAM with 80 TB/s of bandwidth and 230 MB capacity per chip. No off-chip memory bottleneck. No dynamic scheduling. The architecture is entirely deterministic from compilation to execution. You know exactly what happens at each cycle on each chip at each moment.
+**LPUs (Groq's Language Processing Units)** take a different approach: even larger on-chip SRAM instead of external DRAM/HBM. The entire model (for models that fit) lives in SRAM with 80 TB/s of bandwidth and 230 MB capacity per chip. No off-chip memory bottleneck or dynamic scheduling. The architecture is entirely deterministic from compilation to execution. You know exactly what happens at each cycle on each chip at each moment.
 
 This creates massive advantages for inference:
 - Llama 2 7B: 750 tokens/sec (2048 token context)
@@ -55,15 +55,16 @@ And 10x better energy efficiency because you're not constantly moving data acros
 
 Serious trade off though, only 14GB of SRAM per rack means you can't run Llama 3.1 405B. And LPUs can't train models at all. This is an inference-only architecture with limited model size support.
 
-But here's what makes this interesting: if DRAM/HBM prices continue climbing (DRAM has tripled in a year I should've gone all in DRAM in Jan I'm done with indexes), and if inference becomes the dominant AI workload (which it is), SRAM-based architectures become economically compelling despite the size limitations. Most production AI applications aren't running 405B models. They're running 7B-70B models that need low latency and high throughput.
+But here's what makes this interesting: if DRAM/HBM prices continue climbing (DRAM has tripled in a year I should've gone all in DRAM at the start of the year I'm done with indexes), and if inference becomes the dominant AI workload (which it is), SRAM-based architectures become economically compelling despite the size limitations.
+AND production AI applications seem to be moving from 405B-1T models to running 7B-70B models that need low latency and high throughput.
 
 ## The $13.1B Premium and the Non-Traditional Structure
 
 Groq raised $750 million in September 2025 at a post-money valuation of $6.9 billion. Three months later on Xmas Eve, Nvidia paid $20 billion through a "non-exclusive licensing agreement" that acquired all IP and talent while explicitly NOT buying the company.
 
-That's a $13.1 billion premium (3x the September valuation) for a company valued at 40x target revenue (double Anthropic's recent 20x multiple) with slashed projections (The Information reported Groq cut over $1B from 2025 revenue forecasts).
+Just crunched the numbers, that's a $13.1 billion premium (3x the September valuation) for a company valued at 40x target revenue (double Anthropic's recent 20x multiple) with slashed projections (The Information reported Groq cut over $1B from 2025 revenue forecasts).
 
-The structure is the story. Traditional M&A would trigger:
+The structure is the story. Traditional M&A (mergers and acquisitions for those blessed not to have dealt with this crowd) would trigger:
 - CFIUS review (given Saudi contracts)
 - Antitrust scrutiny (Nvidia's dominant position)
 - Shareholder votes and disclosure requirements
@@ -75,35 +76,33 @@ But in practice: Nvidia gets the IP (can integrate before anyone else), the tale
 
 The question isn't just why Nvidia paid $13.1B more than market rate for technology they could build themselves (they have the PDK, volume, talent, infrastructure, and cash). The question is why they structured it this way.
 
-**The $13.1B premium bought five things a traditional acquisition couldn't:**
+**Where the premium was spent:**
 
 1. **Regulatory arbitrage**: Non-exclusive licensing avoids years of antitrust review. Structure the deal as IP licensing + talent acquisition, and regulators have no grounds to block it. This alone is worth billions in time and certainty.
 
 2. **Neutralizing Meta/Llama**: The April 2025 partnership gave Groq distribution to millions of developers. If Llama + Groq became the default open-source inference stack, Nvidia's ecosystem gets commoditized. Kill the partnership before it scales.
 
-3. **Eliminating GroqCloud without inheriting Saudi contracts**: Nvidia has invested in other cloud providers. GroqCloud was a competitor. Traditional acquisition would mean inheriting $1.5B worth of contracts to build AI infrastructure for Saudi Arabia, triggering CFIUS scrutiny. The carve-out kills GroqCloud while avoiding geopolitical entanglement.
+3. **Eliminating GroqCloud without inheriting Saudi contracts**: Nvidia has invested in other cloud providers (I remember seeing the brev.dev guys at Nvidia HQ when I snuck in (journalism purposes)). GroqCloud was a competitor. Traditional acquisition would mean inheriting $1.5B worth of contracts to build AI infrastructure for Saudi Arabia, triggering CFIUS scrutiny. The carve out kills GroqCloud while avoiding geopolitical entanglement.
 
 4. **Political access**: Chamath makes ~$2B (Social Capital's ~10% stake). Sacks looks good (major AI deal under his watch as AI Czar). Nvidia gets favorable regulatory treatment from the Trump administration. Timing it for Christmas Eve ensures minimal media scrutiny of these connections.
 
-5. **Preempting other acquirers**: Ross invented Google's TPU. If Google had acquired Groq and brought Ross back, they'd have the original TPU creator plus LPU IP. Amazon and Microsoft were also exploring alternatives to Nvidia GPUs. Better to pay $20B now than compete with Ross at Google/Amazon/Microsoft later.
-
 **Two speculative reasons worth considering:**
 
-6. **Blocking Google/Amazon/Microsoft from partnering with Groq**: Both are developing custom AI chips (Trainium, Maia). If either had hired Ross + team or licensed Groq's tech, Nvidia's inference dominance faces a real challenger. If Google had acquired Groq and brought Ross back, they'd have the original TPU inventor plus LPU IP.
+5. **Blocking Google/Amazon/Microsoft from partnering with Groq**: Both are developing custom AI chips (Trainium, Maia). If either had hired Ross + team or licensed Groq's tech, Nvidia's inference dominance faces a real challenger. If Google had acquired Groq and brought Ross back, they'd have the original TPU inventor plus LPU IP.
 
-7. **Chiplet integration for future products**: Nvidia might integrate LPU as a chiplet alongside GPUs in Blackwell or future architectures. Having Ross's team makes that possible. You can't integrate IP you don't own, and you can't build it without the people who invented it.
+6. **Chiplet integration for future products**: Nvidia might integrate LPU as a chiplet alongside GPUs in Blackwell or future architectures. Having Ross's team makes that possible. You can't integrate IP you don't own, and you can't build it without the people who invented it.
 
 That's how business works when regulation hasn't caught up to structural innovation. Nvidia paid $6.9B for technology and $13.1B to solve everything else using a deal structure that traditional antitrust can't touch.
 
 ## The Saudi Arabia Problem
 
-In February 2025, Saudi Arabia committed $1.5 billion to expand Groq's Dammam data center. The publicly stated goal was supporting SDAIA's ALLaM, Saudi Arabia's Arabic large language model. The actual goal was Vision 2030: positioning the Kingdom as an AI superpower.
+In February 2025, Saudi Arabia committed $1.5 billion to expand Groq's Dammam data center. The publicly stated goal was supporting SDAIA's ALLaM, Saudi Arabia's Arabic large language model. The actual goal was Vision 2030: positioning the Kingdom as an AI superpower. Wait so its not just about influencer boxing?
 
-Groq built the region's largest inference cluster in eight days in December 2024. From that Dammam facility, GroqCloud serves "nearly four billion people regionally adjacent to the KSA." This isn't API access. This is critical AI infrastructure for a nation-state, funded by the Public Investment Fund, processing inference workloads at national scale.
+Groq built the region's largest inference cluster in eight days in December 2024. From that Dammam facility, GroqCloud serves "nearly four billion people regionally adjacent to the KSA." This is critical AI infrastructure, funded by the Public Investment Fund, processing inference workloads at national scale.
 
 According to Ross in the Series E announcement, Groq powers Humain's services including the Humain chat product and supported OpenAI's GPT-OSS model release in Saudi Arabia. Groq operates 13 facilities across the US, Canada, Europe, and the Middle East. Ross noted that capacity expanded more than 10% in the month before the funding announcement and all of that capacity was already in use. Customers were asking for more capacity than Groq could satisfy.
 
-That creates a CFIUS (Committee on Foreign Investment in the United States) problem. A U.S. chip company, venture-backed by American investors, building sovereign AI capability for Saudi Arabia. If Nvidia had acquired GroqCloud outright, they would inherit those contracts and the regulatory scrutiny that comes with them. Foreign investment reviews, export control questions, congressional inquiries about why an American company is providing cutting-edge AI to a Middle Eastern monarchy.
+That creates a CFIUS (Committee on Foreign Investment in the United States) (I know I know I took a while to unabbreviate it) problem. A U.S. chip company, venture-backed by American investors, building sovereign AI capability for Saudi Arabia. If Nvidia had acquired GroqCloud outright, they would inherit those contracts and the regulatory scrutiny that comes with them. Foreign investment reviews, export control questions, congressional inquiries about why an American company is providing cutting-edge AI to a Middle Eastern monarchy.
 
 By carving out GroqCloud, Nvidia gets the technology and the talent without the geopolitical mess. The Saudi contracts stay with Edwards and the independent GroqCloud entity. Clean separation. No CFIUS entanglement.
 
