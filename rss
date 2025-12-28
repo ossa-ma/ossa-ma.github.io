@@ -5,6 +5,12 @@
         <link>https://ossa-ma.github.io</link>
         <description>This is my portfolio RSS feed</description>
         <item>
+          <title>Nvidia Groq Update: Everyone Gets Rich, Nobody Knows What GroqCloud Actually Does Now</title>
+          <link>https://ossa-ma.github.io/blog/groq-update</link>
+          <description>New details on the $20B Nvidia-Groq deal: I was wrong about employees getting screwed, but the real story is worse for GroqCloud</description>
+          <pubDate>Sun, 28 Dec 2025 00:00:00 GMT</pubDate>
+        </item>
+<item>
           <title>Nvidia's $20B Antitrust Loophole</title>
           <link>https://ossa-ma.github.io/blog/groq</link>
           <description>The Groq deal that dodged regulators, enriched Chamath, sidestepped Saudi entanglements and a whole bunch more</description>
