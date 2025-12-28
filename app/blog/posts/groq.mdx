@@ -45,9 +45,9 @@ To understand why Nvidia paid anything for Groq, you need to understand the arch
 **LPUs (Groq's Language Processing Units)** take a different approach: even larger on-chip SRAM instead of external DRAM/HBM. The entire model (for models that fit) lives in SRAM with 80 TB/s of bandwidth and 230 MB capacity per chip. No off-chip memory bottleneck or dynamic scheduling. The architecture is entirely deterministic from compilation to execution. You know exactly what happens at each cycle on each chip at each moment.
 
 This creates massive advantages for inference:
-- Llama 2 7B: 750 tokens/sec (2048 token context)
-- Llama 2 70B: 300 tokens/sec (4096 token context)
-- Mixtral 8x7B: 480 tokens/sec (4096 token context)
+- Llama 3.1 8B: 800-1000+ tokens/sec (128K token context)
+- Llama 3.1 70B: 250+ tokens/sec (128K token context)
+- Mixtral 8x7B: 480 tokens/sec (32K token context)
 
 And 10x better energy efficiency because you're not constantly moving data across a memory bus.
 
