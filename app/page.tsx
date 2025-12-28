@@ -10,19 +10,22 @@ export default function Page() {
         Ossama Chaib
       </h1>
       <p className="mb-4">
-        I am a software engineer with a First Class MEng in Computing from
-        Imperial College London and a few years of experience in industry.
+        Software engineer with experience building AI infrastructure and distributed systems. Studied CS at Imperial College London.
+      </p>
+      <p>
+        At Fitch Group, architected (code name) Alpha — a microservices platform that processes 1000+ concurrent financial models.
+        Taught CS while building Gradient, a teaching assistant using multimodal LLMs.
       </p>
       <p className="mb-4">
-        My main motivation is to automate everything so I can spend time doing things that
+        Before that: GPU optimization at Imagination Tech, RL frameworks at Shell, built an Ethereum marketplace.
+      </p>
+      <p className="mb-4">
+        I want to automate everything so I can spend time doing things that
         computers and AI can't do: MMA, wrestling, BJJ, Muay Thai, TENNIS, cycling, watching Seinfeld,
         and playing Fortnite.
       </p>
       <p className="mb-4">
-        This website is a place for me to share my thoughts on technology,
-        education, and personal development. You'll find my blog posts below,
-        where I explore topics that I'm passionate about or random things that won't leave my mind
-        until they are written down.
+        Recently discovered how much I love writing. Whether it be tech, AI, life, finance, industry shennanigans: my recent Nvidia/Groq analysis hit #1 on HackerNews!
       </p>
       <p className="mb-4">
         I'm currently open to opportunities in AI infrastructure, backend systems, deep tech research, forward deployed engineering-
