@@ -23,6 +23,15 @@ export default function Page() {
         where I explore topics that I'm passionate about or random things that won't leave my mind
         until they are written down.
       </p>
+      <p className="mb-4">
+        I'm currently open to opportunities in AI infrastructure, backend systems, deep tech research, forward deployed engineering-
+        <a
+          href="/cv"
+          className="ml-1 font-medium text-neutral-900 underline decoration-neutral-400 underline-offset-2 transition-colors hover:text-neutral-600 dark:text-neutral-100 dark:decoration-neutral-600 dark:hover:text-neutral-300"
+        >
+          view my full background and work
+        </a>.
+      </p>
       <div className="my-8 flex flex-col space-y-4">
         <h2 className="text-sm font-medium tracking-wider text-neutral-500 dark:text-neutral-400">
           Posts

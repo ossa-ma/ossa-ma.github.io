@@ -10,7 +10,7 @@ const navItems = {
   '/reading': {
     name: 'reading',
   },
-  '/documents/cv.pdf': {
+  '/cv': {
     name: 'cv',
   },
 }
