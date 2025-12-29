@@ -18,13 +18,6 @@ export default function CVPage() {
                     <a href="https://github.com/ossa-ma" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors">
                         github.com/ossa-ma
                     </a>
-                    <span className="text-neutral-300 dark:text-neutral-700 select-none">•</span>
-                    <a href="/documents/cv.pdf" target="_blank" className="hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors flex items-center gap-1">
-                        <span>Download PDF</span>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z" fill="currentColor" />
-                        </svg>
-                    </a>
                 </div>
             </div>
 
@@ -33,7 +26,7 @@ export default function CVPage() {
                 {/* Summary */}
                 <div className="mb-8">
                     <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
-                        Open to opportunities in software engineering and AI: anything from deep research roles to forward deployed engineering and customer facing roles. I genuinely believe I can do it all. Beyond my core engineering work, I have extensive experience in technical writing, research, and open source contribution, with a strong focus on product growth and user-centric development.
+                        Open to opportunities in software engineering and AI: from deep research roles to forward deployed engineering and customer facing roles. I genuinely believe I can do it all. Beyond my core engineering work, I have extensive experience in technical writing, research, and open source contribution, with a strong focus on product growth and user-centric development.
                     </p>
                 </div>
 
