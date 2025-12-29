@@ -1,5 +1,13 @@
 [
   {
+    "url": "https://steipete.me/posts/just-talk-to-it",
+    "title": "Just Talk To It - the no-bs Way of Agentic Engineering | Peter Steinberger",
+    "author": "Peter Steinberger",
+    "publishedDate": "2025-10-14",
+    "addedDate": "2025-12-29",
+    "thoughts": "A decent conclusion and overview of the AI space, can't help but feel so much time was/is wasted trying every new trend instead of sticking to a proven model/workflow"
+  },
+  {
     "url": "https://vercel.com/blog/we-removed-80-percent-of-our-agents-tools",
     "title": "We removed 80% of our agent’s tools",
     "author": "Vercel Andrew QuChief of Software",
@@ -47,73 +55,6 @@
     "thoughts": "Groq on agentic workflows, this is how I'm spending the holidays..."
   },
   {
-    "url": "https://www.benzinga.com/markets/ipos/25/08/47213886/chamath-palihapitiya-returns-to-spacs-past-18-deals-investments-average-loss-of-14",
-    "title": "Chamath Palihapitiya Returns To SPACs: Past 18 Deals, Investments Average Loss Of 14% - Clover Health Inv",
-    "author": "Chris Katje",
-    "publishedDate": "2025-08-19",
-    "addedDate": "2025-12-25",
-    "thoughts": "Scamath"
-  },
-  {
-    "url": "https://fortune.com/2025/07/23/all-in-podcast-trump-ai-action-plan-david-sacks-jd-vance-jensen-huang/",
-    "title": "Silicon Valley’s elite descend on D.C. to celebrate Trump’s AI Action Plan in a surreal fusion of podcast and policy",
-    "author": "Sharon Goldman",
-    "publishedDate": "2025-07-23",
-    "addedDate": "2025-12-25",
-    "thoughts": "Weird vibes from these guys"
-  },
-  {
-    "url": "https://groq.com/blog/saudi-arabia-announces-1-5-billion-expansion-to-fuel-ai-powered-economy-with-groq",
-    "title": "Saudi Arabia Announces $1.5 Billion Expansion to Fuel AI-powered Economy with Groq",
-    "author": null,
-    "publishedDate": "2025-02-10",
-    "addedDate": "2025-12-25"
-  },
-  {
-    "url": "https://www.whitehouse.gov/articles/2025/07/white-house-unveils-americas-ai-action-plan/",
-    "title": "White House Unveils America's AI Action Plan",
-    "author": "@whitehouse",
-    "publishedDate": "2025-07-23",
-    "addedDate": "2025-12-25"
-  },
-  {
-    "url": "https://groq.com/newsroom/meta-and-groq-collaborate-to-deliver-fast-inference-for-the-official-llama-api",
-    "title": "Meta and Groq Collaborate to Deliver Fast Inference for the Official Llama API",
-    "author": null,
-    "publishedDate": "2025-04-29",
-    "addedDate": "2025-12-25"
-  },
-  {
-    "url": "https://groq.com/newsroom/groq-powers-humain-one--real-time-ai-operating-system-for-enterprise",
-    "title": "Groq Powers HUMAIN One, a Real-Time AI Operating System for Enterprise",
-    "author": null,
-    "publishedDate": "2025-10-28",
-    "addedDate": "2025-12-25"
-  },
-  {
-    "url": "https://techcrunch.com/2025/10/01/chamath-warns-retail-investors-to-avoid-his-new-spac/",
-    "title": "Chamath warns retail investors to avoid his new SPAC",
-    "author": "Julie Bort",
-    "publishedDate": "2025-10-01",
-    "addedDate": "2025-12-25"
-  },
-  {
-    "url": "https://finance.yahoo.com/news/chamath-palihapitiya-crumbling-spac-empire-100748788.html?guccounter=1&guce_referrer=aHR0cHM6Ly9vc3NhLW1hLmdpdGh1Yi5pby8&guce_referrer_sig=AQAAABy2PfIMsL5icN004ytHbMp-RWvsUHOAMMn409ewn4xRfW_HIi4rFuxTwZL8ZBjgAy8xdCOHGJQktx2nq1VQGIFXftwRh5GID2uL7ZoLZq9-Xpa9yWjbkEua6PJ3F1uitbWTlh9syZH8zCkw2MzYPZMBWThHKJ-7y3up57zh0NkF",
-    "title": "Untitled",
-    "author": null,
-    "publishedDate": null,
-    "addedDate": "2025-12-25",
-    "thoughts": "I got burnt here icl"
-  },
-  {
-    "url": "https://www.webpronews.com/the-deterministic-bet-how-groqs-lpu-is-rewriting-the-rules-of-ai-inference-speed/",
-    "title": "The Deterministic Bet: How Groq’s LPU is Rewriting the Rules of AI Inference Speed",
-    "author": "Name",
-    "publishedDate": "2025-11-27",
-    "addedDate": "2025-12-25",
-    "thoughts": "LPU vs GPU on inference"
-  },
-  {
     "url": "https://extremecomputingtraining.anl.gov/wp-content/uploads/sites/96/2022/11/ATPESC-2022-Track-1-Talk-4-Ling-Groq.pdf",
     "title": "ATPESC-2022-Track-1-Talk-4-Ling-Groq",
     "author": null,
@@ -122,37 +63,9 @@
     "thoughts": "2022 Groq presenting LPU and TSP papers"
   },
   {
-    "url": "https://techcrunch.com/2025/10/21/anthropic-ceo-claps-back-after-trump-officials-accuse-firm-of-ai-fear-mongering/",
-    "title": "Anthropic CEO claps back after Trump officials accuse firm of AI fear-mongering",
-    "author": "Rebecca Bellan",
-    "publishedDate": "2025-10-21",
-    "addedDate": "2025-12-24"
-  },
-  {
-    "url": "https://www.techpowerup.com/319286/groq-lpu-ai-inference-chip-is-rivaling-major-players-like-nvidia-amd-and-intel",
-    "title": "Automated bot check in progress",
-    "author": null,
-    "publishedDate": null,
-    "addedDate": "2025-12-24"
-  },
-  {
-    "url": "https://techcrunch.com/2025/12/24/nvidia-acquires-ai-chip-challenger-groq-for-20b-report-says/",
-    "title": "Nvidia to license AI chip challenger Groq’s tech and hire its CEO",
-    "author": "Amanda Silberling",
-    "publishedDate": "2025-12-24",
-    "addedDate": "2025-12-24"
-  },
-  {
-    "url": "https://www.cnbc.com/2025/12/24/nvidia-buying-ai-chip-startup-groq-for-about-20-billion-biggest-deal.html",
-    "title": "Nvidia buying AI chip startup Groq's assets for about $20 billion in its largest deal on record",
-    "author": "David Faber",
-    "publishedDate": "2025-12-24",
-    "addedDate": "2025-12-24"
-  },
-  {
     "url": "https://arxiv.org/pdf/2512.07828",
-    "title": "2512.07828",
-    "author": null,
+    "title": "The Adoption and Usage of AI Agents: Early Evidence from Perplexity",
+    "author": "Jeremy Yang, Noah Yonack, Kate Zyskowski, Denis Yarats, Johnny Ho, Jeremy Ma",
     "publishedDate": null,
     "addedDate": "2025-12-23",
     "thoughts": "Interesting paper by Perplexity on adoption and usage of AI agents, exposes the growing class divide"
