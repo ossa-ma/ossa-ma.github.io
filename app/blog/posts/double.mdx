@@ -1,0 +1,178 @@
+---
+title: 'Double: Claude Code Memory Without MCPs and DBs'
+publishedAt: '2025-12-29'
+summary: 'Forget MCPs: Giving Claude Code persistent memory using markdown files, git and three delightful commands.'
+tags: ['Engineering', 'AI', 'Tools']
+---
+
+Claude Code forgets everything between sessions and there are 100 startups, tools, open source repos and just generally ideas on how to fix this.
+
+A popular solution is to spin up an MCP server, add embeddings, semantic search, a database. Automatic retrieval, infinite context window, let the AI decide what's relevant via vector similarity.
+
+I tried a different approach using markdown files, the faultless git and three commands.
+
+I call it **Double**, named after Dostoevsky's novel. It kinda represents my second self. So not just engineering notes, but business ideas, personal workflows, writing style, hobby tracking. Everything that makes up how you work and think, in organized markdown files you control.
+
+## The System
+
+Here's the entire folder structure:
+```
+~/double/
+├── engineering/     # Technical patterns, best practices
+├── business/        # Ideas, metrics, product decisions
+├── tasks/           # Active work, backlog, waiting
+├── projects/        # Project-specific context
+├── research/        # Company/people intelligence
+├── personal/        # Writing style, preferences
+└── .claude/
+    └── commands/    # Skills that load context
+```
+
+And the workflow:
+
+**End of session:**
+```bash
+/handoff
+```
+
+**Route changes to organized files:**
+```bash
+/sync
+```
+
+**Load context when you need it:**
+```bash
+/engineering  # or /tasks, /business, /research
+```
+
+That's the entire system. Three commands. Markdown files. Git for version control.
+
+It's supposed to be simple, customisable and extendable.
+
+No npm install. No database migrations. No MCP server setup. No embedding models. Nada.
+
+I'm probably missing a lot of potential functionality but I HATE bloat and I am a firm believer that simplicity and ease of use is the most important thing.
+ESPECIALLY in this bloatware, slopfarm, overengineering world we are living in rn.
+
+## How It Works
+
+Let's say you just spent two hours debugging a weird Next.js build issue. Claude helped. You found a solution. You want to remember this for next time.
+
+```bash
+/handoff
+```
+
+Claude synthesizes what actually mattered from the session:
+```markdown
+[2025-12-29 14:30] Session: Next.js build debugging
+
+Learnings:
+- Static export breaks when using server components in app router
+- Need "use client" directive even for client-only hooks
+
+Technical Content:
+- Next.js: app/ directory requires explicit client boundaries
+- Solution: Move useState/useEffect components to separate client files
+
+Next:
+- Document this in engineering/deployment.md under Next.js gotchas
+```
+
+Gets appended to `~/double/.inbox.md`.
+
+Now run:
+```bash
+/sync
+```
+
+Claude reads the inbox, routes everything to the right files:
+- Technical learnings → `engineering/deployment.md`
+- New tasks → `tasks/active.md`
+- Workflow insights → `personal/workflow.md`
+
+Archives the processed entry to `meta/processed/2025-12-29.md`. Commits to git. Clears the inbox.
+
+Next session:
+```bash
+/engineering
+```
+
+Claude loads all your curated engineering knowledge. Sees the Next.js gotchas section. Remembers the context you explicitly chose to keep.
+
+You're not hoping an embedding model finds the right context. You organized it yourself, and Claude loads exactly what you told it to load.
+
+## Why Markdown + Git?
+
+Because MCP servers are really overkill for this and you WANT to vet everything yourself and trust me YOU DO want complete visibility over your agents.
+
+You're adding setup complexity, maintenance overhead, and vendor lock-in just to remember some notes between sessions.
+
+**Human-readable.**
+
+Want to see what Claude remembers about your Python patterns? `cat ~/double/engineering/python.md`. That's it. No db queries, no API calls.
+
+Grep works. Sed works. Awk works. Your editor works. Every text tool ever made works. You do not have to context switch <- this is very important.
+
+**Actual git.**
+
+Not "inspired by git" or "like git for your brain." Just... git. The actual version control system.
+
+Full history, branches, diffs, blame. Sync across machines with `git push`. Merge knowledge bases with `git merge`.
+
+**Portable.**
+
+This works with Claude Code, Cursor, Gemini CLI, or literally any tool that can read markdown files. No migration needed. Just point the tool at `~/memory/` and it works.
+
+**Transparent.**
+
+You see exactly what's stored. You control what gets remembered. You can edit, delete, or reorganize anytime you want.
+
+## Get Started
+
+The template is on GitHub: [github.com/ossa-ma/double](https://github.com/ossa-ma/double)
+
+**Setup (5 minutes):**
+```bash
+# Clone the template
+git clone https://github.com/ossa-ma/double ~/double
+cd ~/double
+
+# Commands auto-load in Claude Code
+# Start using /handoff, /sync, /engineering
+```
+
+## Other Commands
+
+Beyond the core three, there are other utilities which I'll probably trim tbh, you can extend these or delete them, up to you, this is supposed to be personalised:
+
+- `/new-task` - Quick task capture
+- `/task-done` - Mark tasks complete
+- `/project-status` - Overview of active projects
+- `/weekly` - Generate weekly review
+- `/memory` - Load ALL context (kitchen sink mode)
+
+All optional. The core workflow is just handoff → sync → load.
+
+## When This Works
+
+**Good fit:**
+- You want organized, editable knowledge
+- You value transparency over automation
+- You work across multiple tools (Cursor, Claude Code, etc.)
+- You like git workflows
+
+**Not a fit:**
+- You want zero manual work
+- You trust semantic search to find what matters
+- You need automatic context injection per query
+
+Different philosophies. Both valid. I prefer the second brain approach over the automatic recall approach.
+
+If you try it and it sucks, let me know [ossamachaib.cs@gmail.com](mailto:ossamachaib.cs@gmail.com). If you improve it, send a PR.
+
+## Related Reading
+
+This idea builds on concepts from:
+- [Memory as an AI Superpower](https://davegriffith.substack.com/p/memory-as-an-ai-superpower) - Dave Griffith on persistent context for AI tools
+- [The Magic of Claude Code](https://www.alephic.com/writing/the-magic-of-claude-code) - Detailed exploration of Claude Code workflows
+
