@@ -28,24 +28,51 @@ Here's the entire folder structure:
     └── commands/    # Skills that load context
 ```
 
-And the workflow:
+And the workflow is literally just three markdown files that tell Claude what to do:
 
-**End of session:**
-```bash
-/handoff
+**End of session - `/handoff`:**
+```markdown
+Synthesize this session into a handoff entry for `~/double/.inbox.md`.
+
+**Critical:** Only capture reusable insights, not one-off decisions.
+
+Format:
+[YYYY-MM-DD HH:MM] Session: [Brief description]
+
+Learnings:
+- [Reusable insight with context]
+
+Technical Content:
+- [New knowledge for engineering files]
+
+Decisions:
+- [Decision + why it matters beyond this task]
 ```
 
-**Route changes to organized files:**
-```bash
-/sync
+**Route changes - `/sync`:**
+```markdown
+1. Read ~/double/.inbox.md in full
+2. For each entry, determine target domain:
+   - Technical decisions/learnings → ~/double/engineering/[relevant].md
+   - Tasks/TODOs → ~/double/tasks/active.md
+   - Business insights → ~/double/business/[relevant].md
+3. Update target files, archive processed entries
+4. Git commit and push
 ```
 
-**Load context when you need it:**
-```bash
-/engineering  # or /tasks, /business, /research
+**Load context - `/engineering`:**
+```markdown
+You are now working on engineering/coding tasks. Load and reference:
+
+~/double/engineering/everything.md
+~/double/engineering/python.md
+~/double/engineering/ai.md
+...
+
+Follow established patterns and preferences.
 ```
 
-That's the entire system. Three commands. Markdown files. Git for version control.
+That's it. Three markdown files. [See the full commands here](https://github.com/ossa-ma/double/tree/main/.claude/commands).
 
 It's supposed to be simple, customisable and extendable.
 
