@@ -5,7 +5,7 @@ summary: 'Forget MCPs: Giving Claude Code persistent memory using markdown files
 tags: ['Engineering', 'AI', 'Tools']
 ---
 
-Claude Code forgets everything between sessions and there are 100 startups, tools, open source repos and just generally ideas on how to fix this.
+Claude Code forgets everything between sessions and there are 100 startups, tools, open source repos and general ideas on how to fix this.
 
 A popular solution is to spin up an MCP server, add embeddings, semantic search, a database. Automatic retrieval, infinite context window, let the AI decide what's relevant via vector similarity.
 
@@ -28,7 +28,7 @@ Here's the entire folder structure:
     └── commands/    # Skills that load context
 ```
 
-And the workflow is literally just three markdown files that tell Claude what to do:
+And the workflow is literally three markdown files that tell Claude what to do:
 
 **End of session - `/handoff`:**
 ```markdown
@@ -83,7 +83,7 @@ ESPECIALLY in this bloatware, slopfarm, overengineering world we are living in r
 
 ## How It Works
 
-Let's say you just spent two hours debugging a weird Next.js build issue. Claude helped. You found a solution. You want to remember this for next time.
+Let's say you spent two hours debugging a weird Next.js build issue. Claude helped. You found a solution. You want to remember this for next time.
 
 ```bash
 /handoff
@@ -148,7 +148,7 @@ Full history, branches, diffs, blame. Sync across machines with `git push`. Merg
 
 **Portable.**
 
-This works with Claude Code, Cursor, Gemini CLI, or literally any tool that can read markdown files. No migration needed. Just point the tool at `~/memory/` and it works.
+This works with Claude Code, Cursor, Gemini CLI, or literally any tool that can read markdown files. No migration needed. Point the tool at `~/memory/` and it works.
 
 **Transparent.**
 
@@ -178,7 +178,7 @@ Beyond the core three, there are other utilities which I'll probably trim tbh, y
 - `/weekly` - Generate weekly review
 - `/memory` - Load ALL context (kitchen sink mode)
 
-All optional. The core workflow is just handoff → sync → load.
+All optional. The core workflow is handoff → sync → load.
 
 ## When This Works
 

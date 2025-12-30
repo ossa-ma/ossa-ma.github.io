@@ -40,8 +40,7 @@ The agent asked the questions their sales deck ignored. Here's the condensed ver
 ## The Questions That Matter
 
 **Evaluation:**
-- "How do you know if your prompt changes actually improve anything, or are you just guessing?"
-- "How does Dust help you determine if your new prompt is actually better than your old one, or are you just guessing?"
+- "How does Dust help you determine if your new prompt is actually better than your old one, or are you guessing?"
 - "What evaluation framework does Dust provide to measure agent performance objectively?"
 - "Can you run A/B tests on different prompt versions in Dust, or are you doing trial-and-error in production?"
 - "Does Dust have version control on prompt edits, how can you monitor and prevent model regression?"
@@ -90,7 +89,7 @@ Good in that it offers:
 - Context maintenance - probably the most difficult thing to implement yourself, when agents run for long periods the context grows as you may have seen when working in Cursor or another AI IDE and you see
 the % increase as a chat gets longer. What Claude Agent SDK does is automatically summarize previous messages when the context limit approaches so the agent doesn't run out of context. Pretty useful.
 - Tools - both prebuilt and custom tools that typically involve creating and exposing an MCP server to your agent through the Claude Code interface.
-- Fully customisable/extendable - SDK that you can just install and run on your own infrastructure. Full control over everything.
+- Fully customisable/extendable: SDK that you can install and run on your own infrastructure. Full control over everything.
 
 Bad in that it's:
 - Not optimised for Python, a thin wrapper around Claude Code npm package.
