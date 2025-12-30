@@ -5,6 +5,12 @@
         <link>https://ossa-ma.github.io</link>
         <description>This is my portfolio RSS feed</description>
         <item>
+          <title>Double: Claude Code Memory Without MCPs and DBs</title>
+          <link>https://ossa-ma.github.io/blog/double</link>
+          <description>Forget MCPs: Giving Claude Code persistent memory using markdown files, git and three delightful commands.</description>
+          <pubDate>Mon, 29 Dec 2025 00:00:00 GMT</pubDate>
+        </item>
+<item>
           <title>Nvidia Groq Update: Everyone Gets Rich, Patent Warfare Begins</title>
           <link>https://ossa-ma.github.io/blog/groq-update</link>
           <description>New details on the $20B Nvidia-Groq deal: I was wrong about employees getting screwed, but the real story is worse for GroqCloud</description>
