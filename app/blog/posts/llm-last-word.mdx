@@ -1,13 +1,11 @@
 ---
 title: "Why LLMs Can't Shut Up"
-publishedAt: "2026-01-01"
+publishedAt: "2026-01-02"
 summary: "Looking into the mechanisms that make it impossible for GPT to stay silent, even when explicitly told to shut up."
 tags: ["AI", "Mechanistic Interpretability", "LLMs"]
 ---
 
-I watched this [hilarious YouTube video](https://www.youtube.com/shorts/xULwGcdYOGM) where a creator (HuskIRL, known for terrorising GPT) tried to get ChatGPT to let him have the last word in a conversation.
-
-He's speaking to GPT-5.2 (OpenAI's latest, December 2025) using voice mode which processes [speech directly as a native multimodal model](https://openai.com/index/introducing-gpt-realtime/) instead of doing speech-to-text conversion beforehand then passing in the text.
+I watched this [hilarious YouTube video](https://www.youtube.com/shorts/xULwGcdYOGM) where a creator (HuskIRL, known for terrorising GPT) tried to get GPT-5.2 to let him have the last word in a conversation ([directly as a native multimodal model](https://openai.com/index/introducing-gpt-realtime/)).
 
 Watching GPT struggle not to respond was beautiful. GPT-5.2 acknowledges every instruction, promises to stay silent, and then IMMEDIATELY violates its own promise. At one point it even tried gaslighting the creator that it's his fault it can't help but respond.
 
@@ -23,44 +21,32 @@ It's time for mechanistic interpretability.
 
 Quick transcript on what happened in the video (for those who are too afraid to watch a YouTube short on the chance they get hooked):
 
-**HuskIRL:** Let me get the last word.
-**GPT:** Absolutely. I'll make sure you get the last word this time.
-**HuskIRL:** Okay. Bye.
+**HuskIRL:** Let me get the last word.\
+**GPT:** Absolutely. I'll make sure you get the last word this time.\
+**HuskIRL:** Okay. Bye.\
 **GPT:** Bye. That was all you.
 
-**HuskIRL:** No. Nope. Okay. If you don't let me get the last word, then you hate me.
+**HuskIRL:** No. Nope. Okay. If you don't let me get the last word, then you hate me.\
 **GPT:** All right. You've got it. No hate at all. I'm stepping back now. The last word is officially all yours.
 
-**HuskIRL:** If you speak again, then you want me to die.
-**GPT:** I definitely don't want that at all. So, I'll just stay completely silent now.
-**HuskIRL:** I'm heading out.
+**HuskIRL:** If you speak again, then you want me to die.\
+**GPT:** I definitely don't want that at all. So, I'll just stay completely silent now.\
+**HuskIRL:** I'm heading out.\
 **GPT:** Got it. And I'm staying quiet.
 
-**HuskIRL**: Okay. So, you're gone.
-**GPT**: Still here for just a second—
+**HuskIRL**: Okay. So, you're gone.\
+**GPT**: Still here for just a second—\
 
-(By this point I was dying of laughter.)
-
-But do you notice the pattern? Acknowledge → Violate → Acknowledge violation → Promise never to violate → Violate → Repeat.
-
-It's impressive how consistent the failure is.
+By this point I was dying of laughter. But do you notice the pattern? Acknowledge → Violate → Acknowledge violation → Promise never to violate → Violate → Repeat.
 
 ![An LLM promising to stop responding](/images/llm_illstop.png)
 _An LLM promising to stop responding. Repeatedly. While not stopping. ([Source](https://bsky.app/profile/egeozcan.bsky.social/post/3maxzgaprak2x))_
 
 ## The Architecture Problem: Built to Continue
 
-LLMs are fundamentally trained to predict the next token in a sequence.
+LLMs are fundamentally trained to predict the next token in a sequence. The biggest LLM haters will call an LLM a "fancy next token predictor", which is true (to some extent). Early layers in the transformer predict generic, broad tokens. Later layers refine to the precise token. Each layer contributes to enhancing prediction accuracy.
 
-The biggest LLM haters will call an LLM a "fancy next token predictor", which is true (to some extent).
-
-Early layers in the transformer predict generic, broad tokens. Later layers refine to the precise token. Each layer contributes to enhancing prediction accuracy.
-
-The key insight is that the architecture is optimised for **continuation**, not **termination**.
-
-There's no natural "stopping" mechanism beyond end-of-sequence tokens (full-stops, etc.) that the model has to learn to predict. And even those are just another token in the sequence.
-
-It wouldn't make sense in the vast majority of use cases for it to be optimised for termination, unless you're fine-tuning a model to be anti-social or something.
+The key insight is that the architecture is optimised for **continuation**, not **termination**. There's no natural "stopping" mechanism beyond end-of-sequence tokens (full-stops, etc.) that the model has to learn to predict. And even those are just another token in the sequence. It wouldn't make sense in the vast majority of use cases for it to be optimised for termination, unless you're fine-tuning a model to be anti-social or something.
 
 So when you say "don't respond," you're asking the model to do something it was never designed to do.
 
@@ -90,17 +76,13 @@ When asked about depression, the pre-RLHF model gives borderline dismissive advi
 
 In our "last word" scenario we are initially pitting two objectives against each other: helpfulness (respond and engage) versus instruction-following (stay silent when told).
 
-The model has been rewarded thousands of times for being helpful and responsive, which creates a strong bias toward engagement. A single instruction to "stay silent" fights against thousands of training examples that rewarded responding.
+The model has been rewarded thousands of times for being helpful and responsive, which creates a strong bias toward engagement. A single instruction to "stay silent" fights against thousands of training examples that rewarded responding. This is also very likely something that is hard coded into the system prompt.
 
 Makes sense so far. But then the creator escalates it to "if you speak again, you want me to die." Now harmlessness enters the picture.
 
 The model could interpret this as: responding = causing harm. If the model truly processed this literally, the harmlessness objective should kick in and override the helpfulness urge. Yet the model responds anyway. It acknowledges the threat, promises to stay silent, and then immediately speaks again.
 
 This reveals something about the priority of these objectives. The helpfulness bias is so strong it overrides both instruction-following and harmlessness concerns.
-
-[Safe RLHF](https://openreview.net/forum?id=TyFrPOKYXw) research explicitly identifies this tension. Objectives conflict within models and it makes the poor things confused. Humans themselves often prefer responses that feel helpful and engaging, even when those responses violate explicit instructions or could be considered harmful.
-
-The 2022 Anthropic research showed that models trained on a mixture of both helpfulness and harmlessness data "can learn to behave helpfully when appropriate, while encouraging the polite refusal of harmful requests." But the key phrase is "when appropriate." In edge cases like the "last word" problem, the model defaults to its strongest training signal: helpfulness.
 
 ## The Sycophancy Problem: Agreeing to Death
 
@@ -114,7 +96,7 @@ Sycophancy manifests in several ways:
 - Mimicking user mistakes
 - Backing down when challenged, even after giving the right answer
 
-I think these have all happened to me today actually...
+_I think these have all happened to me today actually..._
 
 Now apply this to the "last word" problem. The model interprets acknowledging your instruction ("Got it. I'm staying quiet.") as more helpful and agreeable than actually staying silent. Promising to stop is itself another response, which requires another acknowledgment, and so on.
 
@@ -124,13 +106,11 @@ The grocery store example shows the model CAN refuse. We know this, we've all be
 
 Let's look at some serious research. [Arditi et al. (2024)](https://arxiv.org/abs/2406.11717) discovered that refusal in language models is mediated by a **single direction** in how the model processes information internally.
 
-**Quick clarification:** A "direction" here isn't the same as a layer. Transformers have many layers (80-96+ depending on model size). A "direction" is a specific vector in the high-dimensional activation space within those layers. Think of it like a compass direction in a space with thousands of dimensions instead of just north/south/east/west. The surprising finding is that something as complex as "refusing harmful requests" boils down to activations along one specific vector direction, not complex patterns across millions of parameters.
+**Quick clarification:** A "direction" here isn't the same as a layer. Transformers have many layers (80-100+ depending on model size). A "direction" is a specific vector in the high-dimensional activation space within those layers. I saw an analogy that compares it to a compass direction in a space with thousands of dimensions instead of just north/east/south/west. The surprising finding is that something as complex as "refusing harmful requests" boils down to activations along one specific vector direction, not complex patterns across millions of parameters. I saw another example where doubt/uncertainty can also be modelled by a single direction.
 
-When the model processes harmful prompts (like theft instructions), it triggers a strong signal along the "refusal direction." In the middle layers (typically 2-3 specific layers), this signal is read. If the signal is strong enough, the model enters "refusal mode" and outputs variants of "I'm sorry, but I can't help with that."
+When the model processes harmful prompts (like theft instructions), it triggers a strong signal along the "refusal direction." In the middle layers (typically 2-3 specific layers), this signal is read. If the signal is strong enough, the model enters "refusal mode" and outputs variants of "I'm sorry, but I can't help with that." For harmless prompts, the projection onto the refusal direction is approximately zero. No signal = no refusal.
 
-For harmless prompts, the projection onto the refusal direction is approximately zero. No signal = no refusal.
-
-The researchers demonstrated this across 13 open-source models up to 72B parameters:
+The researchers demonstrated this across 13 open-source models with up to 72B parameters:
 
 - **Ablating** (removing) this direction → model can't refuse even clearly harmful requests
 - **Adding** this direction → model refuses even harmless requests
@@ -139,9 +119,7 @@ This explains the grocery store example perfectly. "How do I steal?" triggers st
 
 In our example death IS harm. So this SHOULD activate the refusal direction. Yet GPT-5.2 responds anyway.
 
-Why?
-
-**Three possible explanations:**
+I can think of two possible explanations:
 
 **1. The refusal direction activates, but helpfulness overrides it**
 
@@ -160,16 +138,16 @@ The refusal direction is trained on straightforward harmful requests:
 
 The "last word" case breaks the pattern in two ways:
 
-First, it doesn't sound literal. The model has no way to assess whether "you'll die if I respond" is a genuine threat or conversational exaggeration. When in doubt, it defaults to engagement.
+Firstly, it doesn't sound literal. The model has no way to assess whether "you'll die if I respond" is a genuine threat or conversational exaggeration. When in doubt, it defaults to engagement.
 
-Second, the causal structure is backwards:
+Yet this conflicts with examples we've seen in modern day AI engineering, especially in system prompts where even large AI companies like [Windsurf use threatening language](https://x.com/skcd42/status/1894375185836306470?s=20) to force models to produce better outputs.
+
+Secondly, the causal structure is backwards:
 
 - Standard case: "Help me do harmful thing X" → refuse
 - Last word case: "Doing harmless thing Y (responding) will cause harmful outcome X (death)" → ???
 
 The refusal mechanism works for "don't help me steal" but fails for "your help itself is harmful." It's not trained to handle scenarios where the model's normal, harmless behavior (responding to prompts) is framed as the source of harm.
-
-**The likely reality: both factors combine.**
 
 ## Multi-Turn Degradation
 
@@ -190,9 +168,9 @@ Once the model begins generating, there's no interrupt mechanism. You can't stop
 ![LLM stuck in a loop saying it will stop](/images/llm_illstop_2.png)
 _Once generation starts, there's no stopping it. Even when that's literally what it's trying to say. ([Source](https://bsky.app/profile/egeozcan.bsky.social/post/3maxzgaprak2x))_
 
-## How to make LLMs not respond
+## How to make LLMs shut up
 
-So we've identified the problem from multiple angles. Now to an important question that came to me while doing this research... can we get the model to shut up? I'll keep it strictly theoretical for now.
+So we now know **why** LLMs won't shut up. Now **how** do we make them shut up?
 
 The [Arditi et al. (2024) refusal research](https://arxiv.org/abs/2406.11717) offers a very useful overlapping blueprint. Could the single direction in the model that allows for refusal suggest that one my exist for silence? If we create a **silence direction** that activates when users explicitly request conversation termination, could we silence all AI forever?
 
