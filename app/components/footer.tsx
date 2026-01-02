@@ -24,12 +24,12 @@ export default function Footer() {
           Get notified on new posts
         </p>
         <form
-          // action="https://buttondown.com/api/emails/embed-subscribe/ossama"
-          action="https://formsubmit.co/ossamachaib.cs@gmail.com"
+          action="https://buttondown.com/api/emails/embed-subscribe/ossama"
           method="post"
           target="popupwindow"
           className="flex gap-2"
         >
+          <input type="hidden" value="1" name="embed" />
           <input
             type="email"
             name="email"
@@ -48,9 +48,6 @@ export default function Footer() {
         </form>
         <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-2">
           No spam. Ever. I will cherish and guard your email like a newborn baby. A beautiful doe.
-        </p>
-        <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-2">
-          Note: Would have loved to use buttondown but the entire team is away for Xmas so temporarily a formsubmit then I'll port it over!
         </p>
       </div>
 
