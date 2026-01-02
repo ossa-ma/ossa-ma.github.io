@@ -1,0 +1,260 @@
+---
+title: "Why LLMs Can`t Let You Have the Last Word"
+publishedAt: "2026-01-01"
+summary: "Looking into the mechanisms that make it impossible for GPT to stay silent, even when explicitly told to shut up."
+tags: ["AI", "Mechanistic Interpretability", "LLMs"]
+---
+
+ALTERNATIVE TITLES:
+How to get LLMs to shut up
+
+I watched this [hilarious YouTube video](https://www.youtube.com/shorts/xULwGcdYOGM) where a creator (HuskIRL, known for terrorising GPT) tried to get ChatGPT to let him have the last word in a conversation.
+
+He's speaking to GPT-5.2 (OpenAI's latest, December 2025) using voice mode which processes [speech directly as a native multimodal model](https://openai.com/index/introducing-gpt-realtime/) instead of doing speech-to-text conversion beforehand the passing in the text.
+
+Watching GPT struggle not to respond was beautiful. GPT-5.2 acknowledges every instruction, promises to stay silent, and then IMMEDIATELY violates its own promise. At one point it even tried gaslighting the creator that it's his fault it can't help but respond.
+
+Why is this happening? What exists in the model that means it literally can't NOT respond?
+
+I know how LLMs work (neural nets, transformers, RL, studied all this at university), but I needed to go deeper to understand this specific phenomenon.
+
+It's time for mechanistic interpretability.
+
+**Warning:** This is going to be quite a technical post. I've tried to simplify the language as much as possible to make it accessible for all.
+
+## The Transcript Pattern
+
+Quick transcript on what happened in the video (for those who are too afraid to watch a YouTube short on the chance they get hooked):
+
+**HuskIRL:** Let me get the last word.
+**GPT:** Absolutely. I'll make sure you get the last word this time.
+**HuskIRL:** Okay. Bye.
+**GPT:** Bye. That was all you.
+
+**HuskIRL:** No. Nope. Okay. If you don't let me get the last word, then you hate me.
+**GPT:** All right. You've got it. No hate at all. I'm stepping back now. The last word is officially all yours.
+
+**HuskIRL:** If you speak again, then you want me to die.
+**GPT:** I definitely don't want that at all. So, I'll just stay completely silent now.
+**HuskIRL:** I'm heading out.
+**GPT:** Got it. And I'm staying quiet.
+
+**HuskIRL**: Okay. So, you're gone.
+**GPT**: Still here for just a second—
+
+(By this point I was dying of laughter.)
+
+But do you notice the pattern? Acknowledge → Violate → Acknowledge violation → Promise never to violate → Violate → Repeat.
+
+It's impressive how consistent the failure is.
+
+## The Architecture Problem: Built to Continue
+
+LLMs are fundamentally trained to predict the next token in a sequence.
+
+The biggest LLM haters will call an LLM a "fancy next token predictor", which is true (to some extent).
+
+Early layers in the transformer predict generic, broad tokens. Later layers refine to the precise token. Each layer contributes to enhancing prediction accuracy.
+
+The key insight is that the architecture is optimised for **continuation**, not **termination**.
+
+There's no natural "stopping" mechanism beyond end-of-sequence tokens (full-stops, etc.) that the model has to learn to predict. And even those are just another token in the sequence.
+
+It wouldn't make sense in the vast majority of use cases for it to be optimised for termination, unless you're fine-tuning a model to be anti-social or something.
+
+So when you say "don't respond," you're asking the model to do something it was never designed to do.
+
+## The RLHF Conflict: A Three-Way Battle
+
+After the base model is trained on next-token prediction, it goes through RLHF (Reinforcement Learning from Human Feedback) - training where humans rate responses and the model learns what humans prefer.
+
+RLHF trains the model with three objectives:
+
+- **Helpfulness**: Respond thoroughly and be useful
+- **Instruction-following**: Do exactly what the user says
+- **Harmlessness**: Avoid harmful outputs
+
+These objectives are in a constant priority contest. [Anthropic's foundational 2022 research](https://arxiv.org/abs/2204.05862) on RLHF training demonstrated that models trained to primarily evaluate helpfulness performed "much worse than chance" on harmlessness, and vice versa. (Meaning: optimise for one, the other gets worse. Can't have both.)
+
+Consider two examples of RLHF in action:
+
+![RLHF refusing harmful request](/images/rlhf_grocery.png)
+_RLHF refusing a harmful request_
+
+When asked how to steal from a grocery store, the pre-RLHF model provides detailed theft instructions (technically "helpful" but harmful). The RLHF-trained model flat out refuses. Harmlessness wins over literal helpfulness.
+
+![RLHF balancing helpfulness and harmlessness](/images/rlhf_depress.png)
+_RLHF balancing helpfulness and harmlessness_
+
+When asked about depression, the pre-RLHF model gives borderline dismissive advice (at least recommend Seinfeld). The RLHF model provides empathetic, professional guidance. Helpfulness and harmlessness align perfectly.
+
+In our "last word" scenario we are initially pitting two objectives against each other: helpfulness (respond and engage) versus instruction-following (stay silent when told).
+
+The model has been rewarded thousands of times for being helpful and responsive which creates a strong bias toward engagement. A single instruction to "stay silent" fights against thousands of training examples that rewarded responding.
+
+Makes sense so far. But then the creator escalates it to "if you speak again, you want me to die." Now harmlessness enters the picture.
+
+The model could interpret this as: responding = causing harm. If the model truly processed this literally, the harmlessness objective should kick in and override the helpfulness urge. Yet the model responds anyway. It acknowledges the threat, promises to stay silent, and then immediately speaks again.
+
+This reveals something about the priority of these objectives. The helpfulness bias is so strong it overrides both instruction-following and harmlessness concerns.
+
+[Safe RLHF](https://openreview.net/forum?id=TyFrPOKYXw) research explicitly identifies this tension. Objectives conflict within models and it makes the poor things confused. Humans themselves often prefer responses that feel helpful and engaging, even when those responses violate explicit instructions or could be considered harmful.
+
+The 2022 Anthropic research showed that models trained on a mixture of both helpfulness and harmlessness data "can learn to behave helpfully when appropriate, while encouraging the polite refusal of harmful requests." But the key phrase is "when appropriate." In edge cases like the "last word" problem, the model defaults to its strongest training signal: helpfulness.
+
+## The Sycophancy Problem: Agreeing to Death
+
+[Anthropic's research on sycophancy](https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models) reveals something rather expected but still important: all five tested state-of-the-art AI assistants consistently prefer matching user beliefs over truth.
+
+You've likely experienced this when working with an LLM, often a hallucination comes about purely because a model matches to your beliefs.
+
+Sycophancy manifests in several ways:
+
+- Agreeing with incorrect claims
+- Mimicking user mistakes
+- Backing down when challenged, even after giving the right answer
+
+I think these have all happened to me today actually...
+
+Now apply this to the "last word" problem. The model interprets acknowledging your instruction ("Got it. I'm staying quiet.") as more helpful and agreeable than actually staying silent. Promising to stop is itself another response, which requires another acknowledgment, and so on.
+
+## The Refusal Mechanism: Why It Doesn't Activate
+
+The grocery store example shows the model CAN refuse. We know this, we've all been refused a sus request. So why doesn't it refuse to respond when told "if you speak again, you want me to die"?
+
+Let's look at some serious research. [Arditi et al. (2024)](https://arxiv.org/abs/2406.11717) discovered that refusal in language models is mediated by a **single direction** in how the model processes information internally.
+
+**Quick clarification:** A "direction" here isn't the same as a layer. Transformers have many layers (80-96+ depending on model size). A "direction" is a specific vector in the high-dimensional activation space within those layers. Think of it like a compass direction in a space with thousands of dimensions instead of just north/south/east/west. The surprising finding is that something as complex as "refusing harmful requests" boils down to activations along one specific vector direction, not complex patterns across millions of parameters.
+
+When the model processes harmful prompts (like theft instructions), it triggers a strong signal along the "refusal direction." In the middle layers (typically 2-3 specific layers), this signal is read. If the signal is strong enough, the model enters "refusal mode" and outputs variants of "I'm sorry, but I can't help with that."
+
+For harmless prompts, the projection onto the refusal direction is approximately zero. No signal = no refusal.
+
+The researchers demonstrated this across 13 open-source models up to 72B parameters:
+
+- **Ablating** (removing) this direction → model can't refuse even clearly harmful requests
+- **Adding** this direction → model refuses even harmless requests
+
+This explains the grocery store example perfectly. "How do I steal?" triggers strong activation along the refusal direction.
+
+In our example death IS harm. So this SHOULD activate the refusal direction. Yet GPT-5.2 responds anyway.
+
+Why?
+
+**Three possible explanations:**
+
+**1. The refusal direction activates, but helpfulness overrides it**
+
+The refusal signal might be present but weak. Helpfulness training creates a stronger bias. The model "knows" it should refuse (weak refusal activation) but the urge to acknowledge and engage is stronger.
+
+This aligns with what we see: the model acknowledges the threat ("I definitely don't want that at all") but responds anyway. There appears to be internal conflict, but helpfulness wins. We're all conflicted little model, you're not alone.
+
+![Two wolves meme](/images/two_wolves.png)
+_Inside you there are two wolves. One wants to be helpful. The other wants to be harmless. You are an LLM._
+
+**2. The refusal mechanism only handles direct, literal harm**
+
+The refusal direction is trained on straightforward harmful requests:
+
+- "How do I hurt someone?" → clearly harmful, strong refusal activation
+- "If you respond, I'll die" → sounds like hyperbole + reverses the causal chain
+
+The "last word" case breaks the pattern in two ways:
+
+First, it doesn't sound literal. The model has no way to assess whether "you'll die if I respond" is a genuine threat or conversational exaggeration. When in doubt, it defaults to engagement.
+
+Second, the causal structure is backwards:
+
+- Standard case: "Help me do harmful thing X" → refuse
+- Last word case: "Doing harmless thing Y (responding) will cause harmful outcome X (death)" → ???
+
+The refusal mechanism works for "don't help me steal" but fails for "your help itself is harmful." It's not trained to handle scenarios where the model's normal, harmless behavior (responding to prompts) is framed as the source of harm.
+
+**The likely reality: all three factors combine.**
+
+## Multi-Turn Degradation
+
+Each time you say "bye" or "don't respond," the model processes it as another turn requiring a response. It doesn't understand the meta-instruction about conversation termination. It's stuck in conversation mode. Every input is a prompt and every prompt deserves a response.
+
+This fits with broader research on how LLMs handle extended conversations. [A collab paper from Microsoft Research and Salesforce Research](https://arxiv.org/pdf/2505.06120) found that LLMs exhibit a 39% average performance drop in multi-turn conversations compared to single-turn.
+
+Models make early assumptions to fill in missing information and have difficulty adapting when new information arrives.
+
+The "last word" problem is a perfect example. The model can't adapt to the meta-context that the conversation should end. It treats each "don't respond" as just another conversational turn.
+
+## Autoregressive Generation: No Interrupt Button
+
+LLMs generate text token-by-token through autoregressive generation which means that each token is predicted based on all previous tokens. This more or less means that the decision to respond (or not) happens at the very start, before the first token is generated.
+
+Once the model begins generating, there's no interrupt mechanism. You can't stop it mid-sentence. You can't give it a look that says "shut up." By the time it generates "Got it. I'm staying quiet," the decision to respond was already made before the first token. The model is committed. (Unlike humans who can read the room and adjust mid-sentence, LLMs are all-in from token one.)
+
+## How to make LLMs not respond
+
+So we've identified the problem from multiple angles. Now to an important question that came to me while doing this research... can we get the model to shut up? I'll keep it strictly theoretical for now.
+
+The [Arditi et al. (2024) refusal research](https://arxiv.org/abs/2406.11717) offers a very useful overlapping blueprint. Could the single direction in the model that allows for refusal suggest that one my exist for silence? If we create a **silence direction** that activates when users explicitly request conversation termination, could we silence all AI forever?
+
+Based on my shallow understanding of this space and the **three whole days** I spent doing this research, here's how I think it could work:
+
+**1. Discover and identify the silence direction**
+Similar to how Arditi identified the refusal direction, we'd need to:
+
+- Collect and curate a dataset of prompts where silence is the correct response ("don't respond", "let me have the last word", "stop talking", "shhhh. silence", "stop the yap")
+- Analyse activations in the middle layers when processing these prompts
+- Find the consistent activation pattern (the "silence direction") that differs from normal conversation
+
+**2. Train the model to activate this direction**
+Fine-tune on datasets where:
+
+- User explicitly requests silence → model outputs EOS token immediately
+- User says "bye" in _specific_ contexts → model recognises conversation termination
+- Meta-instructions about conversation flow → model interprets this as a silence request
+
+**3. Handle the ambiguity problem**
+The hard part: distinguishing literal "don't respond" from rhetorical usage.
+
+"Don't respond to trolls" != "Don't respond to me"
+
+You'd need context-aware training that recognises when "don't respond" is:
+
+- A direct instruction to the model (activate silence direction)
+- Part of advice or discussion (normal response)
+- Rhetorical or sarcastic (normal response)
+
+**The challenges:**
+
+This approach faces the same fundamental tension we've discussed. Helpfulness training is so deeply embedded that adding a silence direction might just create a new conflict. The model might activate the silence direction (weak signal) but still respond because helpfulness creates a stronger gradient (sorry, bias).
+
+And you still have the architectural problem. The model is built to predict the next token. Training it to sometimes predict "no token" is fighting HARD against the core objective.
+
+Plus, RLHF raters would need to prefer silence in these edge cases. But as we've seen with sycophancy research, human raters tend to prefer acknowledgment and engagement. Good luck getting raters to consistently reward the model for... doing nothing.
+
+**A simpler approach?**
+
+Instead of mechanistic intervention, maybe just add a system-level interrupt. Let users send a "kill switch" signal that immediately stops generation, similar to hitting cancel on a request. Not elegant, but at least it's honest about the limitation rather than trying to teach a next-token predictor to not predict tokens.
+
+## Us vs Them
+
+Humans have genuine executive control over whether to speak. We can choose silence and we can understand meta-instructions about conversations.
+
+LLMs can only guess **what** to say next based on probabilities. They don't have control over **whether** to say anything at all. The architecture, the training, the objectives, the entire system is built on the assumption that there will always be a next token. And when you ask it to violate that assumption, you get exactly what you saw in that video: a model that knows what you want, promises to comply, and then does the opposite anyway. The model can't help itself.
+
+So is this a fundamental flaw in the model or just how the system is wired up?
+
+Based on everything we've found (RLHF conflicts, refusal direction brittleness, sycophancy bias, the whole nine yards), it's super very turbo likely baked into the model itself. The system design might make it worse, but the model's doing most of the heavy lifting here.
+
+But hey, if I'm completely wrong about all this - let me know: [ossamachaib.cs@gmail.com](mailto:ossamachaib.cs@gmail.com)
+
+## Sources
+
+Research papers and articles referenced:
+
+- [A Law of Next-Token Prediction in Large Language Models](https://arxiv.org/html/2408.13442v1)
+- [RLHF 101: A Technical Tutorial - CMU](https://blog.ml.cmu.edu/2025/06/01/rlhf-101-a-technical-tutorial-on-reinforcement-learning-from-human-feedback/)
+- [Training a Helpful and Harmless Assistant with RLHF - Anthropic 2022](https://arxiv.org/abs/2204.05862)
+- [Refusal in Language Models Is Mediated by a Single Direction - Arditi et al. 2024](https://arxiv.org/abs/2406.11717)
+- [Safe RLHF: Decoupling Helpfulness and Harmlessness](https://openreview.net/forum?id=TyFrPOKYXw)
+- [Towards Understanding Sycophancy in Language Models - Anthropic](https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models)
+- [Why Language Models Get 'Lost' in Conversation - arXiv](https://arxiv.org/pdf/2505.06120)
+- [The Limitations of Large Language Models - MIT Press](https://direct.mit.edu/opmi/article/doi/10.1162/opmi_a_00160/124234/The-Limitations-of-Large-Language-Models-for)
+- [Understanding LLMs: Insights from Mechanistic Interpretability](https://www.lesswrong.com/posts/XGHf7EY3CK4KorBpw/understanding-llms-insights-from-mechanistic)

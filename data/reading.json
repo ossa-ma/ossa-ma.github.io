@@ -1,5 +1,37 @@
 [
   {
+    "url": "https://simonwillison.net/2025/Oct/7/vibe-engineering/",
+    "title": "Simon Willison’s Weblog",
+    "author": "Simon Willison",
+    "publishedDate": null,
+    "addedDate": "2025-12-30",
+    "thoughts": "LLMs reward existing top tier swe practices, need to explore managerial side!"
+  },
+  {
+    "url": "https://mitchellh.com/writing/ghostty-and-useful-zig-patterns",
+    "title": "Talk: Introducing Ghostty and Some Useful Zig Patterns",
+    "author": null,
+    "publishedDate": "2023-09-12",
+    "addedDate": "2025-12-29",
+    "thoughts": "Guide on how to structure a technical pitch deck (ghostty)"
+  },
+  {
+    "url": "https://medium.com/the-low-end-disruptor/groqs-deterministic-architecture-is-rewriting-the-physics-of-ai-inference-bb132675dce4",
+    "title": "Groq’s Deterministic Architecture is Rewriting the Physics of AI Inference",
+    "author": "Zheng \"Bruce\" Li",
+    "publishedDate": "2025-12-25",
+    "addedDate": "2025-12-29",
+    "thoughts": "Inference, memory, hardware, chips, economics"
+  },
+  {
+    "url": "https://newsletter.semianalysis.com/p/groq-inference-tokenomics-speed-but",
+    "title": "Groq Inference Tokenomics: Speed, But At What Cost?",
+    "author": "Dylan Patel, Daniel Nishball",
+    "publishedDate": "2024-02-21",
+    "addedDate": "2025-12-29",
+    "thoughts": "Super useful article on inference speed vs cost tradeoffs"
+  },
+  {
     "url": "https://mitchellh.com/writing/my-startup-banking-story",
     "title": "My Startup Banking Story",
     "author": null,
