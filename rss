@@ -5,6 +5,12 @@
         <link>https://ossa-ma.github.io</link>
         <description>This is my portfolio RSS feed</description>
         <item>
+          <title>Why LLMs Can't Shut Up</title>
+          <link>https://ossa-ma.github.io/blog/llm-last-word</link>
+          <description>Looking into the mechanisms that make it impossible for GPT to stay silent, even when explicitly told to shut up.</description>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 GMT</pubDate>
+        </item>
+<item>
           <title>Double: Claude Code Memory Without MCPs and DBs</title>
           <link>https://ossa-ma.github.io/blog/double</link>
           <description>Forget MCPs: Giving Claude Code persistent memory using markdown files, git and three delightful commands.</description>
