@@ -149,16 +149,6 @@ Secondly, the causal structure is backwards:
 
 The refusal mechanism works for "don't help me steal" but fails for "your help itself is harmful." It's not trained to handle scenarios where the model's normal, harmless behavior (responding to prompts) is framed as the source of harm.
 
-## Multi-Turn Degradation
-
-Each time you say "bye" or "don't respond," the model processes it as another turn requiring a response. It doesn't understand the meta-instruction about conversation termination. It's stuck in conversation mode. Every input is a prompt and every prompt deserves a response.
-
-This fits with broader research on how LLMs handle extended conversations. [A collab paper from Microsoft Research and Salesforce Research](https://arxiv.org/pdf/2505.06120) found that LLMs exhibit a 39% average performance drop in multi-turn conversations compared to single-turn.
-
-Why? Attention mechanisms degrade over longer conversations. The model's focus gets diluted across more tokens, and it can't revise its earlier predictions when new information arrives.
-
-The "last word" problem is a perfect example. The model can't adapt to the meta-context that the conversation should end. It treats each "don't respond" as just another conversational turn.
-
 ## Autoregressive Generation: No Interrupt Button
 
 LLMs generate text token-by-token through autoregressive generation which means that each token is predicted based on all previous tokens. This more or less means that the decision to respond (or not) happens at the very start, before the first token is generated.
@@ -170,9 +160,9 @@ _Once generation starts, there's no stopping it. Even when that's literally what
 
 ## How to make LLMs shut up
 
-So we now know **why** LLMs won't shut up. Now **how** do we make them shut up?
+So now we know why LLMs won't shut up. Now how do we make them shut up?
 
-The [Arditi et al. (2024) refusal research](https://arxiv.org/abs/2406.11717) offers a very useful overlapping blueprint. Could the single direction in the model that allows for refusal suggest that one my exist for silence? If we create a **silence direction** that activates when users explicitly request conversation termination, could we silence all AI forever?
+The [Arditi et al. (2024) refusal research](https://arxiv.org/abs/2406.11717) offers a very useful overlapping blueprint. Could the single direction in the model that allows for refusal suggest that one might exist for silence? If we create a **silence direction** that activates when users explicitly request conversation termination, could we silence all AI forever?
 
 Based on my shallow understanding of this space and the **three whole days** I spent doing this research, here's how I think it could work:
 
@@ -235,6 +225,5 @@ Research papers and articles referenced:
 - [Refusal in Language Models Is Mediated by a Single Direction - Arditi et al. 2024](https://arxiv.org/abs/2406.11717)
 - [Safe RLHF: Decoupling Helpfulness and Harmlessness](https://openreview.net/forum?id=TyFrPOKYXw)
 - [Towards Understanding Sycophancy in Language Models - Anthropic](https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models)
-- [Why Language Models Get 'Lost' in Conversation - arXiv](https://arxiv.org/pdf/2505.06120)
 - [The Limitations of Large Language Models - MIT Press](https://direct.mit.edu/opmi/article/doi/10.1162/opmi_a_00160/124234/The-Limitations-of-Large-Language-Models-for)
 - [Understanding LLMs: Insights from Mechanistic Interpretability](https://www.lesswrong.com/posts/XGHf7EY3CK4KorBpw/understanding-llms-insights-from-mechanistic)
