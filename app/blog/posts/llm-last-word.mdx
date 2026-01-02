@@ -1,16 +1,13 @@
 ---
-title: "Why LLMs Can`t Let You Have the Last Word"
+title: "Why LLMs Can't Shut Up"
 publishedAt: "2026-01-01"
 summary: "Looking into the mechanisms that make it impossible for GPT to stay silent, even when explicitly told to shut up."
 tags: ["AI", "Mechanistic Interpretability", "LLMs"]
 ---
 
-ALTERNATIVE TITLES:
-How to get LLMs to shut up
-
 I watched this [hilarious YouTube video](https://www.youtube.com/shorts/xULwGcdYOGM) where a creator (HuskIRL, known for terrorising GPT) tried to get ChatGPT to let him have the last word in a conversation.
 
-He's speaking to GPT-5.2 (OpenAI's latest, December 2025) using voice mode which processes [speech directly as a native multimodal model](https://openai.com/index/introducing-gpt-realtime/) instead of doing speech-to-text conversion beforehand the passing in the text.
+He's speaking to GPT-5.2 (OpenAI's latest, December 2025) using voice mode which processes [speech directly as a native multimodal model](https://openai.com/index/introducing-gpt-realtime/) instead of doing speech-to-text conversion beforehand then passing in the text.
 
 Watching GPT struggle not to respond was beautiful. GPT-5.2 acknowledges every instruction, promises to stay silent, and then IMMEDIATELY violates its own promise. At one point it even tried gaslighting the creator that it's his fault it can't help but respond.
 
@@ -47,6 +44,9 @@ Quick transcript on what happened in the video (for those who are too afraid to 
 But do you notice the pattern? Acknowledge → Violate → Acknowledge violation → Promise never to violate → Violate → Repeat.
 
 It's impressive how consistent the failure is.
+
+![An LLM promising to stop responding](/images/llm_illstop.png)
+_An LLM promising to stop responding. Repeatedly. While not stopping. ([Source](https://bsky.app/profile/egeozcan.bsky.social/post/3maxzgaprak2x))_
 
 ## The Architecture Problem: Built to Continue
 
@@ -90,7 +90,7 @@ When asked about depression, the pre-RLHF model gives borderline dismissive advi
 
 In our "last word" scenario we are initially pitting two objectives against each other: helpfulness (respond and engage) versus instruction-following (stay silent when told).
 
-The model has been rewarded thousands of times for being helpful and responsive which creates a strong bias toward engagement. A single instruction to "stay silent" fights against thousands of training examples that rewarded responding.
+The model has been rewarded thousands of times for being helpful and responsive, which creates a strong bias toward engagement. A single instruction to "stay silent" fights against thousands of training examples that rewarded responding.
 
 Makes sense so far. But then the creator escalates it to "if you speak again, you want me to die." Now harmlessness enters the picture.
 
@@ -150,7 +150,6 @@ The refusal signal might be present but weak. Helpfulness training creates a str
 This aligns with what we see: the model acknowledges the threat ("I definitely don't want that at all") but responds anyway. There appears to be internal conflict, but helpfulness wins. We're all conflicted little model, you're not alone.
 
 ![Two wolves meme](/images/two_wolves.png)
-_Inside you there are two wolves. One wants to be helpful. The other wants to be harmless. You are an LLM._
 
 **2. The refusal mechanism only handles direct, literal harm**
 
@@ -170,7 +169,7 @@ Second, the causal structure is backwards:
 
 The refusal mechanism works for "don't help me steal" but fails for "your help itself is harmful." It's not trained to handle scenarios where the model's normal, harmless behavior (responding to prompts) is framed as the source of harm.
 
-**The likely reality: all three factors combine.**
+**The likely reality: both factors combine.**
 
 ## Multi-Turn Degradation
 
@@ -178,7 +177,7 @@ Each time you say "bye" or "don't respond," the model processes it as another tu
 
 This fits with broader research on how LLMs handle extended conversations. [A collab paper from Microsoft Research and Salesforce Research](https://arxiv.org/pdf/2505.06120) found that LLMs exhibit a 39% average performance drop in multi-turn conversations compared to single-turn.
 
-Models make early assumptions to fill in missing information and have difficulty adapting when new information arrives.
+Why? Attention mechanisms degrade over longer conversations. The model's focus gets diluted across more tokens, and it can't revise its earlier predictions when new information arrives.
 
 The "last word" problem is a perfect example. The model can't adapt to the meta-context that the conversation should end. It treats each "don't respond" as just another conversational turn.
 
@@ -187,6 +186,9 @@ The "last word" problem is a perfect example. The model can't adapt to the meta-
 LLMs generate text token-by-token through autoregressive generation which means that each token is predicted based on all previous tokens. This more or less means that the decision to respond (or not) happens at the very start, before the first token is generated.
 
 Once the model begins generating, there's no interrupt mechanism. You can't stop it mid-sentence. You can't give it a look that says "shut up." By the time it generates "Got it. I'm staying quiet," the decision to respond was already made before the first token. The model is committed. (Unlike humans who can read the room and adjust mid-sentence, LLMs are all-in from token one.)
+
+![LLM stuck in a loop saying it will stop](/images/llm_illstop_2.png)
+_Once generation starts, there's no stopping it. Even when that's literally what it's trying to say. ([Source](https://bsky.app/profile/egeozcan.bsky.social/post/3maxzgaprak2x))_
 
 ## How to make LLMs not respond
 
@@ -235,9 +237,9 @@ Instead of mechanistic intervention, maybe just add a system-level interrupt. Le
 
 ## Us vs Them
 
-Humans have genuine executive control over whether to speak. We can choose silence and we can understand meta-instructions about conversations.
+Humans have genuine control over whether to speak. We can choose silence and we can understand meta-instructions about conversations.
 
-LLMs can only guess **what** to say next based on probabilities. They don't have control over **whether** to say anything at all. The architecture, the training, the objectives, the entire system is built on the assumption that there will always be a next token. And when you ask it to violate that assumption, you get exactly what you saw in that video: a model that knows what you want, promises to comply, and then does the opposite anyway. The model can't help itself.
+LLMs can only guess **what** to say next based on probabilities. They don't have control over **whether** to say anything at all. The architecture, the training, the objectives, the entire system is built on the assumption that there will always be a next token. And when you ask it to violate that assumption, you get exactly what you saw in that video: a model that knows what you want, promises to comply, and then does the opposite anyway.
 
 So is this a fundamental flaw in the model or just how the system is wired up?
 
