@@ -25,7 +25,7 @@ export default function Page() {
         and playing Fortnite.
       </p>
       <p className="mb-4">
-        Recently discovered how much I love writing. Whether it be tech, AI, life, finance, industry shennanigans: my recent Nvidia/Groq analysis hit #1 on HackerNews!
+        Recently discovered how much I love writing. Whether it be tech, AI, life, finance or industry shennanigans.
       </p>
       <p className="mb-4">
         I'm currently open to opportunities in AI infrastructure, backend systems, deep tech research, forward deployed engineering-
