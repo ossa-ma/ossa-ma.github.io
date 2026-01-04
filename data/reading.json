@@ -1,5 +1,51 @@
 [
   {
+    "url": "https://www.anthropic.com/research/end-subset-conversations",
+    "title": "Claude Opus 4 and 4.1 can now end a rare subset of conversations",
+    "author": "@AnthropicAI",
+    "publishedDate": null,
+    "addedDate": "2026-01-04",
+    "thoughts": "Claude being allowed to terminate conversations itself, user can't even respond! Alignment + safety measures, no paper though"
+  },
+  {
+    "url": "https://www.lesswrong.com/posts/2po6bp2gCHzxaccNz/ai-as-systems-not-just-models",
+    "title": "AI as systems, not just models",
+    "author": null,
+    "publishedDate": "2024-12-21",
+    "addedDate": "2026-01-01",
+    "thoughts": "Don't interpret models in isolation, look at system as a whole"
+  },
+  {
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/f545448535dfde4f9786555403ab7c49-Paper-Conference.pdf",
+    "title": "f545448535dfde4f9786555403ab7c49-Paper-Conference",
+    "author": null,
+    "publishedDate": null,
+    "addedDate": "2026-01-01",
+    "thoughts": "How models refuse harmful requests"
+  },
+  {
+    "url": "https://arxiv.org/pdf/2204.05862",
+    "title": "Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback",
+    "author": "Yuntao Bai, Andy Jones, Kamal Ndousse, Amanda Askell, Anna Chen, Nova DasSarma, Dawn Drain, Stanislav Fort, Deep Ganguli, Tom Henighan, Nicholas Joseph, Saurav Kadavath, Jackson Kernion, Tom Conerly, Sheer El-Showk, Nelson Elhage, Zac Hatfield-Dodds, Danny Hernandez, Tristan Hume, Scott Johnston, Shauna Kravec, Liane Lovitt, Neel Nanda, Catherine Olsson, Dario Amodei, Tom Brown, Jack Clark, Sam McCandlish, Chris Olah, Ben Mann, Jared Kaplan",
+    "publishedDate": "2022-04-11",
+    "addedDate": "2026-01-01",
+    "thoughts": "Foundational model alignment paper: helpfulness vs harmlessness, fine-tuning, RLHF"
+  },
+  {
+    "url": "https://arxiv.org/pdf/2505.06120",
+    "title": "LLMs Get Lost In Multi-Turn Conversation",
+    "author": "Philippe Laban, Hiroaki Hayashi, Yingbo Zhou, Jennifer Neville",
+    "publishedDate": "2025-05-08",
+    "addedDate": "2026-01-01"
+  },
+  {
+    "url": "https://simonwillison.net/2025/Dec/31/the-year-in-llms/",
+    "title": "The Year in LLMs 2025",
+    "author": "Simon Willison",
+    "publishedDate": null,
+    "addedDate": "2026-01-01"
+  },
+  {
     "url": "https://simonwillison.net/2025/Oct/7/vibe-engineering/",
     "title": "Simon Willison’s Weblog",
     "author": "Simon Willison",
