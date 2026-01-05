@@ -1,8 +1,8 @@
 ---
-title: 'Double: Claude Code Memory Without MCPs and DBs'
-publishedAt: '2025-12-29'
-summary: 'Forget MCPs: Giving Claude Code persistent memory using markdown files, git and three delightful commands.'
-tags: ['Engineering', 'AI', 'Tools']
+title: "Double: Claude Code Memory Without MCPs and DBs"
+publishedAt: "2025-12-29"
+summary: "Forget MCPs: Giving Claude Code persistent memory using markdown files, git and three delightful commands."
+tags: ["Engineering", "AI", "Tools"]
 ---
 
 Claude Code forgets everything between sessions and there are 100 startups, tools, open source repos and general ideas on how to fix this.
@@ -13,9 +13,15 @@ I tried a different approach using markdown files, the faultless git and three c
 
 I call it **Double**, named after Dostoevsky's novel. It kinda represents my second self. So not just engineering notes, but business ideas, personal workflows, writing style, hobby tracking. Everything that makes up how you work and think, in organized markdown files you control.
 
+## Double in Action
+
+![Double in action](/images/double_in_action.png)
+_This just happened (5th Jan 2026), I noticed Claude about to create a project with some bs src and \_\_init\_\_.py stuff and I interrupted it to load my engineering preferences using the double command '/engineering' and voila, steered it in the right direction!_
+
 ## The System
 
 Here's the entire folder structure:
+
 ```
 ~/double/
 ├── engineering/     # Technical patterns, best practices
@@ -31,6 +37,7 @@ Here's the entire folder structure:
 And the workflow is literally three markdown files that tell Claude what to do:
 
 **End of session - `/handoff`:**
+
 ```markdown
 Synthesize this session into a handoff entry for `~/double/.inbox.md`.
 
@@ -40,16 +47,20 @@ Format:
 [YYYY-MM-DD HH:MM] Session: [Brief description]
 
 Learnings:
+
 - [Reusable insight with context]
 
 Technical Content:
+
 - [New knowledge for engineering files]
 
 Decisions:
+
 - [Decision + why it matters beyond this task]
 ```
 
 **Route changes - `/sync`:**
+
 ```markdown
 1. Read ~/double/.inbox.md in full
 2. For each entry, determine target domain:
@@ -61,6 +72,7 @@ Decisions:
 ```
 
 **Load context - `/engineering`:**
+
 ```markdown
 You are now working on engineering/coding tasks. Load and reference:
 
@@ -90,29 +102,35 @@ Let's say you spent two hours debugging a weird Next.js build issue. Claude help
 ```
 
 Claude synthesizes what actually mattered from the session:
+
 ```markdown
 [2025-12-29 14:30] Session: Next.js build debugging
 
 Learnings:
+
 - Static export breaks when using server components in app router
 - Need "use client" directive even for client-only hooks
 
 Technical Content:
+
 - Next.js: app/ directory requires explicit client boundaries
 - Solution: Move useState/useEffect components to separate client files
 
 Next:
+
 - Document this in engineering/deployment.md under Next.js gotchas
 ```
 
 Gets appended to `~/double/.inbox.md`.
 
 Now run:
+
 ```bash
 /sync
 ```
 
 Claude reads the inbox, routes everything to the right files:
+
 - Technical learnings → `engineering/deployment.md`
 - New tasks → `tasks/active.md`
 - Workflow insights → `personal/workflow.md`
@@ -120,6 +138,7 @@ Claude reads the inbox, routes everything to the right files:
 Archives the processed entry to `meta/processed/2025-12-29.md`. Commits to git. Clears the inbox.
 
 Next session:
+
 ```bash
 /engineering
 ```
@@ -159,6 +178,7 @@ You see exactly what's stored. You control what gets remembered. You can edit, d
 The template is on GitHub: [github.com/ossa-ma/double](https://github.com/ossa-ma/double)
 
 **Setup (5 minutes):**
+
 ```bash
 # Clone the template
 git clone https://github.com/ossa-ma/double ~/double
@@ -183,12 +203,14 @@ All optional. The core workflow is handoff → sync → load.
 ## When This Works
 
 **Good fit:**
+
 - You want organized, editable knowledge
 - You value transparency over automation
 - You work across multiple tools (Cursor, Claude Code, etc.)
 - You like git workflows
 
 **Not a fit:**
+
 - You want zero manual work
 - You trust semantic search to find what matters
 - You need automatic context injection per query
@@ -200,6 +222,6 @@ If you try it and it sucks, let me know [ossamachaib.cs@gmail.com](mailto:ossama
 ## Related Reading
 
 This idea builds on concepts from:
+
 - [Memory as an AI Superpower](https://davegriffith.substack.com/p/memory-as-an-ai-superpower) - Dave Griffith on persistent context for AI tools
 - [The Magic of Claude Code](https://www.alephic.com/writing/the-magic-of-claude-code) - Detailed exploration of Claude Code workflows
-
