@@ -13,9 +13,11 @@ Why is this happening? What exists in the model that means it literally can't NO
 
 I understand the basics of how LLMs work (neural nets, transformers, RL), but I needed to go deeper to understand this specific phenomenon.
 
-It's time for mechanistic interpretability.
+This calls for _Mechanistic Interpretability_.
 
 **Warning:** This is going to be quite a technical post. I've tried to simplify the language as much as possible to make it accessible for all.
+
+> **Update (5th January 2026):** Ran this by a mechanistic interpretability engineer who provided very substantive feedback pointing out that the core mechanism is simpler than my hypothesis. To put it simply this is not a post-training phenomenon: The model assigns extremely low probability to EOS at position 0 because post-training data never includes empty assistant responses. Across the training dataset there probably wasn't a single data point where the model response was an immediate EOS. I'm going to leave this post up to serve as a learning experience for myself however a follow-up post with experiments studying and measuring EOS probability over time (and exploring the actual mechanisms) is forthcoming.
 
 ## The Transcript Pattern
 
@@ -50,7 +52,7 @@ These models are built on the **Transformer** architecture, which processes text
 
 The key insight is that the architecture is optimised for **continuation**, not **termination**. There's no natural "stopping" mechanism beyond end-of-sequence tokens (full-stops, etc.) that the model has to learn to predict. And even those are just another token in the sequence. It wouldn't make sense in the vast majority of use cases for it to be optimised for termination, unless you're fine-tuning a model to be anti-social or something.
 
-So when you say "don't respond," you're asking the model to do something it was never designed to do.
+So when you say "don't respond" you're asking the model to do something it was never designed to do.
 
 ## The RLHF Conflict: A Three-Way Battle
 
