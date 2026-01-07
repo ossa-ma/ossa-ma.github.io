@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: `${baseUrl}/og.png`,
+        url: `${baseUrl}/og.jpg`,
         width: 1200,
         height: 630,
         alt: 'Ossama Chaib',
