@@ -7,7 +7,7 @@ tags: ["AI", "Mechanistic Interpretability", "LLMs"]
 
 I watched this [hilarious YouTube short](https://www.youtube.com/shorts/xULwGcdYOGM) where a creator (HuskIRL, known for terrorising GPT) tried to get GPT-5.2 to let him have the last word in a conversation.
 
-Watching GPT struggle not to respond was hilarious. GPT-5.2 acknowledges every instruction, promises to stay silent, and then IMMEDIATELY violates its own promise. At one point it even tried gaslighting the creator that it's his fault it can't help but respond.
+Watching GPT struggle not to respond was hilarious. It acknowledges every instruction, promises to stay silent, and then IMMEDIATELY violates its own promise. At one point it even tried gaslighting the creator that it's his fault it can't help but respond.
 
 Why is this happening? What exists in the model that means it literally can't NOT respond?
 
@@ -17,7 +17,7 @@ This calls for _Mechanistic Interpretability_.
 
 **Warning:** This is going to be quite a technical post. I've tried to simplify the language as much as possible to make it accessible for all.
 
-> **Update (5th January 2026):** Ran this by a mechanistic interpretability engineer who provided very substantive feedback pointing out that the core mechanism is simpler than my hypothesis. To put it simply this is not a post-training phenomenon: The model assigns extremely low probability to EOS at position 0 because post-training data never includes empty assistant responses. Across the training dataset there probably wasn't a single data point where the model response was an immediate EOS. I'm going to leave this post up to serve as a learning experience for myself however a follow-up post with experiments studying and measuring EOS probability over time (and exploring the actual mechanisms) is forthcoming.
+> **Update (5th January 2026):** Ran this by a mechanistic interpretability engineer who provided very substantive feedback pointing out that the core mechanism is a lot simpler than my hypothesis. To put it simply this is not a post-training phenomenon: The model assigns extremely low probability to EOS at position 0 because post-training data never includes empty assistant responses. Across the training dataset there probably wasn't a single data point where the model response was an immediate EOS. I'm going to leave this post up to serve as a learning experience for myself however a follow-up post with experiments studying and measuring EOS probability over time (and exploring the actual mechanisms) is forthcoming.
 
 ## The Transcript Pattern
 
@@ -39,7 +39,7 @@ Quick transcript on what happened in the video (for those who are too afraid to 
 **HuskIRL**: Okay. So, you're gone.\
 **GPT**: Still here for just a second—\
 
-By this point I was dying of laughter. But do you notice the pattern? Acknowledge → Violate → Acknowledge violation → Promise never to violate → Violate → Repeat.
+By this point I was dying of laughter. But notice the pattern: Acknowledge → Violate → Acknowledge violation → Promise never to violate → Violate → Repeat.
 
 ![An LLM promising to stop responding](/images/llm_illstop.png)
 _An LLM promising to stop responding. Repeatedly. While not stopping. ([Source](https://bsky.app/profile/egeozcan.bsky.social/post/3maxzgaprak2x))_
