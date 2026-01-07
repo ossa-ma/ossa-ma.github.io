@@ -17,16 +17,16 @@
   },
   {
     "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/f545448535dfde4f9786555403ab7c49-Paper-Conference.pdf",
-    "title": "f545448535dfde4f9786555403ab7c49-Paper-Conference",
-    "author": null,
-    "publishedDate": null,
+    "title": "Refusal in Language Models Is Mediated by a Single Direction",
+    "author": "Andy Arditi et al.",
+    "publishedDate": "2024-12-10",
     "addedDate": "2026-01-01",
     "thoughts": "How models refuse harmful requests"
   },
   {
     "url": "https://arxiv.org/pdf/2204.05862",
     "title": "Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback",
-    "author": "Yuntao Bai, Andy Jones, Kamal Ndousse, Amanda Askell, Anna Chen, Nova DasSarma, Dawn Drain, Stanislav Fort, Deep Ganguli, Tom Henighan, Nicholas Joseph, Saurav Kadavath, Jackson Kernion, Tom Conerly, Sheer El-Showk, Nelson Elhage, Zac Hatfield-Dodds, Danny Hernandez, Tristan Hume, Scott Johnston, Shauna Kravec, Liane Lovitt, Neel Nanda, Catherine Olsson, Dario Amodei, Tom Brown, Jack Clark, Sam McCandlish, Chris Olah, Ben Mann, Jared Kaplan",
+    "author": "Yuntao Bai et al.",
     "publishedDate": "2022-04-11",
     "addedDate": "2026-01-01",
     "thoughts": "Foundational model alignment paper: helpfulness vs harmlessness, fine-tuning, RLHF"
@@ -34,7 +34,7 @@
   {
     "url": "https://arxiv.org/pdf/2505.06120",
     "title": "LLMs Get Lost In Multi-Turn Conversation",
-    "author": "Philippe Laban, Hiroaki Hayashi, Yingbo Zhou, Jennifer Neville",
+    "author": "Philippe Laban et al.",
     "publishedDate": "2025-05-08",
     "addedDate": "2026-01-01"
   },
@@ -118,9 +118,9 @@
   },
   {
     "url": "https://cdn.sanity.io/files/chol0sk5/production/81d0c45ed70a10f1804bbd82f2d0076af1186ff0.pdf",
-    "title": "81d0c45ed70a10f1804bbd82f2d0076af1186ff0",
-    "author": null,
-    "publishedDate": null,
+    "title": "A Software-defined Tensor Streaming Multiprocessor for Large-scale Machine Learning",
+    "author": "Dennis Abts et al.",
+    "publishedDate": "2022-06-18",
     "addedDate": "2025-12-25",
     "thoughts": "Groq foundational paper 2022 - read this to see where every author is, most went to Nvidia and Google"
   },
@@ -134,24 +134,24 @@
   },
   {
     "url": "https://cdn.sanity.io/files/chol0sk5/production/5c2f94426fd80fc3747c125620d9771a281a0644.pdf",
-    "title": "5c2f94426fd80fc3747c125620d9771a281a0644",
+    "title": "GroqThoughts: Agentic AI",
     "author": null,
-    "publishedDate": null,
+    "publishedDate": "2024-08-21",
     "addedDate": "2025-12-25",
     "thoughts": "Groq on agentic workflows, this is how I'm spending the holidays..."
   },
   {
     "url": "https://extremecomputingtraining.anl.gov/wp-content/uploads/sites/96/2022/11/ATPESC-2022-Track-1-Talk-4-Ling-Groq.pdf",
-    "title": "ATPESC-2022-Track-1-Talk-4-Ling-Groq",
-    "author": null,
-    "publishedDate": null,
+    "title": "Software-defined Tensor Streaming Multiprocessor",
+    "author": "Andrew Ling",
+    "publishedDate": "2022-11-01",
     "addedDate": "2025-12-24",
     "thoughts": "2022 Groq presenting LPU and TSP papers"
   },
   {
     "url": "https://arxiv.org/pdf/2512.07828",
     "title": "The Adoption and Usage of AI Agents: Early Evidence from Perplexity",
-    "author": "Jeremy Yang, Noah Yonack, Kate Zyskowski, Denis Yarats, Johnny Ho, Jeremy Ma",
+    "author": "Jeremy Yang et al.",
     "publishedDate": null,
     "addedDate": "2025-12-23",
     "thoughts": "Interesting paper by Perplexity on adoption and usage of AI agents, exposes the growing class divide"
@@ -181,9 +181,9 @@
   },
   {
     "url": "https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf",
-    "title": "Wang03-shazam.pdf",
-    "author": null,
-    "publishedDate": null,
+    "title": "An Industrial-Strength Audio Search Algorithm",
+    "author": "Avery Li-Chun Wang",
+    "publishedDate": "2003-10-26",
     "addedDate": "2025-12-22",
     "thoughts": "Paper on how Shazam works"
   },

@@ -26,7 +26,7 @@ export default function CVPage() {
                 {/* Summary */}
                 <div className="mb-8">
                     <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
-                        Open to opportunities in software engineering and AI: from deep research roles to forward deployed engineering and customer facing roles. I genuinely believe I can do it all. Beyond my core engineering work, I have extensive experience in technical writing, research, and open source contribution, with a strong focus on product growth and user-centric development.
+                        Open to opportunities in software engineering and AI: from deep research roles to forward deployed engineering and customer facing roles. I genuinely believe I can do it all. Bonus experience in technical writing, research, and open source contribution, and an enthusiasm for product growth and user-centric development.
                     </p>
                 </div>
 
