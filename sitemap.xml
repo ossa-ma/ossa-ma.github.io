@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://ossa-ma.github.io</loc>
-<lastmod>2026-01-04</lastmod>
+<lastmod>2026-01-07</lastmod>
 </url>
 <url>
 <loc>https://ossa-ma.github.io/blog</loc>
-<lastmod>2026-01-04</lastmod>
+<lastmod>2026-01-07</lastmod>
 </url>
 <url>
 <loc>https://ossa-ma.github.io/blog/blog-meet-rlog</loc>
@@ -47,6 +47,10 @@
 <url>
 <loc>https://ossa-ma.github.io/blog/pltr-fdes</loc>
 <lastmod>2025-12-04T00:00:00.000Z</lastmod>
+</url>
+<url>
+<loc>https://ossa-ma.github.io/blog/silence-of-llambs</loc>
+<lastmod>2026-01-07T00:00:00.000Z</lastmod>
 </url>
 <url>
 <loc>https://ossa-ma.github.io/blog/when-not-to-use-pydantic</loc>
