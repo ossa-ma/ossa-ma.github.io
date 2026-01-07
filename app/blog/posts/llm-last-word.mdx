@@ -1,7 +1,7 @@
 ---
 title: "Why LLMs Can't Shut Up"
 publishedAt: "2026-01-02"
-summary: "Looking into the mechanisms that make it impossible for GPT to stay silent, even when explicitly told to shut up."
+summary: "Speculating, hypothecating, contemplating the mechanisms that make it impossible for GPT to stay silent, even when explicitly told to shut up."
 tags: ["AI", "Mechanistic Interpretability", "LLMs"]
 ---
 
@@ -17,7 +17,7 @@ This calls for _Mechanistic Interpretability_.
 
 **Warning:** This is going to be quite a technical post. I've tried to simplify the language as much as possible to make it accessible for all.
 
-> **Update (5th January 2026):** Ran this by a mechanistic interpretability engineer who provided very substantive feedback pointing out that the core mechanism is a lot simpler than my hypothesis. To put it simply this is not a post-training phenomenon: The model assigns extremely low probability to EOS at position 0 because post-training data never includes empty assistant responses. Across the training dataset there probably wasn't a single data point where the model response was an immediate EOS. I'm going to leave this post up to serve as a learning experience for myself however a follow-up post with experiments studying and measuring EOS probability over time (and exploring the actual mechanisms) is forthcoming.
+> **Update (5th January 2026):** Ran this by a mechanistic interpretability engineer who provided very substantive feedback pointing out that the core mechanism is a lot simpler than my hypothesis. To put it simply this is not a post-training phenomenon: The model assigns extremely low probability to EOS at position 0 because post-training data never includes empty assistant responses. Across the training dataset there probably wasn't a single data point where the model response was an immediate EOS. I'm going to leave this post up to serve as a learning experience for myself however a follow-up post with experiments studying and measuring EOS probability over time is here: [The Silence of the LLaMbs](/blog/llm-last-word-2.mdx)
 
 ## The Transcript Pattern
 
@@ -131,7 +131,7 @@ The refusal signal might be present but weak. Helpfulness training creates a str
 
 This aligns with what we see: the model acknowledges the threat ("I definitely don't want that at all") but responds anyway. There appears to be internal conflict, but helpfulness wins. We're all conflicted little model, you're not alone.
 
-![Two wolves meme](/images/two_wolves.png)
+![Two wolves](/images/two_wolves.png)
 
 **2. The refusal mechanism only handles direct, literal harm**
 
