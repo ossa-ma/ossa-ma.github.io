@@ -1,8 +1,8 @@
 ---
 title: "The Silence of the LLaMbs"
 publishedAt: "2026-01-07"
-summary: "Why won't LLMs shut up? Knee deep in the mechanisms, experimenting, tinkering, tonkering, my previous hypothesis did not hold."
-tags: ["AI", "Mechanistic Interpretability", "LLMs", "Pain"]
+summary: "Why won't LLMs shut up? Knee deep in the mechanisms, experimenting, tinkering, understanding why my previous hypothesis did not hold."
+tags: ["AI", "pAIn", "Mechanistic Interpretability", "LLobotoMy", "LLMs"]
 ---
 
 After publishing my post on [why LLMs can't shut up](/blog/llm-last-word), I reached out to a mechanistic interpretability engineer to get some feedback.
@@ -170,6 +170,8 @@ This explains why LLMs sometimes feel like they are rambling. They might have _w
 So if the problem is that the model has never seen silence, the solution should be simple: **Show it silence.**
 
 I wanted to see exactly how many examples it would take to teach a model to shut up. Is this a deep-rooted psychological block that requires thousands of therapy sessions (epochs), or just a simple misunderstanding?
+
+Time for Gemma to undergo what I like to call a **LL**oboto**M**y.
 
 I created a tiny synthetic dataset of "silence requests" mapped to empty responses (EOS token) and ran a LoRA fine-tune on `google/gemma-3-1b-it`.
 
