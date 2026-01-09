@@ -1,0 +1,245 @@
+---
+title: "The Big Tech Ugly Duckling: An Engineer's Bet on Snapchat"
+publishedAt: "2026-01-08"
+summary: "An engineer's analysis of Snap's technical advantages, market position, and execution risks. Why the company could be massively undervalued or a value trap."
+tags: ["Investments", "Big Tech", "AI", "AR/VR/ARR/GRR", "Get Your Money Up"]
+---
+
+Snap is the most asymmetric bet in AI. One Billion users (capital B) , world-class research, on-device GenAI, is likely the only social media your child uses and yet has a $14B market cap. Meta is worth $1.6T. Something doesn't add up.
+
+After 8 years as the market's punching bag, the CEO dropped a memo that reads like he finally woke up. I analysed it: the engineering, the culture, the infrastructure shifts, and the numbers to figure out if this is a real turnaround or if Snap stays broken forever.
+
+_Full disclosure: I'm obviously invested. More than I probably should be. But this is not a pump piece. Nor is it finance bro SeekingAlpha/Morningstar slop. I don't care if you invest. This is a research and engineering driven report._
+
+## The Memo
+
+<a href="https://newsroom.snap.com/14-year-letter" target="_blank">Evan released a charismatic note in 2025</a>, company-wide then online, detailing his 14 years at the company. It reads like an awakening, realising how far behind Snapchat is to the rest of their competitors.
+
+With all due respect to Evan, the market has not characterised him as the best tech CEO and that is evident in the markets valuation of Snap.
+Over the years investors both retail and institutional have gotten weary and tired of him dumping his shares on them, diluting to pay out big equity to retain/hire talent and spend heavily on R&D at the cost of turning a profit.
+
+His somber acknowledgement:
+> "Achieving net income profitability would also help offset the dilution risk of stock-based compensation and establish a stronger foundation under our share price."
+
+However this memo may be what gets him in their good graces. PROVIDED he can execute.
+
+## The Market
+
+We're in an AI boom _pronounced bubble_. Whether you pay attention to the markets or not you'll have heard all sorts of insane valuations, acquisitions, salaries, big fat numbers being floated around all around.
+
+Snap Inc has seen none of this. While AI-adjacent tech is up ~33% YTD ($AIQ ETF as a measure) $SNAP is down ~30%.
+
+Yet product-wise, research-wise, talent-wise they seemed best-positioned to reap the rewards of this?
+Especially when compared to the other huge players in the space: Meta ($1.6T) and Apple ($3.8T). Snapchat is at a measly $14B.
+
+Taken from the CEO's mouth:
+
+> “Our current stock price reflects doubt. At this valuation, there's startup-style return potential.”
+
+I agree.
+
+## Capitalising
+
+Snapchat has nearly 1 BILLION monthly active users and 477 MILLION daily active users. Insane numbers. Nothing to show for it. Yet...?
+They're finally attempting to capitalise on ad revenue market share, they are under 1% of the global digital ad market. Google - 39%, Meta - 23%.
+This market is growing 13% YoY.
+
+Another big example is them finally demonstrating some form of business acumen by finally **CHARGING** users for **MEMORIES** storage.
+
+If you're unfamiliar with Snapchat users can store pictures and videos directly on the platform in their "Memories" bank,
+this feature allows for seamless integration with other engagement features like sharing, reposting, editing this media on the platform.
+Great idea? Well it was completely **FREE** to store **GIGABYTES** of data per user on the **SNAPCHAT CLOUD** for **12+ YEARS**. Until now.
+
+![Snapchat Memories](/images/snapchat_memories.png)
+
+See while most companies panicked to jam, glue and hack AI into their existing products. For Snap it was seamless, because they'd been doing it for so many years already:
+
+> "Snapchat is one of the only places where AI can be woven directly into the fabric of your friendships, Snaps, and conversations. We don't just want to make AI smarter. We want to make it more personal, social, and fun. Our vision for AI enhances your relationships, instead of replacing them."
+
+Companies have started to realise this with Perplexity paying snap **$400 MILLION over one year**, through a combination of cash and equity, to embed Perplexity's AI search completely within the app [[1]](https://investor.snap.com/news/news-details/2025/Snap-and-Perplexity-Partner-to-Bring-Conversational-AI-Search-to-Snapchat/default.aspx).
+
+But the fact that a major revenue stream of theirs 'Snapchat+'' ("with more than 15 million subscribers and more than $700 million in ARR") was not a primary objective and only released late-2022 is telling.
+
+Who was sleeping at the wheel and why? Well it seems to be finally changing.
+
+![Snapchat Plus](/images/snapchat_plus.png)
+_Don't worry if these words mean nothing to you, most mean nothing to me too._
+
+## Research and Development
+
+Snap spent [$1.744B on R&D in year ending September 2025](https://www.macrotrends.net/stocks/charts/SNAP/snap/research-development-expenses). That's 25-30% of revenue. Meta spends ~27% (but on a way bigger budget).
+
+I analysed all 344 papers from [Snap Research](https://research.snap.com/publications.html) with their citation counts.
+
+![Snap Research Citations](/images/snapchat_top_citations.png)
+_344 papers analyzed. Evolution from foundational CV (pre-2022, 1000+ citations) → applied ML systems (2022-2024, 400-700 citations) → on-device GenAI (2024+, rapidly accumulating citations)._
+
+Let's see where all these R&D dollars went and how they translate to product.
+
+#### Computer Vision & GenAI Research
+
+The citation data shows depth across the entire computer vision stack:
+- **3D Reconstruction**: 3D Hand Shape and Pose from RGB (2019) - **611 citations**. Single-image 3D estimation that powers AR hand tracking.
+- **Video Object Segmentation**: YouTube-VOS (2018) - **656 citations**. Benchmark dataset that defined the field.
+- **Neural Rendering**: CLIP-NeRF (2022) - **540 citations**. Text-and-image driven manipulation of neural radiance fields.
+- **Motion Transfer**: Animating Arbitrary Objects via Deep Motion Transfer (2019) - **485 citations**. Technology behind Snapchat's object animation filters.
+
+At [CVPR 2023](https://newsroom.snap.com/snap-showcases-research-advancements-at-cvpr-2023), they presented 12 papers with a 70% acceptance rate (typical CVPR acceptance is 25-30%).
+
+**On-Device GenAI**: In 2024, they [shipped real-time GenAI on mobile devices](https://newsroom.snap.com/new-ar-experiences-powered-by-gen-ai).
+Type a prompt, get AR effects in real-time on your phone.
+This is quite crazy as everyone else is busy making cloud-inference faster and cheaper (bigger models obviously but you get the point).
+
+What they've deployed:
+- **[SnapGen](https://newsroom.snap.com/snap-research-at-cvpr)**: Text-to-image in less than seconds on mobile
+- **SnapGen-V**: 5-second videos generated in 5 seconds on-device
+- **Snap Video (2024)**: Scaled spatiotemporal transformers for text-to-video synthesis
+- **Magic123 (2024)**: One image to high-quality 3D objects
+- **Lens Studio 5.0** with GenAI Suite: Creation time from weeks to hours, fostering a community of ARVR builders
+- **300M+ daily AR users**: More AR engagement than any platform
+
+#### Graph Neural Networks & Social Research
+
+Obviously a social media company should be doing graph research. It directly powers friend recommendations, content ranking and other social dynamics.
+
+**Graph Neural Networks**:
+- Data Augmentation for GNNs (2020) - **599 citations**. Fundamental work on making GNNs actually work with limited labels.
+- Is Homophily a Necessity for GNNs (2022) - **416 citations**, challenging core assumptions about how social graphs behave.
+- Graph-less Neural Networks (2022) - **309 citations**, distilling graph knowledge into faster MLPs for production (Woah now we're going graphless?).
+
+**Social Media NLP**:
+- TWEET EVAL (2020) - **1,184 citations**, The benchmark for evaluating NLP on social media.
+- TimeLMs (2022) - **430 citations**, language models that understand how language evolves over time (critical for slang, memes, and how teens actually communicate).
+- TweetNLP (2022) - **258 citations**, cutting-edge NLP specifically for short-form social posts.
+
+**LLaGA (2024)** - **178 citations**, Large Language and Graph Assistant that combines LLMs with graph structure.
+This is the future of social recommendations, understanding both what you say and who you're connected to.
+
+This is what powers "People You May Know" and Spotlight recommendations and also very useful for safety and moderation.
+
+#### Spectacles (AR/VR)
+
+Understandably a lot of companies appear to be scaling back on AR/VR R&D spending but does this mean it was a bad bet or just that they went too far?
+I'm talking about [Meta slashing the metaverse budget](https://www.businessinsider.com/meta-stock-price-market-cap-metaverse-cuts-mark-zuckerberg-ai-2025-12).
+But [Apple's hiring for the Vision Pro](https://jobs.apple.com/en-us/search?search=%22vision+pro%22&sort=relevance&location=united-states-USA) is still growing significantly despite the product not being an overwhelming success.
+
+Snap may have the ugliest pair of glasses on the market, but they also have the best tech (FOV, immersion, AI capabilities), the best integrations, the greatest engagement and as a result the largest bank of AR/VR data thanks to Snapchat.
+
+![Snapchat AR](/images/snapchat_ar.png)
+_Serious numbers._
+
+And now in the CEOs memo he mentions potential use cases aside from entertainment - WORK, REAL PRODUCTIVE MONEY MAKING WORK:
+
+> "AI is transforming the way we work, shifting us from micromanaging files and apps to supervising agents.
+   And the costs of manufacturing physical goods are skyrocketing.
+   Specs address all three challenges with eyes-up computing, a new AI-native operating system that understands your context,
+   and the replacement of physical products with photons, reducing waste while opening a vast new economy of digital goods."
+
+Lowkey that reads like slop... Let's see what else he said:
+
+> "Imagine pulling up last week's document just by asking or reviewing a 3D prototype at scale with your teammate standing next to you."
+
+Hmm, better. Maybe a rebrand on its way? Snapwork? Why not? Maybe target some enterprise SaaS/PaaS/hardware marketshare. They have the tech, the talent, the data, and despite the dilution concerns, the capital to make this happen.
+
+
+## Moonshots and Internal Restructuring
+
+> "We're going to try a new way of organizing around a handful of our big, new bets.
+  Five to seven squads of 10 to 15 people—will run like startups inside Snap, with single-threaded leaders accountable for outcomes.
+  Weekly demo days, 90-day mission cycles, and a culture of fast failure will keep us moving."
+
+This sort of restructure may seem daunting to a lot of you.
+Firstly, it's only for moonshot projects or big bets, similar to [Spotify's Squads/Tribes model](https://blog.crisp.se/wp-content/uploads/2012/11/SpotifyScaling.pdf), [Google X](https://x.company/blog/posts/a-peek-inside-the-moonshot-factory-operating-manual/) or early [Palantirean culture](blog/pltr-fdes).
+Intimate teams, high accountability and most importantly focused solely on results not promotions or self-interests like some of the bigger companies, no names...
+It's okay to fail, just keep moving.
+
+> "Our platform teams will be enablers, handing squads the toolkits and guardrails to ship safely at speed."
+
+THIS IS ESPECIALLY GOOD. I can even go as far as to say without this it would've been certain to fail.
+
+**The core platform team remains unchanged** - too much change breaks things and it is very irresponsible to break the core platform.
+
+**Core platform teams provide unified tools and guardrails** - everyone is on the same damn page. This is a huge problem at other companies where teams operate in the same manner but with ZERO cross-team communication. No centralised source of truth.
+It results in the company having teams working on the building identical tools and workflows, serious productivity drain.
+This even happens at companies like the aforementioned Palantir and Google (even Deepmind). Identifying this problem ahead of time is excellent.
+
+## Core Engineering
+
+Now for some strict engineering talk.
+
+As someone who is primarily an engineer and secondarily an investor, I look toward serious engineering efforts when gauging company and culture shifts.
+
+**Infrastructure Optimization**
+
+> "our goal is to hold spending flat from 2025 to 2026 by improving **compute and machine learning utilization**, and tailoring our **cost** to serve **different features based on their long-term monetization potential**"
+
+Big. They're optimising compute efficiency and tiering infrastructure based on business value. That's what mature engineering orgs do. You don't serve every feature with the same compute budget when some make $0 and others print money.
+
+**Real-Time ML Systems**
+
+> "We recently shipped streaming logjoin, reducing end-to-end latency by two hours and driving measurable gains in favorites. We rolled out dynamic embeddings, removing the technical limits that capped our model size and unblocking scale. These breakthroughs mean our content systems can now update continuously, moving toward two-hour training cycles instead of days-long delays."
+
+Two-hour reduction in latency means their recommendation systems are reacting to user behavior in near real-time instead of batch processing overnight. Dynamic embeddings solving model size limits suggests they hit scaling bottlenecks and actually fixed them instead of throwing hardware at it. Honestly... No idea what streaming logjoin is.
+
+Two-hour training cycles vs days-long delays is the difference between relevant content and stale feeds. TikTok's algorithm advantage is partly this exact thing, real-time model updates.
+
+**First-Party Payments Infrastructure**
+
+> "see an opportunity to **reduce platform fees** by building our own **first-party wallet**, which could eventually result in significant savings"
+
+Building payment infrastructure in-house is non-trivial but the economics are clear. If you're processing hundreds of millions in transactions, platform fees to Stripe/Apple/Google add up fast. Snap+ is at $700M ARR. Even a 1-2% saving on payment processing is $7-14M/year.
+
+This also unlocks new monetization (in-app purchases, creator payouts, digital goods) without giving Apple/Google 30% (We don't want another Apple vs Epic Games).
+
+**GenAI**
+
+> "higher quality playback that rivals or exceeds the competition, as well as exploratory work on **generative recommendations**"
+
+Using LLMs to generate personalised content suggestions. I'm sure everyone else is doing this but we'll see how it plays out.
+
+## The Bear Case
+
+I've been bullish for 3000 words. Time to be honest about the risks.
+
+**North America is Flat**
+
+DAU in North America: 98M (Q3 2025) vs 100M (Q2 2024). Their core market is stagnant or declining. Europe is flat at 100M.
+All the growth is coming from Rest of World, where ARPU is $1.11. Yea... A dollar per user per quarter.
+
+Global ARPU is $3.16. Compare that to Meta's $49+ ARPU.
+
+**The Spectacles Graveyard**
+
+They've burned cash on AR glasses for years with basically zero ROI. Specs 5 launches in 2026. Will this generation finally monetise?
+
+The AR vision is compelling, but Apple has a lot more to spend and an insane product/commercial team and still couldn't make Vision Pro a hit. Meta is spending $10B+/year on Reality Labs, not much commerical success there (apart from those weirdos that film women). What makes Snap different?
+
+**TikTok Owns Short-Form Video**
+
+Spotlight growth is real (300% YoY increase in content), but TikTok has 1.5B+ users and owns the format. Snap is playing catchup in their own backyard and Instagram Reels has Meta's distribution and ad infrastructure.
+
+Snapchat's differentiation was ephemeral content and the social graph. Spotlight must compete head-to-head with TikTok's algorithm.
+
+**The Numbers**
+
+55% gross margin is okay for a tech company, not great. Adjusted Operating Expense Margin is 57%. They're spending more on operations than they're making in gross profit.
+
+Free cash flow was $93M in Q3. They generated $414M over the trailing twelve months. Is that enough cushion for the ambitious roadmap in the memo?
+
+Q3 2025 earnings show a net loss of $104M. They're improving (down from $153M YoY).
+
+Stock-based compensation was $260M in Q3 alone. That's dilution you're eating as a shareholder.
+
+**The Profitability Question**
+
+Adjusted EBITDA was $182M in Q3 (12% margin). Better than last year's $132M, but still not net income positive. When does this company actually make money? The memo talks about "holding spending flat" but doesn't commit to profitability targets.
+
+Investors have been waiting years for Snap to turn the corner. The market priced in this skepticism, hence the $14B valuation. But if execution slips, the downside is real.
+
+## I'm Still Bullish
+
+But I'm not pretending this is safe. I'm betting that this time its different, that Evan finally locks in.
+
+---
+
+If you completely disagree and want to rip me a new one or if you simply have any questions or comments _or want to chat_, shout me -> [ossamachaib.cs@gmail.com](mailto:ossamachaib.cs@gmail.com).
