@@ -5,6 +5,12 @@
         <link>https://ossa-ma.github.io</link>
         <description>This is my portfolio RSS feed</description>
         <item>
+          <title>The Big Tech Ugly Duckling: An Engineer's Bet on Snapchat</title>
+          <link>https://ossa-ma.github.io/blog/snapchat</link>
+          <description>Analysing Evan's memo, 344 research papers and the AI market to figure out if Snap is underpriced or under the mud.</description>
+          <pubDate>Thu, 08 Jan 2026 00:00:00 GMT</pubDate>
+        </item>
+<item>
           <title>The Silence of the LLaMbs</title>
           <link>https://ossa-ma.github.io/blog/silence-of-the-llambs</link>
           <description>Why won't LLMs shut up? Knee deep in the mechanisms, experimenting, tinkering, understanding why my previous hypothesis did not hold.</description>
@@ -59,7 +65,7 @@
           <pubDate>Thu, 04 Dec 2025 00:00:00 GMT</pubDate>
         </item>
 <item>
-          <title>Short the User Experience, Long the Stock? An eBay Thesis</title>
+          <title>eBay - Short the User Experience, Long the Stock?</title>
           <link>https://ossa-ma.github.io/blog/ebay-short-thesis</link>
           <description>eBay is posting record quarters while systematically destroying user engagement. The platform is dying from the inside while looking healthy on a spreadsheet. Here's the long-dated short thesis.</description>
           <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
