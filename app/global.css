@@ -105,7 +105,11 @@ html {
 }
 
 .prose strong {
-  @apply font-medium;
+  @apply font-bold;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-neutral-300 dark:border-neutral-700 pl-4 italic my-4 text-neutral-700 dark:text-neutral-300;
 }
 
 .prose ul {
